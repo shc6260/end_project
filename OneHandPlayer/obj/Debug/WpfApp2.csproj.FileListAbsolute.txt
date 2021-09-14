@@ -172,24 +172,3 @@ C:\Users\alzhx\Documents\카카오톡 받은 파일\WpfApp2\obj\Debug\WpfApp2.g.
 C:\Users\alzhx\Documents\카카오톡 받은 파일\WpfApp2\obj\Debug\WpfApp2.Properties.Resources.resources
 C:\Users\alzhx\Documents\카카오톡 받은 파일\WpfApp2\obj\Debug\WpfApp2.csproj.GenerateResource.cache
 C:\Users\alzhx\Documents\카카오톡 받은 파일\WpfApp2\obj\Debug\WpfApp2.csproj.CoreCompileInputs.cache
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\bin\Debug\WpfApp2.exe.config
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\bin\Debug\WpfApp2.exe
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\bin\Debug\WpfApp2.pdb
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2.csproj.AssemblyReference.cache
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\fill_screen.g.cs
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\MainWindow.g.cs
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\TimeJumpSet.g.cs
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\App.g.cs
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2_Content.g.cs
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2_MarkupCompile.cache
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2_MarkupCompile.lref
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\App.baml
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\fill_screen.baml
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\MainWindow.baml
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\TimeJumpSet.baml
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2.g.resources
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2.Properties.Resources.resources
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2.csproj.GenerateResource.cache
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2.csproj.CoreCompileInputs.cache
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2.exe
-C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\WpfApp2\obj\Debug\WpfApp2.pdb

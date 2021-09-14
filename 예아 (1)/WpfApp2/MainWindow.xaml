@@ -29,7 +29,7 @@
 
         <!--볼륨바-->
         <Slider x:Name="volume_bar" HorizontalAlignment="Left" Margin="553,73.777,0,0" VerticalAlignment="Top" Width="165"
-                Thumb.DragStarted="volume_bar_start" Thumb.DragCompleted="volume_bar_completed" Maximum="1" LargeChange="0.1" Value="0.5" Grid.Column="1" Grid.Row="1" Focusable="False"/>
+                Thumb.DragStarted="volume_bar_start" Thumb.DragCompleted="volume_bar_completed" Maximum="1" LargeChange="0.1" Value="0.5" Grid.Column="1" Grid.Row="1" Focusable="False" ValueChanged="volume_bar_ValueChanged"/>
         <Label x:Name="sound" Content="소리 크기" HorizontalAlignment="Left" Margin="553,42.777,0,0" VerticalAlignment="Top" Width="70" Grid.Column="1" Grid.Row="1"/>
         <Rectangle x:Name="sound_area" HorizontalAlignment="Left" Height="239" Margin="420,10,0,0" VerticalAlignment="Top" Width="114" MouseMove="sound_area_MouseMove" MouseDown="sound_area_MouseDown" MouseUp="sound_area_MouseUp" MouseLeave="sound_area_MouseLeave" Grid.Column="1" Grid.RowSpan="2">
             <Rectangle.Fill>
