@@ -1,0 +1,19 @@
+﻿<Window x:Class="WpfApp2.fill_screen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        
+        WindowStyle="None"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        
+        Title="fill_screen" d:DesignWidth="851.33" d:DesignHeight="658.183" KeyDown="Window_KeyDown">
+    <!--키다운 이벤트-->
+    <Grid>
+        <MediaElement x:Name="mediaMain" Stretch="Uniform" HorizontalAlignment="Center" Height="443" VerticalAlignment="Center" Width="676" LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseWheel="mediaMain_MouseWheel"/>
+
+    </Grid>
+</Window>
