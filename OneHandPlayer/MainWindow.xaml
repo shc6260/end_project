@@ -1,0 +1,53 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" KeyDown="Main_keydown">
+    <!--상하좌우 키다운시 이벤트-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180*"/>
+            <RowDefinition Height="239*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="247*"/>
+        </Grid.ColumnDefinitions>
+        <!--마우스휠 이벤트는 mediaMain에 넣어놨음-->
+        <MediaElement x:Name="mediaMain" Stretch="Uniform" HorizontalAlignment="Left" Height="325" VerticalAlignment="Top" Width="575" LoadedBehavior="Manual" UnloadedBehavior="Stop"  Margin="10,10,0,0" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" MouseWheel="mediaMain_MouseWheel" MouseMove="mediaMain_MouseMove" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Slider x:Name="sldrPlayTime" HorizontalAlignment="Left" Height="32" Margin="10,0,0,42" VerticalAlignment="Bottom" Width="575" Thumb.DragStarted="sldrPlayTime_DragStarted" Thumb.DragCompleted="sldrPlayTime_DragCompleted" ValueChanged="sldrPlayTime_ValueChanged" Grid.ColumnSpan="2" Grid.Row="1" Focusable="False"/>
+        <Button x:Name="btnStart" Content="▶" HorizontalAlignment="Left" Height="32" Margin="10,196.777,0,0" VerticalAlignment="Top" Width="60" Click="btnStart_Click" Grid.ColumnSpan="2" Grid.Row="1" Focusable="False"/>
+        <Button x:Name="btnStop" Content="■" HorizontalAlignment="Right" Height="32" Margin="0,196.777,550,0" VerticalAlignment="Top" Width="60" Click="btnStop_Click" Grid.Column="1" Grid.Row="1" Focusable="False"/>
+        <Button x:Name="btnPause" Content="II" HorizontalAlignment="Left" Height="32" Margin="296,196.777,0,0" VerticalAlignment="Top" Width="60" Click="btnPause_Click" Grid.Column="1" Grid.Row="1" Focusable="False"/>
+        <Button x:Name="btnSelectFile" Content="파일열기" HorizontalAlignment="Left" Height="32" Margin="474,196.777,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="5.812,0.503" Click="btnSelectFile_Click" Grid.Column="1" Grid.Row="1" Focusable="False"/>
+        <Label x:Name="lblPlayTime" Content="00:00:00 / 00:00:00" HorizontalAlignment="Left" Height="32" Margin="558,164.777,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" />
+        <Label x:Name="lblJumpTime" Content="
+               " HorizontalAlignment="Left" Height="32" Margin="534,10,0,0" VerticalAlignment="Top" Width="144" Grid.Column="1" />
+
+        <!--볼륨바-->
+        <Slider x:Name="volume_bar" HorizontalAlignment="Left" Margin="553,73.777,0,0" VerticalAlignment="Top" Width="165"
+                Thumb.DragStarted="volume_bar_start" Thumb.DragCompleted="volume_bar_completed" Maximum="1" LargeChange="0.1" Value="0.5" Grid.Column="1" Grid.Row="1" Focusable="False"/>
+        <Label x:Name="sound" Content="소리 크기" HorizontalAlignment="Left" Margin="553,42.777,0,0" VerticalAlignment="Top" Width="70" Grid.Column="1" Grid.Row="1"/>
+        <Rectangle x:Name="sound_area" HorizontalAlignment="Left" Height="239" Margin="420,10,0,0" VerticalAlignment="Top" Width="114" MouseMove="sound_area_MouseMove" MouseDown="sound_area_MouseDown" MouseUp="sound_area_MouseUp" MouseLeave="sound_area_MouseLeave" Grid.Column="1" Grid.RowSpan="2">
+            <Rectangle.Fill>
+                <ImageBrush/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="time_area" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="86" Margin="10,68.777,0,0" VerticalAlignment="Top" Width="575" MouseDown="time_area_MouseDown" MouseUp="time_area_MouseUp" MouseMove="time_area_MouseMove" Mouse.MouseLeave="time_area_MouseLeave" Grid.Row="1" >
+            <Rectangle.Fill>
+                <ImageBrush/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- 전체화면 버튼 -->
+        <Button x:Name="fill_btn" Content="전체 화면" Grid.Column="1" HorizontalAlignment="Left" Margin="558,114.777,0,0" VerticalAlignment="Top" Width="75" Click="fill_btn_Click" Grid.Row="1" Focusable="False"/>
+
+
+
+
+    </Grid>
+
+</Window>
