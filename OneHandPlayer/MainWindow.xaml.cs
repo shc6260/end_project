@@ -33,6 +33,8 @@ namespace WpfApp2
 
         bool sldrDragStart = false;
 
+        bool RI = false; //반복재생 인덱스
+
         public MainWindow()
         {
             InitializeComponent();
@@ -89,15 +91,20 @@ namespace WpfApp2
 
             mediaMain.Play();
             p = 0;
+
+            btnPause.Visibility = Visibility.Visible;
+            btnStart.Visibility = Visibility.Hidden;
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             if (mediaMain.Source == null)
                 return;
-
             mediaMain.Stop();
             p = 1;
+
+            btnPause.Visibility = Visibility.Hidden;
+            btnStart.Visibility = Visibility.Visible;
         }
 
         private void btnPause_Click(object sender, RoutedEventArgs e)
@@ -107,6 +114,9 @@ namespace WpfApp2
             
             mediaMain.Pause();
             p = 1;
+
+            btnPause.Visibility = Visibility.Hidden;
+            btnStart.Visibility = Visibility.Visible;
         }
 
         private void btnSelectFile_Click(object sender, RoutedEventArgs e)
@@ -143,9 +153,22 @@ namespace WpfApp2
 
         private void mediaMain_MediaEnded(object sender, RoutedEventArgs e)
         {
-            // 미디어 중지
-            mediaMain.Stop();
-            p = 1;
+            if (RI)//로테이션이 켜져있으면
+            {
+                //TimeSpan.FromSeconds(0);
+                mediaMain.Stop();
+                mediaMain.Play();
+
+            }
+            else
+            {
+                // 미디어 중지
+                mediaMain.Stop();
+                p = 1;
+                btnPause.Visibility = Visibility.Hidden;
+                btnStart.Visibility = Visibility.Visible;
+            }
+        
         }
 
         private void mediaMain_MediaOpened(object sender, RoutedEventArgs e)
@@ -358,7 +381,7 @@ namespace WpfApp2
                 String time = hours + ":" + minute + ":" + second;
 
                 lblJumpTime.Visibility = Visibility.Visible;
-                lblJumpTime.Margin = new Thickness(pos.X - 20, pos.Y + 230, 0, 0);
+                lblJumpTime.Margin = new Thickness(pos.X - 500, pos.Y + 250 , 0, 0);
 
                 // 플레이시간이 변경되면, 표시영역을 업데이트한다.
                 lblJumpTime.Content = String.Format("{0} / {1}", time, mediaMain.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
@@ -422,5 +445,28 @@ namespace WpfApp2
         {
             
         }
+
+        private void btnleft_Click(object sender, RoutedEventArgs e)
+        {
+            mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds - 5);
+        }
+
+        private void btnRight_Click(object sender, RoutedEventArgs e)
+        {
+            mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds + 5);
+        }
+
+        private void btnRotation_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (!RI)
+            {
+                RI = true;
+                btnRotation.Background = new ImageBrush(new BitmapImage(new Uri("Images/RotationON.png")));
+
+            }
+        }
+
+
     }
 }

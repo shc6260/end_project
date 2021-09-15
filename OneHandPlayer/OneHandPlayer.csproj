@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -125,6 +126,8 @@
     <Resource Include="Images\Rotation.png" />
     <Resource Include="Images\Vol.png" />
     <Resource Include="Images\wheels.png" />
+    <Resource Include="Images\FullScreen.png" />
+    <Resource Include="Images\RotationON.png" />
     <Content Include="Wildlife.mp4.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
