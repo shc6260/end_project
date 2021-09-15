@@ -118,6 +118,13 @@
     <Resource Include="Images\Square.png" />
     <Resource Include="Images\stop.png" />
     <Resource Include="Images\X.png" />
+    <Resource Include="Images\CrossArrow.png" />
+    <Resource Include="Images\left.png" />
+    <Resource Include="Images\Mute.png" />
+    <Resource Include="Images\right.png" />
+    <Resource Include="Images\Rotation.png" />
+    <Resource Include="Images\Vol.png" />
+    <Resource Include="Images\wheels.png" />
     <Content Include="Wildlife.mp4.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -396,5 +396,10 @@ namespace WpfApp2
                 
             }
         }
+
+        private void volume_bar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }

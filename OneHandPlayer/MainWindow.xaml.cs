@@ -78,7 +78,8 @@ namespace WpfApp2
                 return;
 
             // 플레이시간이 변경되면, 표시영역을 업데이트한다.
-            lblPlayTime.Content = String.Format("{0} / {1}", mediaMain.Position.ToString(@"mm\:ss"), mediaMain.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+            lblPlayTime.Content = String.Format("{0}", mediaMain.Position.ToString(@"mm\:ss"));
+            lblEndTime.Content = String.Format("{0}", mediaMain.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -122,7 +123,7 @@ namespace WpfApp2
             {
                 // 선택한 파일을 Media Element에 지정하고 초기화한다.
                 mediaMain.Source = new Uri(dlg.FileName);
-                mediaMain.Volume = 0.5;
+                mediaMain.Volume = 20;
                 mediaMain.SpeedRatio = 1;
 
                 // 동영상 파일의 Timespan 제어를 위해 초기화와 이벤트처리기를 추가한다.
@@ -247,7 +248,7 @@ namespace WpfApp2
 
         private void volume_bar_completed(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) 
         {
-            mediaMain.Volume = volume_bar.Value;
+            mediaMain.Volume = volume_bar.Value/100;
         }
 
         private void mediaMain_MouseMove(object sender, MouseEventArgs e)
@@ -255,7 +256,7 @@ namespace WpfApp2
            
         }
 
-        // 볼륨 조절 시작
+        // 드래그 볼륨 조절 시작
         bool volume_press = false;
         double start_volume;
 
@@ -267,11 +268,11 @@ namespace WpfApp2
                     return;
                 Point pos = e.GetPosition((IInputElement)sender);
 
-                double volume_set = ((pos.Y - start_volume) / sound_area.Height)/20;
+                double volume_set = ((pos.Y - start_volume) / sound_area.Height)/15;
 
 
-                volume_bar.Value = volume_bar.Value - volume_set;
-                mediaMain.Volume = volume_bar.Value ;
+                volume_bar.Value = (int)(volume_bar.Value - volume_set*100);
+                mediaMain.Volume = volume_bar.Value/100 ;
                 
             }
         }
@@ -315,7 +316,7 @@ namespace WpfApp2
             double x = pos.X;
             double l = mediaMain.NaturalDuration.TimeSpan.TotalSeconds;
 
-            double A = l * (x / mediaMain.Width);
+            double A = l * (x / WindowMain.Width);
 
 
             mediaMain.Position = TimeSpan.FromSeconds(A);
@@ -340,7 +341,7 @@ namespace WpfApp2
                 double x = pos.X;
                 double l = mediaMain.NaturalDuration.TimeSpan.TotalSeconds;
 
-                double A = l * (x / mediaMain.Width);
+                double A = l * (x / WindowMain.Width);
 
                 //시, 분, 초 선언
 
@@ -395,6 +396,31 @@ namespace WpfApp2
 
                 
             }
+
+
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void volume_bar_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void sldrPlayTime_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
         }
     }
 }
