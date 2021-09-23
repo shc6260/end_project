@@ -78,10 +78,10 @@
 
         <Grid Grid.Row="1" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="139*"/>
-                <ColumnDefinition Width="257*"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <MediaElement x:Name="mediaMain"  LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" ForceCursor="True" Grid.ColumnSpan="2"/>
+            <MediaElement x:Name="mediaMain"  LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" ForceCursor="True" MouseWheel="mediaMain_MouseWheel" Grid.ColumnSpan="2"/>
         </Grid>
 
 
