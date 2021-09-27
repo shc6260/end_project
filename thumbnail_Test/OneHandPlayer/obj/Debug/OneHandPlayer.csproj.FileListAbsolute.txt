@@ -65,4 +65,4 @@ C:\Users\shc62\OneDrive\바탕 화면\end_project\thumbnail_Test\OneHandPlayer\b
 C:\Users\shc62\OneDrive\바탕 화면\end_project\thumbnail_Test\OneHandPlayer\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\shc62\OneDrive\바탕 화면\end_project\thumbnail_Test\OneHandPlayer\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\shc62\OneDrive\바탕 화면\end_project\thumbnail_Test\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.CopyComplete
-C:\Users\shc62\OneDrive\바탕 화면\end_project\thumbnail_Test\OneHandPlayer\obj\Debug\WpfApp2.PictureBox.resources
+C:\Users\shc62\OneDrive\바탕 화면\end_project\thumbnail_Test\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.AssemblyReference.cache

@@ -82,8 +82,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <MediaElement x:Name="mediaMain"  LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" ForceCursor="True" MouseWheel="mediaMain_MouseWheel" Grid.ColumnSpan="2" Margin="0,0,146,0"/>
-            <Image x:Name="img" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="89" Margin="644,36,0,0" VerticalAlignment="Top" Width="148"/>
             <Button Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" Height="35" Margin="714,238,0,0" VerticalAlignment="Top" Width="57" Click="Button_Click"/>
+            <Image x:Name="imgtest" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="78" Margin="644,55,0,0" VerticalAlignment="Top" Width="138"/>
         </Grid>
 
 

@@ -476,21 +476,23 @@ namespace WpfApp2
             }
         }
 
-        
+       
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var stream = new System.IO.MemoryStream();
+           
+            
 
             var ffMpeg = new NReco.VideoConverter.FFMpegConverter();
+            ffMpeg.GetVideoThumbnail(mediaMain.Source.ToString().Substring(8),@"..\..\test.jpeg" , 37);//동영상 경로, 출력 경로, 시간(초)
 
-            ffMpeg.GetVideoThumbnail(mediaMain.Source.ToString().Substring(8), stream, 37);//동영상 경로, 출력 경로, 시간(초)
 
-            Image image = null ;
-            image.Save(stream,System.Drawing.Imaging.ImageFormat.Jpeg);
-            stream.Position = 0 ;
 
-            //img.Source = image.RawFormat;
+
+
+            imgtest.Source = new BitmapImage(new Uri(@"\test.jpeg",UriKind.Relative));
+
+
 
 
 
