@@ -467,6 +467,24 @@ namespace WpfApp2
             }
         }
 
+        bool visible_switch = false;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralTransform generalTransform1 = Option.TransformToAncestor(this);
+            Point currentPoint = generalTransform1.Transform(new Point(0, 0));
+
+            if (!visible_switch)
+            {
+                TestStack.Visibility = Visibility.Visible;
+                visible_switch = true;
+            }
+            else
+            {
+                TestStack.Visibility = Visibility.Hidden;
+                visible_switch = false;
+            }
+        }
+
 
     }
 }

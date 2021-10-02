@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" KeyDown="Main_keydown"
         Name="WindowMain" WindowStyle="None">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
     <!--상하좌우 키다운시 이벤트-->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,6 +27,7 @@
         <Grid Background="#0F0F2D" Grid.ColumnSpan="4" MouseDown="Grid_MouseDown">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="17"/>
                 <ColumnDefinition Width="17"/>
                 <ColumnDefinition Width="76*" />
                 <ColumnDefinition Width="76*" />
@@ -48,25 +52,31 @@
             </Button>
 
 
-            <Button Grid.Column="1" BorderBrush="{x:Null}">
+            <Button Grid.Column="1" BorderBrush="{x:Null}" Height="17" Name="Option"  Click="Button_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/wheels.png"/>
                 </Button.Background>
             </Button>
 
-            <Button Grid.Column="12" BorderBrush="{x:Null}">
+            <Button Grid.Column="2" BorderBrush="{x:Null}" Width="25" Height="25">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Bookmark.png"/>
+                </Button.Background>
+            </Button>
+
+            <Button Grid.Column="13" BorderBrush="{x:Null}">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Hyphen.png"/>
                 </Button.Background>
             </Button>
 
-            <Button Grid.Column="13" BorderBrush="{x:Null}" Height="25" VerticalAlignment="Bottom">
+            <Button Grid.Column="14" BorderBrush="{x:Null}" Height="25" VerticalAlignment="Bottom">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Square.png"/>
                 </Button.Background>
             </Button>
 
-            <Button Click="Close_Click" Foreground="White" Grid.Column="14" BorderBrush="{x:Null}">
+            <Button Click="Close_Click" Foreground="White" Grid.Column="15" BorderBrush="{x:Null}">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/X.png"/>
                 </Button.Background>
@@ -76,12 +86,50 @@
 
         </Grid>
 
-        <Grid Grid.Row="1" Grid.ColumnSpan="4">
+        <Grid Grid.Row="1" Grid.ColumnSpan="4" Background="Black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <MediaElement x:Name="mediaMain"  LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" ForceCursor="True" MouseWheel="mediaMain_MouseWheel" Grid.ColumnSpan="2"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="132" Margin="44,0,0,0" VerticalAlignment="Top" Width="174" Background="#000032" Name="TestStack" Opacity="0.8" Grid.ColumnSpan="2" Visibility="Hidden">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Label Content="테스트1" Padding="5,0,0,0" Foreground="White"/>
+                        <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Label Content="테스트2" Padding="5,0,0,0" Foreground="White"/>
+                        <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Label Content="테스트3" Padding="5,0,0,0" Foreground="White"/>
+                        <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Label Content="테스트4" Padding="5,0,0,0" Foreground="White"/>
+                        <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Label Content="테스트5" Padding="5,0,0,0" Foreground="White"/>
+                        <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Label Content="테스트6" Padding="5,0,0,0" Foreground="White"/>
+                        <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Label Content="테스트7" Padding="5,0,0,0" Foreground="White"/>
+                        <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Label Content="테스트8" Padding="5,0,0,0" Foreground="White"/>
+                        <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
         </Grid>
 
 

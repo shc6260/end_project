@@ -128,6 +128,7 @@
     <Resource Include="Images\wheels.png" />
     <Resource Include="Images\FullScreen.png" />
     <Resource Include="Images\RotationON.png" />
+    <Resource Include="Images\Bookmark.png" />
     <Content Include="Wildlife.mp4.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
