@@ -23,7 +23,7 @@ namespace playlistTest {
 
             this.TvBox.ItemsSource = new MovieData[]{
                 
-                new MovieData{Title="Movie 1", ImageData=LoadImage("1.jpg")},
+                new MovieData{Title="Movie 1", ImageData=LoadImage("1.jpg"),Time = "00:00"},
                 new MovieData{Title="Movie 2", ImageData=LoadImage("2.jpg")},
                 new MovieData{Title="Movie 3", ImageData=LoadImage("3.jpg")},
                 new MovieData{Title="Movie 4", ImageData=LoadImage("4.jpg")},
@@ -67,9 +67,17 @@ namespace playlistTest {
                 set { this._ImageData = value; }
             }
 
+            private String _Time;
+
+            public String Time
+            {
+                get { return this._Time; }
+                set { this._Time = value; }
+            }
+
         }
         private BitmapImage LoadImage(string filename) {
-            return new BitmapImage(new Uri("pack://application:,,,/" + filename));
+            return new BitmapImage(new Uri("pack://application:,,,/" + "1.jpg"));
         }
     }
 }

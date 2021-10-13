@@ -50,4 +50,11 @@
     <Resource Include="X.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="PlayListForm.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,9 @@
 ﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -34,6 +37,8 @@ namespace WpfApp2
         bool sldrDragStart = false;
 
         bool RI = false; //반복재생 인덱스
+
+        List<String[]> videoList = new List<string[]>();
 
         public MainWindow()
         {
@@ -121,8 +126,18 @@ namespace WpfApp2
 
         private void btnSelectFile_Click(object sender, RoutedEventArgs e)
         {
+            
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog(); // 새로운 폴더 선택 Dialog 를 생성합니다.
+            dialog.IsFolderPicker = true; //
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok) // 폴더 선택이 정상적으로 되면 아래 코드를 실행합니다.
+            {
+                GetFileListFromFolderPath(dialog.FileName);
+                PlayListForm playListForm = new PlayListForm(videoList);
+                playListForm.Show();
+                //ShowDataFromDataTableToDataGrid(dt_filelistinfo, DataGrid1);
+            }
             // Win32 DLL 을 사용하여 선택할 파일 다이얼로그를 실행한다.
-            OpenFileDialog dlg = new OpenFileDialog()
+            /*OpenFileDialog dlg = new OpenFileDialog()
             {
                 DefaultExt = ".avi",
                 Filter = "All files (*.*)|*.*",
@@ -148,8 +163,49 @@ namespace WpfApp2
                 // 선택한 파일을 실행
                 mediaMain.Play();
                 p = 0;
-            }
+            }*/
         }
+
+        private void GetFileListFromFolderPath(string FolderName)
+        { 
+            DirectoryInfo di = new DirectoryInfo(FolderName); // 해당 폴더 정보를 가져옵니다. 
+            /*DataTable dt1 = new DataTable(); // 새로운 테이블 작성합니다.(FileInfo 에서 가져오기 원하는 속성을 열로 추가합니다.) 
+            dt1.Columns.Add("Folder", typeof(string)); // 파일의 폴더 
+            dt1.Columns.Add("FileName", typeof(string)); // 파일 이름(확장자 포함) 
+            dt1.Columns.Add("Extension", typeof(string)); // 확장자 
+            dt1.Columns.Add("CreationTime", typeof(DateTime)); // 생성 일자 
+            dt1.Columns.Add("LastWriteTime", typeof(DateTime)); // 마지막 수정 일자 
+            dt1.Columns.Add("LastAccessTime", typeof(DateTime)); // 마지막 접근 일자 
+            dt1.Columns.Add("Lenth", typeof(long)); //파일의 크기*/
+            videoList.Clear();
+            foreach (FileInfo File in di.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
+            {
+                //dt1.Rows.Add(File.DirectoryName, File.Name, File.Extension, File.CreationTime, File.LastWriteTime, File.LastAccessTime, File.Length); // 개별 파일 별로 정보를 추가합니다.
+                
+                String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
+                videoList.Add(video);
+                MessageBox.Show(videoList.Count().ToString());
+            }
+            /*if (ch == true) // 하위 폴더 포함될 경우 
+            {
+                DirectoryInfo[] di_sub = di.GetDirectories(); // 하위 폴더 목록들의 정보 가져옵니다. 
+                foreach (DirectoryInfo di1 in di_sub) // 하위 폴더목록을 스캔합니다. 
+                {
+                    foreach (FileInfo File in di1.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
+                    {
+                        dt1.Rows.Add(File.DirectoryName, File.Name, File.Extension, File.CreationTime, File.LastWriteTime, File.LastAccessTime, File.Length); // 개별 파일 별로 정보를 추가합니다. 
+                    }
+                }
+            }*/
+            
+        }
+
+
+        /*private void ShowDataFromDataTableToDataGrid(DataTable dt1, DataGrid dgv1)
+        {
+            //xaml에서 미리 Binding Path를 해두어야합니다.
+            dgv1.ItemsSource = dt1.DefaultView;
+        }*/
 
         private void mediaMain_MediaEnded(object sender, RoutedEventArgs e)
         {
@@ -485,6 +541,11 @@ namespace WpfApp2
             }
         }
 
+        private void plylistbtn_Click(object sender, RoutedEventArgs e)
+        {
+            //PlayListForm playListForm = new PlayListForm();
+           // playListForm.Show();
+        }
 
     }
 }

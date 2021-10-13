@@ -1,0 +1,26 @@
+﻿<Window x:Class="get_file.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:get_file"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="button1" Content="폴더 선택" HorizontalAlignment="Left" Margin="26,33,0,0" VerticalAlignment="Top" Height="25" Width="158" Focusable="False" Click="button1_Click"/>
+        <CheckBox x:Name="checkBox1" Content="하위폴더 포함" HorizontalAlignment="Left" Margin="224,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.197,0.026" Height="20" Width="109" Checked="checkBox1_Checked" Unchecked="checkBox1_UnChecked"/>
+        <Label x:Name="label1" Content="선택된 폴더 : " HorizontalAlignment="Left" Margin="26,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.077,-0.036" Width="94"/>
+        <Label x:Name="label2" Content="없음" HorizontalAlignment="Left" Margin="125,77,0,0" VerticalAlignment="Top" Width="70"/>
+        <DataGrid x:Name="DataGrid1" Margin="36,103,36,38" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Folder" Binding="{Binding Path=Folder}"/>
+                <DataGridTextColumn Header="FileName" Binding="{Binding Path=FileName}"/>
+                <DataGridTextColumn Header="Extension" Binding="{Binding Path=Extension}"/>
+                <DataGridTextColumn Header="CreationTime" Binding="{Binding Path=CreationTime}"/>
+                <DataGridTextColumn Header="LastWriteTime" Binding="{Binding Path=LastWriteTime}"/>
+                <DataGridTextColumn Header="LastAccessTime" Binding="{Binding Path=LastAccessTime}"/>
+                <DataGridTextColumn Header="Lenth" Binding="{Binding Path=Lenth}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

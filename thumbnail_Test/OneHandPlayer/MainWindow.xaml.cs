@@ -484,7 +484,7 @@ namespace WpfApp2
             
 
             var ffMpeg = new NReco.VideoConverter.FFMpegConverter();
-            ffMpeg.GetVideoThumbnail(mediaMain.Source.ToString().Substring(8),@"..\..\test.jpeg" , 37);//동영상 경로, 출력 경로, 시간(초)
+            ffMpeg.GetVideoThumbnail(@"..\..\Wildlife.mp4.mp4", @"..\..\test.jpeg" , 37);//동영상 경로, 출력 경로, 시간(초)
 
 
 

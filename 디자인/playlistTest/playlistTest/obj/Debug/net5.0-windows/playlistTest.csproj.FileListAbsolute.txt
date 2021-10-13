@@ -43,3 +43,26 @@ C:\Users\lsd99\Desktop\a\playlistTest\playlistTest\obj\Debug\net5.0-windows\ref\
 C:\Users\lsd99\Desktop\a\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.pdb
 C:\Users\lsd99\Desktop\a\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.genruntimeconfig.cache
 C:\Users\lsd99\Desktop\a\playlistTest\playlistTest\obj\Debug\net5.0-windows\App.baml
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\App.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest_MarkupCompile.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest_MarkupCompile.lref
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\ref\playlistTest.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.pdb
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\bin\Debug\net5.0-windows\playlistTest.exe
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\bin\Debug\net5.0-windows\playlistTest.deps.json
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\bin\Debug\net5.0-windows\playlistTest.runtimeconfig.json
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\bin\Debug\net5.0-windows\playlistTest.runtimeconfig.dev.json
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\bin\Debug\net5.0-windows\playlistTest.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\bin\Debug\net5.0-windows\ref\playlistTest.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\bin\Debug\net5.0-windows\playlistTest.pdb
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\App.baml
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.g.resources
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.AssemblyInfoInputs.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.AssemblyInfo.cs
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.csproj.CoreCompileInputs.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.genruntimeconfig.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\playlistTest.csproj.AssemblyReference.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\mainWindow.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\end_project\디자인\playlistTest\playlistTest\obj\Debug\net5.0-windows\mainWindow.baml

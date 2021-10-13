@@ -76,6 +76,7 @@
                             <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                                 <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill"/>
                                 <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding Time}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

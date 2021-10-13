@@ -1,0 +1,50 @@
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.csproj.AssemblyReference.cache
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\MainWindow.g.cs
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\App.g.cs
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file_MarkupCompile.cache
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file_MarkupCompile.lref
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\get_file.exe
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\get_file.deps.json
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\get_file.runtimeconfig.json
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\get_file.runtimeconfig.dev.json
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\get_file.dll
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\ref\get_file.dll
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\get_file.pdb
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\Microsoft.WindowsAPICodePack.dll
+C:\Users\alzhx\Desktop\get_file\get_file\bin\Debug\net5.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\MainWindow.baml
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.g.resources
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.AssemblyInfoInputs.cache
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.AssemblyInfo.cs
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.csproj.CoreCompileInputs.cache
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.csproj.CopyComplete
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.dll
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\ref\get_file.dll
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.pdb
+C:\Users\alzhx\Desktop\get_file\get_file\obj\Debug\net5.0-windows\get_file.genruntimeconfig.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\get_file.exe
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\get_file.deps.json
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\get_file.runtimeconfig.json
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\get_file.runtimeconfig.dev.json
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\get_file.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\ref\get_file.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\get_file.pdb
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\Microsoft.WindowsAPICodePack.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\bin\Debug\net5.0-windows\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.csproj.AssemblyReference.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\MainWindow.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\App.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file_MarkupCompile.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file_MarkupCompile.lref
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\MainWindow.baml
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.g.resources
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.AssemblyInfoInputs.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.AssemblyInfo.cs
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.csproj.CoreCompileInputs.cache
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.csproj.CopyComplete
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\ref\get_file.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.pdb
+C:\Users\shc62\OneDrive\바탕 화면\end_project\get_file\get_file\get_file\obj\Debug\net5.0-windows\get_file.genruntimeconfig.cache

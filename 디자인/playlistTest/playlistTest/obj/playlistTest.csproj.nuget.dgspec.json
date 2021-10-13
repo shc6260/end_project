@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lsd99\\Desktop\\a\\playlistTest\\playlistTest\\playlistTest.csproj": {}
+    "C:\\Users\\shc62\\OneDrive\\바탕 화면\\end_project\\디자인\\playlistTest\\playlistTest\\playlistTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lsd99\\Desktop\\a\\playlistTest\\playlistTest\\playlistTest.csproj": {
+    "C:\\Users\\shc62\\OneDrive\\바탕 화면\\end_project\\디자인\\playlistTest\\playlistTest\\playlistTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lsd99\\Desktop\\a\\playlistTest\\playlistTest\\playlistTest.csproj",
+        "projectUniqueName": "C:\\Users\\shc62\\OneDrive\\바탕 화면\\end_project\\디자인\\playlistTest\\playlistTest\\playlistTest.csproj",
         "projectName": "playlistTest",
-        "projectPath": "C:\\Users\\lsd99\\Desktop\\a\\playlistTest\\playlistTest\\playlistTest.csproj",
-        "packagesPath": "C:\\Users\\lsd99\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lsd99\\Desktop\\a\\playlistTest\\playlistTest\\obj\\",
+        "projectPath": "C:\\Users\\shc62\\OneDrive\\바탕 화면\\end_project\\디자인\\playlistTest\\playlistTest\\playlistTest.csproj",
+        "packagesPath": "C:\\Users\\shc62\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shc62\\OneDrive\\바탕 화면\\end_project\\디자인\\playlistTest\\playlistTest\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\lsd99\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\shc62\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

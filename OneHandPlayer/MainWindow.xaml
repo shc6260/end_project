@@ -45,7 +45,7 @@
 
             </Grid.ColumnDefinitions>
 
-            <Button BorderBrush="{x:Null}">
+            <Button x:Name="plylistbtn" BorderBrush="{x:Null}" Click="plylistbtn_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Bracket.png"/>
                 </Button.Background>
