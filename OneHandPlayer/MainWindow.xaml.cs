@@ -39,7 +39,7 @@ namespace WpfApp2
         bool RI = false; //반복재생 인덱스
 
         List<String[]> videoList = new List<string[]>();
-
+        PlayListForm playListForm = null;//리스트 폼
         public MainWindow()
         {
             InitializeComponent();
@@ -132,7 +132,7 @@ namespace WpfApp2
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok) // 폴더 선택이 정상적으로 되면 아래 코드를 실행합니다.
             {
                 GetFileListFromFolderPath(dialog.FileName);
-                PlayListForm playListForm = new PlayListForm(videoList);
+                playListForm = new PlayListForm(videoList,this);
                 playListForm.Show();
                 //ShowDataFromDataTableToDataGrid(dt_filelistinfo, DataGrid1);
             }
@@ -184,7 +184,6 @@ namespace WpfApp2
                 
                 String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
                 videoList.Add(video);
-                MessageBox.Show(videoList.Count().ToString());
             }
             /*if (ch == true) // 하위 폴더 포함될 경우 
             {
@@ -206,6 +205,27 @@ namespace WpfApp2
             //xaml에서 미리 Binding Path를 해두어야합니다.
             dgv1.ItemsSource = dt1.DefaultView;
         }*/
+
+        public void Media_Play(String Source)//영상 경로 받아와서 실행
+        {
+            // 선택한 파일을 Media Element에 지정하고 초기화한다.
+            mediaMain.Source = new Uri(Source);
+            mediaMain.Volume = 20;
+            mediaMain.SpeedRatio = 1;
+
+            // 동영상 파일의 Timespan 제어를 위해 초기화와 이벤트처리기를 추가한다.
+            DispatcherTimer timer = new DispatcherTimer()
+            {
+                    Interval = TimeSpan.FromSeconds(1)
+            };
+            timer.Tick += TimerTickHandler;
+            timer.Start();
+
+
+            // 선택한 파일을 실행
+            mediaMain.Play();
+            p = 0;
+        }
 
         private void mediaMain_MediaEnded(object sender, RoutedEventArgs e)
         {
@@ -234,6 +254,8 @@ namespace WpfApp2
             sldrPlayTime.Maximum = mediaMain.NaturalDuration.TimeSpan.TotalSeconds;
 
             // 미디어 파일이 열리면, 볼륨을 볼륨슬라이더가 위치한 자리에 맞춘다.
+
+
         }
 
         private void mediaMain_MediaFailed(object sender, ExceptionRoutedEventArgs e)
@@ -462,7 +484,6 @@ namespace WpfApp2
             
             if (F_S.ShowDialog() == true)
             {
-                
                 playtime = F_S.mediaMain.Position.TotalSeconds;
                 volume = F_S.mediaMain.Volume;
                 mediaMain.Position = TimeSpan.FromSeconds(playtime);
@@ -490,6 +511,7 @@ namespace WpfApp2
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            
         }
 
         private void volume_bar_MouseMove(object sender, MouseEventArgs e)
@@ -541,11 +563,32 @@ namespace WpfApp2
             }
         }
 
+
+        bool playList_Index = true;
         private void plylistbtn_Click(object sender, RoutedEventArgs e)
         {
-            //PlayListForm playListForm = new PlayListForm();
-           // playListForm.Show();
+            
+            if (playListForm == null)
+            {
+                return;
+            }
+
+            if (playList_Index)
+            {
+                playListForm.Hide();
+                playList_Index = false;
+            }
+
+            else
+            {
+                playListForm.Show();
+                playList_Index = true;
+            }
         }
 
+        private void WindowMain_Closed(object sender, EventArgs e)
+        {
+            playListForm.Close();
+        }
     }
 }

@@ -21,13 +21,21 @@ namespace WpfApp2
     /// </summary>
     public partial class PlayListForm : Window
     {
-        
 
-        public PlayListForm(List<String[]> videoList)
+        MainWindow MainWindow;
+
+        public PlayListForm(List<String[]> videoList , MainWindow mainWindow)
         {
             InitializeComponent();
 
-            
+            this.Height = mainWindow.Height;
+
+
+
+
+
+            this.MainWindow = mainWindow;// 값 전달을 위한 메인화면 가져오기
+
             List <MovieData> videoData = new List<MovieData>();
 
             for (int i = 0; i < videoList.Count; i++)
@@ -35,6 +43,7 @@ namespace WpfApp2
                 MovieData vd = new MovieData();
                 vd.ImageData = LoadImage(videoList[1-i][0] + "/" + videoList[1-i][1], videoList[1-i][1]);
                 vd.Title = videoList[1-i][1];
+                vd.mediaSource = videoList[1 - i][0] + "/" + videoList[1 - i][1];
 
                 videoData.Add(vd);
                 
@@ -103,6 +112,13 @@ namespace WpfApp2
                 set { this._Time = value; }
             }
 
+            private String _mediaSource;
+
+            public String mediaSource
+            {
+                get { return this._mediaSource; }
+                set { this._mediaSource = value; }
+            }
         }
         private BitmapImage LoadImage(string file, String filename)
         {
@@ -115,9 +131,34 @@ namespace WpfApp2
             
         }
 
+
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        
+
+        private void TvBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(TvBox.SelectedItems.Count == 1)
+            {
+                DependencyObject dep = (DependencyObject)e.OriginalSource;
+
+                while ((dep != null) && !(dep is ListViewItem))
+                {
+                    dep = VisualTreeHelper.GetParent(dep);
+                }
+
+                if (dep == null) return;
+
+                MovieData movieData = new MovieData();
+                movieData = (MovieData)TvBox.ItemContainerGenerator.ItemFromContainer(dep);
+
+                MainWindow.Media_Play(movieData.mediaSource);
+
+            }
         }
     }
 }

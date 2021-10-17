@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="PlayListForm" Height="500" Width="400" Loaded="Window_Loaded">
+        Title="PlayListForm" Height="500" Width="400" Loaded="Window_Loaded" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -14,50 +14,16 @@
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="play_List" Background="#0F0F2D" Grid.Row="0" MouseDown="Grid_MouseDown">
-                <Grid.ColumnDefinitions >
-                    <ColumnDefinition/>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
-                    <ColumnDefinition Width="25"/>
-
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="11" BorderBrush="{x:Null}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/images/Hyphen.png"/>
-                    </Button.Background>
-                </Button>
-
-                <Button Grid.Column="12" BorderBrush="{x:Null}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/images/Square.png"/>
-                    </Button.Background>
-                </Button>
-
-                <Button Click="Close_Click" Foreground="White" Grid.Column="13" BorderBrush="{x:Null}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/images/X.png"/>
-                    </Button.Background>
-                </Button>
-            </Grid>
-
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2" Margin="0,2,0,438">
                 <TextBox Name="Search_List" Background="#FF1E1C3E"/>
             </Grid>
 
 
-            <Grid Grid.Row="2">
-                <ListView x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid Grid.Row="2" Margin="0,22,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" MouseDoubleClick="TvBox_MouseDoubleClick" Background="White" >
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Columns="2" HorizontalAlignment="Stretch"/>
@@ -65,8 +31,8 @@
                     </ItemsControl.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" Width="177" Height="100"/>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                                <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" Width="177" Height="100" />
                                 <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
                                 <TextBlock Text="{Binding Time}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
                             </StackPanel>
@@ -74,6 +40,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
+            <Label Content="영상 목록" HorizontalAlignment="Left" Height="40" Width="400" Grid.RowSpan="2" RenderTransformOrigin="0.496,0.858" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF1E1C3E" Foreground="#FFC9AAE8"/>
         </Grid>
     </Grid>
 </Window>
