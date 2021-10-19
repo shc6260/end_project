@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="PlayListForm" Height="500" Width="400" Loaded="Window_Loaded" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True">
+        Title="PlayListForm" Height="500" Width="300
+        " Loaded="Window_Loaded" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True"
+        Closed="Window_Closed">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -29,18 +31,18 @@
                             <UniformGrid Columns="2" HorizontalAlignment="Stretch"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-                                <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" Width="177" Height="100" />
-                                <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding Time}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+                    <ListView.ItemTemplate >
+                        <DataTemplate >
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >
+                                <Image Source="{Binding ImageData}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" Width="Auto" Height="70" />
+                                <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto"/>
+                                <TextBlock Text="{Binding Time}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            <Label Content="영상 목록" HorizontalAlignment="Left" Height="40" Width="400" Grid.RowSpan="2" RenderTransformOrigin="0.496,0.858" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF1E1C3E" Foreground="#FFC9AAE8"/>
+            <Label Content="영상 목록" HorizontalAlignment="Left" Height="40" Width="300" Grid.RowSpan="2" RenderTransformOrigin="0.496,0.858" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF1E1C3E" Foreground="#FFC9AAE8"/>
         </Grid>
     </Grid>
 </Window>

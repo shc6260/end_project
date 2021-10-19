@@ -23,70 +23,103 @@ namespace WpfApp2
     {
 
         MainWindow MainWindow;
+        List<String[]> videoList = new List<string[]>();//받아온 영상목록
+        List<MovieData> videoData;
 
-        public PlayListForm(List<String[]> videoList , MainWindow mainWindow)
+        String mainFolder = ""; // 메인 폴더 경로
+        public String _mainFolder
+        {
+            get { return this.mainFolder; }
+
+        }
+
+        String nowFolder = "";
+        String pastFolder = "";// 이전 폴더 경로
+        public PlayListForm(List<String[]> videoList , MainWindow mainWindow, String mainFolder)
         {
             InitializeComponent();
 
             this.Height = mainWindow.Height;
 
-
-
-
-
             this.MainWindow = mainWindow;// 값 전달을 위한 메인화면 가져오기
 
-            List <MovieData> videoData = new List<MovieData>();
+            this.videoList = videoList;//영상목록 받아오기
+
+            this.mainFolder = mainFolder;//메인폴더 경로
+            this.nowFolder = mainFolder;
+            this.pastFolder = mainFolder;
+
+            DirectoryInfo di = new DirectoryInfo(mainFolder+ "/thumbnail");
+            if(di.Exists == false)//썸네일 폴더 생성
+            {
+                di.Create();
+
+                di.Attributes = FileAttributes.Hidden;
+
+                
+            }
+
+
+            getList();//영상 리스트 만들기
+
+
+           
+        }
+
+        private void getList() //영상리스트 메소드
+        {
+            
+
+
+            videoData = new List<MovieData>(); // 영상 리스트
+
+            MovieData md = new MovieData(); // 메인폴더로 가는 버튼
+            md.ImageData = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Folder.png"));
+            md.Title = "홈";
+            md.mediaSource = mainFolder;
+            md.type = true;
+            videoData.Add(md);
+
+
+
+            MovieData pd = new MovieData(); // 이전폴더로 가는 버튼 
+            pd.ImageData = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Folder.png"));
+            pd.Title = "이전";       
+            pd.type = true;
+            videoData.Add(pd);
 
             for (int i = 0; i < videoList.Count; i++)
             {
                 MovieData vd = new MovieData();
-                vd.ImageData = LoadImage(videoList[1-i][0] + "/" + videoList[1-i][1], videoList[1-i][1]);
-                vd.Title = videoList[1-i][1];
-                vd.mediaSource = videoList[1 - i][0] + "/" + videoList[1 - i][1];
+                if (videoList[i][2] == "")//확장자가 폴더면
+                {
+                    vd.ImageData = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Folder.png"));
+                    vd.Title = videoList[i][1];
+                    vd.mediaSource = videoList[i][0];
+                    vd.type = true;
+                    videoData.Add(vd);
+                }
 
-                videoData.Add(vd);
+                else if(videoList[i][2].Equals(".mp4") || videoList[i][2].Equals(".m4p") || videoList[i][2].Equals(".avi") || videoList[i][2].Equals(".wmv"))
+                {
+                    vd.ImageData = LoadImage(videoList[i][0] + "/" + videoList[i][1], videoList[i][1]);
+                    vd.Title = videoList[i][1];
+                    vd.mediaSource = videoList[i][0] + "/" + videoList[i][1];
+                    vd.type = false;
+                    videoData.Add(vd);
+                }
+                
+                
                 
             }
+            
+            pd.mediaSource = pastFolder;//이전폴더 경로
+            
 
             TvBox.ItemsSource = videoData;
 
-
-
-            /*this.TvBox.ItemsSource = new MovieData[]{
-
-
-                
-                new MovieData{Title="Movie 1", ImageData=LoadImage("1.jpg"),Time = "00:00"},
-                new MovieData{Title="Movie 2", ImageData=LoadImage("2.jpg")},
-                new MovieData{Title="Movie 3", ImageData=LoadImage("3.jpg")},
-                new MovieData{Title="Movie 4", ImageData=LoadImage("4.jpg")},
-                new MovieData{Title="Movie 5", ImageData=LoadImage("5.jpg")},
-                new MovieData{Title="Movie 6", ImageData=LoadImage("6.jpg")},
-                new MovieData{Title="Movie 7", ImageData=LoadImage("7.jpg")},
-                new MovieData{Title="Movie 9", ImageData=LoadImage("8.jpg")},
-                new MovieData{Title="Movie 10", ImageData=LoadImage("9.jpg")},
-                new MovieData{Title="Movie 11", ImageData=LoadImage("10.jpg")},
-                new MovieData{Title="Movie 12", ImageData=LoadImage("11.jpg")},
-                new MovieData{Title="Movie 13", ImageData=LoadImage("12.jpg")},
-                new MovieData{Title="Movie 14", ImageData=LoadImage("13.jpg")},
-                new MovieData{Title="Movie 15", ImageData=LoadImage("14.jpg")},
-                new MovieData { Title = "text", ImageData = LoadImage("15.jpg") }
-
-            };*/
         }
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
 
         public class MovieData
         {
@@ -108,6 +141,7 @@ namespace WpfApp2
 
             public String Time
             {
+
                 get { return this._Time; }
                 set { this._Time = value; }
             }
@@ -119,15 +153,30 @@ namespace WpfApp2
                 get { return this._mediaSource; }
                 set { this._mediaSource = value; }
             }
+
+            private bool _type;
+
+            public bool type
+            {
+                get { return this._type; }
+                set { this._type = value; }
+            }
         }
-        private BitmapImage LoadImage(string file, String filename)
+        private BitmapImage LoadImage(string file, String filename)//영상경로, 영상 이름
         {
-            
+            FileInfo fileInfo = new FileInfo(mainFolder + "/thumbnail/" + filename + ".jpeg");//스크린샷이 있으면 스크린샷 생성 안함
+            if (fileInfo.Exists)
+            {
+                return new BitmapImage(new Uri(mainFolder + "/thumbnail/" + filename + ".jpeg"));
+            }
+
+
             //MemoryStream stream = new MemoryStream();
             var ffMpeg = new NReco.VideoConverter.FFMpegConverter();
-            ffMpeg.GetVideoThumbnail(file, @"..\..\thumbnail\"+ filename + ".jpeg", 37);//동영상 경로, 출력 경로, 시간(초)
+            ffMpeg.GetVideoThumbnail(file, mainFolder + "/thumbnail/" + filename + ".jpeg", 37);//동영상 경로, 출력 경로, 시간(초)
             
-            return new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\thumbnail\" + filename + ".jpeg"));
+
+            return new BitmapImage(new Uri(mainFolder + "/thumbnail/" + filename + ".jpeg"));
             
         }
 
@@ -156,9 +205,59 @@ namespace WpfApp2
                 MovieData movieData = new MovieData();
                 movieData = (MovieData)TvBox.ItemContainerGenerator.ItemFromContainer(dep);
 
-                MainWindow.Media_Play(movieData.mediaSource);
+                if (movieData.type)//현재폴더랑 같으면
+                {
+                    if (nowFolder.Equals(movieData.mediaSource))
+                    {
+                        MessageBox.Show("현재폴더입니다.");
+                        return;
+                    }
+
+                    nowFolder = movieData.mediaSource;
+                    List<String[]> videoList = new List<string[]>();//받아온 영상목록
+
+                    DirectoryInfo di = new DirectoryInfo(movieData.mediaSource); // 해당 폴더 정보를 가져옵니다. 
+                    
+                    videoList.Clear();
+                    
+                    DirectoryInfo[] dirs = di.GetDirectories("*.*", SearchOption.AllDirectories);//폴더 목록 검색
+                    foreach (DirectoryInfo d in dirs)
+                    {
+                        if (d.Name == "thumbnail")
+                        {//썸네일 폴더 안나오게
+                            continue;
+                        }
+
+                        String[] dir = new string[] { d.FullName, d.Name, d.Extension };
+                        videoList.Add(dir);
+                    }
+
+                    foreach (FileInfo File in di.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
+                    {
+
+                        String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
+                        videoList.Add(video);
+                    }
+                    this.videoList = videoList;                   
+                    
+
+                    getList();
+
+                    pastFolder = movieData.mediaSource;
+                }
+
+                else
+                {
+                    MainWindow.Media_Play(movieData.mediaSource);
+                }
+                
 
             }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+
         }
     }
 }

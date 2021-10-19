@@ -43,6 +43,20 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
+
+            //화면 중앙으로
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+
+            double windowWidth = this.Width;
+
+            double windowHeight = this.Height;
+
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
+
         }
 
         // 미디어파일 타임 핸들러
@@ -124,49 +138,24 @@ namespace WpfApp2
             btnStart.Visibility = Visibility.Visible;
         }
 
-        private void btnSelectFile_Click(object sender, RoutedEventArgs e)
+        private void btnSelectFile_Click(object sender, RoutedEventArgs e)//영상목록 버튼 클릭 이벤트
         {
             
             CommonOpenFileDialog dialog = new CommonOpenFileDialog(); // 새로운 폴더 선택 Dialog 를 생성합니다.
+            
             dialog.IsFolderPicker = true; //
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok) // 폴더 선택이 정상적으로 되면 아래 코드를 실행합니다.
             {
                 GetFileListFromFolderPath(dialog.FileName);
-                playListForm = new PlayListForm(videoList,this);
+                
+                playListForm = new PlayListForm(videoList,this,dialog.FileName);
+                playListForm.Top = this.Top;
+                playListForm.Left = this.Left - playListForm.Width ;
                 playListForm.Show();
-                //ShowDataFromDataTableToDataGrid(dt_filelistinfo, DataGrid1);
             }
-            // Win32 DLL 을 사용하여 선택할 파일 다이얼로그를 실행한다.
-            /*OpenFileDialog dlg = new OpenFileDialog()
-            {
-                DefaultExt = ".avi",
-                Filter = "All files (*.*)|*.*",
-                Multiselect = false
-            };
-
-            if (dlg.ShowDialog() == true)
-            {
-                // 선택한 파일을 Media Element에 지정하고 초기화한다.
-                mediaMain.Source = new Uri(dlg.FileName);
-                mediaMain.Volume = 20;
-                mediaMain.SpeedRatio = 1;
-
-                // 동영상 파일의 Timespan 제어를 위해 초기화와 이벤트처리기를 추가한다.
-                DispatcherTimer timer = new DispatcherTimer()
-                {
-                    Interval = TimeSpan.FromSeconds(1)
-                };
-                timer.Tick += TimerTickHandler;
-                timer.Start();
-
-                               
-                // 선택한 파일을 실행
-                mediaMain.Play();
-                p = 0;
-            }*/
         }
 
-        private void GetFileListFromFolderPath(string FolderName)
+        private void GetFileListFromFolderPath(string FolderName)//파일 목록 리스트
         { 
             DirectoryInfo di = new DirectoryInfo(FolderName); // 해당 폴더 정보를 가져옵니다. 
             /*DataTable dt1 = new DataTable(); // 새로운 테이블 작성합니다.(FileInfo 에서 가져오기 원하는 속성을 열로 추가합니다.) 
@@ -178,6 +167,18 @@ namespace WpfApp2
             dt1.Columns.Add("LastAccessTime", typeof(DateTime)); // 마지막 접근 일자 
             dt1.Columns.Add("Lenth", typeof(long)); //파일의 크기*/
             videoList.Clear();
+
+            DirectoryInfo[] dirs = di.GetDirectories("*.*", SearchOption.AllDirectories);//폴더 목록 검색
+            foreach (DirectoryInfo d in dirs)
+            {
+                if(d.Name == "thumbnail")
+                {//썸네일 폴더 안나오게
+                    continue;
+                }
+                String[] dir = new string[] { d.FullName, d.Name, d.Extension };
+                videoList.Add(dir);
+            }
+
             foreach (FileInfo File in di.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
             {
                 //dt1.Rows.Add(File.DirectoryName, File.Name, File.Extension, File.CreationTime, File.LastWriteTime, File.LastAccessTime, File.Length); // 개별 파일 별로 정보를 추가합니다.
@@ -589,6 +590,21 @@ namespace WpfApp2
         private void WindowMain_Closed(object sender, EventArgs e)
         {
             playListForm.Close();
+            /*
+            DirectoryInfo di = new DirectoryInfo(playListForm._mainFolder + "/thumbnail");
+            
+            if (di.Exists == true)//썸네일 폴더 삭제
+            {
+                Directory.Delete(playListForm._mainFolder + "/thumbnail", true);
+
+                di.Delete(true);
+            } 보류*/
+
+        }
+
+        private void WindowMain_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
         }
     }
 }

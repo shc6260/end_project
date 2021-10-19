@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" KeyDown="Main_keydown"
-        Name="WindowMain" WindowStyle="None" Closed="WindowMain_Closed">
+        Name="WindowMain" WindowStyle="None" Closed="WindowMain_Closed" Closing="WindowMain_Closing" >
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
