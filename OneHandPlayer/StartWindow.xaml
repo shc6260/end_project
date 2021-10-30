@@ -24,29 +24,29 @@
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="17"/>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="99" />
+                <ColumnDefinition Width="99*" />
+                <ColumnDefinition Width="98*" />
+                <ColumnDefinition Width="99*" />
+                <ColumnDefinition Width="99*" />
+                <ColumnDefinition Width="98*" />
+                <ColumnDefinition Width="99*" />
+                <ColumnDefinition Width="99*" />
+                <ColumnDefinition Width="98*" />
                 <ColumnDefinition Width="25"/>
                 <ColumnDefinition Width="25"/>
                 <ColumnDefinition Width="25"/>
 
             </Grid.ColumnDefinitions>
 
-            <Button BorderBrush="{x:Null}">
+            <Button BorderBrush="{x:Null}" Margin="-32,34,32,-35">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Bracket.png"/>
                 </Button.Background>
             </Button>
 
 
-            <Button Grid.Column="1" BorderBrush="{x:Null}" Width="17" Height="17">
+            <Button BorderBrush="{x:Null}" Width="17" Height="17" RenderTransformOrigin="-5.529,1.824" Margin="-32,14,35,-7">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/wheels.png"/>
                 </Button.Background>
@@ -58,7 +58,7 @@
                 </Button.Background>
             </Button>
 
-            <Button Grid.Column="12" BorderBrush="{x:Null}">
+            <Button Grid.Column="13" BorderBrush="{x:Null}" Margin="67,29,-68,-29">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Square.png"/>
                 </Button.Background>

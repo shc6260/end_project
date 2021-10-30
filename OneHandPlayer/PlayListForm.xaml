@@ -1,0 +1,46 @@
+﻿<Window x:Class="WpfApp2.PlayListForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="PlayListForm" Height="500" Width="300
+        " Loaded="Window_Loaded" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True"
+        Closed="Window_Closed">
+    <Grid>
+        <Grid Margin="0,0,0,24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="4*" Name="test1"/>
+            </Grid.RowDefinitions>
+            <Label Content="영상 목록" Grid.Row="0" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF1E1C3E" Foreground="#FFC9AAE8"/>
+
+            <TextBox Grid.Row="1" Name="Search_Text" Background="#FFE2E0FF" TextChanged="Search_Text_TextChanged" Margin="0,0,56,0" BorderBrush="Black"/>
+
+
+            <ListView Grid.Row="2" x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" MouseDoubleClick="TvBox_MouseDoubleClick" Background="White" Margin="0" Padding="0" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2" HorizontalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >
+                            <Image Source="{Binding ImageData}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" Width="Auto" Height="70" />
+                            <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto"/>
+                            <TextBlock Text="{Binding Time}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" TextAlignment="Right"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Content="정렬" HorizontalAlignment="Left" Height="24" Margin="9,8,0,0" VerticalAlignment="Top" Width="39" Click="Button_Click"/>
+            <Button Content="검색" HorizontalAlignment="Left" Height="20" Margin="244,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="56" Name="Search_btn" Click="Search_btn_Click"/>
+            <Label Content="asd" HorizontalAlignment="Center" Height="26" Margin="0,0,0,-25" Grid.Row="2" VerticalAlignment="Bottom" Width="300" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="pathLbl" FlowDirection="RightToLeft" MouseEnter="pathLbl_MouseEnter"/>
+
+        </Grid>
+    </Grid>
+</Window>

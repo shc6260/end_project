@@ -1,0 +1,112 @@
+﻿<Window x:Class="WpfApp2.fill_screen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        
+        WindowStyle="None"
+        WindowState="Maximized"
+        ResizeMode="NoResize"
+        
+        Title="fill_screen" d:DesignWidth="851.33" d:DesignHeight="658.183" KeyDown="Window_KeyDown">
+    <!--키다운 이벤트-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition Width="728*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <Grid Background="#0F0F2D" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Button BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/images/Bracket.png"/>
+                </Button.Background>
+
+            </Button>
+
+            <Menu Background="#0F0F2D" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+
+            <Button Foreground="White" Grid.Column="13" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/images/X.png"/>
+                </Button.Background>
+
+
+            </Button>
+
+        </Grid>
+
+        <MediaElement x:Name="mediaMain" Stretch="Uniform" HorizontalAlignment="Center" Height="573" VerticalAlignment="Center" Width="831" LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseWheel="mediaMain_MouseWheel" Margin="10" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <Grid Grid.Row="2" Background="#FF3B255B" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="1">
+                <Button.Background>
+                    <ImageBrush ImageSource="/images/play.png"/>
+                </Button.Background>
+            </Button>
+
+            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="2" x:Name="btnStop">
+                <Button.Background>
+                    <ImageBrush ImageSource="/images/stop.png"/>
+                </Button.Background>
+            </Button>
+
+            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="3"  >
+                <Button.Background>
+                    <ImageBrush ImageSource="/images/reset.png"/>
+                </Button.Background>
+            </Button>
+
+            <Label Content="00:00" Grid.Column="4" VerticalAlignment="Center" Foreground="White" x:Name="lblPlayTime"/>
+            <Slider Style="{StaticResource Horizontal_Slider}" VerticalAlignment="Center" Grid.Column="5" x:Name="sldrPlayTime" />
+            <Label Content="00:00" Grid.Column="6" VerticalAlignment="Center" Foreground="White" />
+            <Slider Minimum="0" Maximum="100" IsSnapToTickEnabled="True" Style="{StaticResource CustomSliderStyle}" Grid.Column="7" Width="100"/>
+            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="8"  x:Name="btnSelectFile">
+                <Button.Background>
+                    <ImageBrush ImageSource="/images/Folder.png"/>
+                </Button.Background>
+            </Button>
+
+        </Grid>
+
+    </Grid>
+</Window>
