@@ -69,8 +69,8 @@ namespace WpfApp2
 
             getList();//영상 리스트 만들기
 
+            this.ShowInTaskbar = false;
 
-           
         }
 
         private void getList() //영상리스트 메소드
@@ -82,6 +82,7 @@ namespace WpfApp2
 
             MovieData md = new MovieData(); // 메인폴더로 가는 버튼
             md.ImageData = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Folder.png"));
+
             md.Title = "홈";
             md.mediaSource = mainFolder;
             md.type = true;

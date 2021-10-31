@@ -165,7 +165,7 @@ namespace WpfApp2
         {
             // 선택한 파일을 Media Element에 지정하고 초기화한다.
             mediaMain.Source = new Uri(Source);
-            mediaMain.Volume = 20;
+            mediaMain.Volume = volume_bar.Value/100;
             mediaMain.SpeedRatio = 1;
 
             // 동영상 파일의 Timespan 제어를 위해 초기화와 이벤트처리기를 추가한다.
@@ -219,42 +219,7 @@ namespace WpfApp2
             MessageBox.Show("동영상 재생 실패 : " + e.ErrorException.Message.ToString());
         }
 
-        private void mediaMain_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //마우스 휠 다운 이벤트(건너뛰기 시간 설정 새창 열기)
-            if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
-            {
-                WpfApp2.TimeJumpSet timeJumpSet = new WpfApp2.TimeJumpSet(JumpTime);
-                if (timeJumpSet.ShowDialog() == true)
-                {
-                    string a = timeJumpSet.jumptime.Text;
-                    JumpTime = Convert.ToInt32(a);
-                }
-            }
-
-         
-
-        }
-
-        private void mediaMain_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-
-        //화면에서 마우스휠 이동시 시간조정
-        private void mediaMain_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            //마우스 휠 위로 올릴경우,초기설정 2초
-            if (e.Delta > 0)
-            {
-                mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds + JumpTime);
-            }
-            //마우스 휠 아래로 내릴경우
-            else if (e.Delta < 0)
-            {
-                mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds - JumpTime);
-            }
-        }
+        
         //키보드 상하좌우키 누를시 볼륨,시간조정
         private void Main_keydown(object sender, KeyEventArgs e)
         {
@@ -307,120 +272,9 @@ namespace WpfApp2
             mediaMain.Volume = volume_bar.Value/100;
         }
 
-        private void mediaMain_MouseMove(object sender, MouseEventArgs e)
-        {
-           
-        }
+     
 
-        // 드래그 볼륨 조절 시작
-        bool volume_press = false;
-        double start_volume;
-
-        private void sound_area_MouseMove(object sender, MouseEventArgs e)//볼륨 조절
-        {
-            if (volume_press)
-            {
-                if (mediaMain.Source == null)
-                    return;
-                Point pos = e.GetPosition((IInputElement)sender);
-
-                double volume_set = ((pos.Y - start_volume) / sound_area.Height)/15;
-
-
-                volume_bar.Value = (int)(volume_bar.Value - volume_set*100);
-                mediaMain.Volume = volume_bar.Value/100 ;
-                
-            }
-        }
-
-        private void sound_area_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            volume_press = true;
-            
-            start_volume = e.GetPosition((IInputElement)sender).Y;
-        }
-
-        private void sound_area_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            volume_press = false;
-        }
-
-        private void sound_area_MouseLeave(object sender, MouseEventArgs e)
-        {
-            volume_press = false;
-        }
-        // 볼륨조절 끝
-
-        //시간 드래그 시작
-
-        bool time_press = false;
-
-        private void time_area_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            time_press = true;
-        }
-
-        private void time_area_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            time_press = false;
-
-            if (mediaMain.Source == null)
-                return;
-
-            Point pos = e.GetPosition((IInputElement)sender);
-
-            double x = pos.X;
-            double l = mediaMain.NaturalDuration.TimeSpan.TotalSeconds;
-
-            double A = l * (x / WindowMain.Width);
-
-
-            mediaMain.Position = TimeSpan.FromSeconds(A);
-
-            lblJumpTime.Visibility = Visibility.Hidden;
-        }
-
-        private void time_area_MouseLeave(object sender, MouseEventArgs e)
-        {
-            time_press = false;
-            lblJumpTime.Visibility = Visibility.Hidden;
-        }
-
-        private void time_area_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (time_press) //클릭 시 마우스 옆 
-            {
-                if (mediaMain.Source == null)
-                    return;
-                Point pos = e.GetPosition((IInputElement)sender);
-
-                double x = pos.X;
-                double l = mediaMain.NaturalDuration.TimeSpan.TotalSeconds;
-
-                double A = l * (x / WindowMain.Width);
-
-                //시, 분, 초 선언
-
-                int hours, minute, second;
-
-                //시간공식
-
-                hours = (int)A / 3600;//시 공식
-
-                minute = (int)A % 3600 / 60;//분을 구하기위해서 입력되고 남은값에서 또 60을 나눈다.
-
-                second = (int)A % 3600 % 60;//마지막 남은 시간에서 분을 뺀 나머지 시간을 초로 계산함
-
-                String time = hours + ":" + minute + ":" + second;
-
-                lblJumpTime.Visibility = Visibility.Visible;
-                lblJumpTime.Margin = new Thickness(pos.X - 500, pos.Y + 250 , 0, 0);
-
-                // 플레이시간이 변경되면, 표시영역을 업데이트한다.
-                lblJumpTime.Content = String.Format("{0} / {1}", time, mediaMain.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
-            }
-        }
-        //시간 드래그 끝 
+      
 
 
         //전체화면 버튼 클릭시
@@ -460,8 +314,6 @@ namespace WpfApp2
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
-                playListForm.Top = this.Top;
-                playListForm.Left = this.Left - playListForm.Width;
             }
         }
 
@@ -469,7 +321,7 @@ namespace WpfApp2
         {
             this.Close();
             
-        }
+        }//닫기 버튼 클릭
 
         private void volume_bar_MouseMove(object sender, MouseEventArgs e)
         {
@@ -481,29 +333,34 @@ namespace WpfApp2
             
         }
 
-        private void btnleft_Click(object sender, RoutedEventArgs e)
+        private void btnleft_Click(object sender, RoutedEventArgs e)//시간 되감기
         {
-            mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds - 5);
+            mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds - 10);
         }
 
-        private void btnRight_Click(object sender, RoutedEventArgs e)
+        private void btnRight_Click(object sender, RoutedEventArgs e)//시간 건너뛰기
         {
-            mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds + 5);
+            mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds + 10);
         }
 
-        private void btnRotation_Click(object sender, RoutedEventArgs e)
+        private void btnRotation_Click(object sender, RoutedEventArgs e)//반복재생 버튼
         {
-            
-            if (!RI)
+
+            if (!RI)//꺼져있으면
             {
                 RI = true;
-                btnRotation.Background = new ImageBrush(new BitmapImage(new Uri("Images/RotationON.png")));
+                btnRotation.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\RotationON.png")));
 
+            }
+            else
+            {
+                RI = false;
+                btnRotation.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Rotation.png")));
             }
         }
 
         bool visible_switch = false;
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)//설정버튼 클릭
         {
            //GeneralTransform generalTransform1 = Option.TransformToAncestor(this);
            //Point currentPoint = generalTransform1.Transform(new Point(0, 0));
@@ -522,7 +379,7 @@ namespace WpfApp2
 
 
         bool playList_Index = true;
-        private void plylistbtn_Click(object sender, RoutedEventArgs e)
+        private void plylistbtn_Click(object sender, RoutedEventArgs e)//플레이 리스트 버튼 클릭
         {
             
             if (playListForm == null)
@@ -578,18 +435,20 @@ namespace WpfApp2
                 di.Delete(true);
             } 보류*/
 
-        }
+        }//창 닫을때
 
         private void WindowMain_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             
         }
 
-        private void WindowMain_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void WindowMain_SizeChanged(object sender, SizeChangedEventArgs e)//크기가 변경되었을때
         {
-            if (playListForm != null)
+            if (playListForm != null)//창이 떠있으면 조정
             {
                 playListForm.Height = this.Height;
+                playListForm.Top = this.Top;
+                playListForm.Left = this.Left - playListForm.Width;
             }
         }
 
@@ -599,7 +458,7 @@ namespace WpfApp2
         double postL;
         double postT;
         bool fullI = false;
-        private void fullScreen_Click(object sender, RoutedEventArgs e)
+        private void fullScreen_Click(object sender, RoutedEventArgs e)//최대화 버튼 클릭 이벤트
         {
             if (!fullI)//전체화면 상태가 아니면
             {
@@ -638,12 +497,14 @@ namespace WpfApp2
                 this.Height = postH;
                 this.Top = postT;
                 this.Left = postL;
+                playListForm.Top = this.Top;
+                playListForm.Left = this.Left - playListForm.Width;
             }
 
             
         }
 
-        private void homeBtn_Click(object sender, RoutedEventArgs e)
+        private void homeBtn_Click(object sender, RoutedEventArgs e)//홈 클릭 이벤트
         {
             playListForm.Close();
             playListForm = null;
@@ -662,6 +523,198 @@ namespace WpfApp2
             catch (System.InvalidOperationException)
             {
                 this.Close();
+            }
+        }
+
+        private void miniBtn_Click(object sender, RoutedEventArgs e)//최소화 버튼 클릭 이벤트
+        {
+            this.WindowState = WindowState.Minimized;
+            playListForm.WindowState = WindowState.Minimized;
+        }
+
+
+
+        private void WindowMain_StateChanged(object sender, EventArgs e)//최소화 헤제 시 발생 이벤트 
+        {
+            if (this.WindowState == WindowState.Normal)//최소화 해제시 발생 이벤트
+            {
+                playListForm.WindowState = WindowState.Normal;
+            }
+        }
+
+        private void WindowMain_LocationChanged(object sender, EventArgs e)//창 위치 변경
+        {
+            playListForm.Top = this.Top;
+            playListForm.Left = this.Left - playListForm.Width;
+        }
+
+        double pastVol = 0;
+        private void btnVol_Click(object sender, RoutedEventArgs e)//볼륨 버튼 클릭 이벤트 음소거
+        {
+            if(volume_bar.Value == 0)//음소거 상태면
+            {
+                volume_bar.Value = pastVol;
+                mediaMain.Volume = volume_bar.Value/100;
+                
+            }
+            else
+            {
+                pastVol = volume_bar.Value;
+                volume_bar.Value = 0;
+                mediaMain.Volume = 0;
+            }
+        }
+
+        // 드래그 볼륨 조절 시작
+        bool volume_press = false;
+        double start_volume;
+
+        private void sound_area_MouseMove(object sender, MouseEventArgs e)//볼륨 조절
+        {
+            if (volume_press)
+            {
+                if (mediaMain.Source == null)
+                    return;
+                Point pos = e.GetPosition((IInputElement)sender);
+
+                double volume_set = ((pos.Y - start_volume) / sound_area.Height) / 15;
+
+
+                volume_bar.Value = (int)(volume_bar.Value - volume_set * 100);
+                mediaMain.Volume = volume_bar.Value / 100;
+
+            }
+        }
+
+        private void sound_area_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            volume_press = true;
+
+            start_volume = e.GetPosition((IInputElement)sender).Y;
+        }
+
+        private void sound_area_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            volume_press = false;
+        }
+
+        private void sound_area_MouseLeave(object sender, MouseEventArgs e)
+        {
+            volume_press = false;
+        }
+        // 볼륨조절 끝
+
+
+        bool time_press = false;//시간 드레그 변수
+
+
+        private void mediaMain_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //마우스 휠 다운 이벤트(건너뛰기 시간 설정 새창 열기)
+            if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
+            {
+                WpfApp2.TimeJumpSet timeJumpSet = new WpfApp2.TimeJumpSet(JumpTime);
+                if (timeJumpSet.ShowDialog() == true)
+                {
+                    string a = timeJumpSet.jumptime.Text;
+                    JumpTime = Convert.ToInt32(a);
+                }
+            }
+
+            if (e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed && e.GetPosition((IInputElement)sender).Y > (mediaMain.ActualHeight - 80))
+            {
+                time_press = true;
+            }
+
+           
+
+
+
+        }
+
+        
+
+        //화면에서 마우스휠 이동시 시간조정
+        private void mediaMain_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            //마우스 휠 위로 올릴경우,초기설정 2초
+            if (e.Delta > 0)
+            {
+                mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds + JumpTime);
+            }
+            //마우스 휠 아래로 내릴경우
+            else if (e.Delta < 0)
+            {
+                mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds - JumpTime);
+            }
+        }
+
+        private void mediaMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (time_press) //클릭 시 마우스 옆에 시간
+            {
+                
+                if (mediaMain.Source == null)
+                    return;
+                Point pos = e.GetPosition((IInputElement)sender);
+
+                double x = pos.X;
+                double l = mediaMain.NaturalDuration.TimeSpan.TotalSeconds;
+
+                double A = l * (x / mediaMain.ActualWidth);
+
+                //시, 분, 초 선언
+
+                int hours, minute, second;
+
+                //시간공식
+
+                hours = (int)A / 3600;//시 공식
+
+                minute = (int)A % 3600 / 60;//분을 구하기위해서 입력되고 남은값에서 또 60을 나눈다.
+
+                second = (int)A % 3600 % 60;//마지막 남은 시간에서 분을 뺀 나머지 시간을 초로 계산함
+
+                String time = hours + ":" + minute + ":" + second;
+
+                lblJumpTime.Visibility = Visibility.Visible;
+                lblJumpTime.Margin = new Thickness(pos.X+20 , pos.Y-10 , 0, 0);
+
+                // 플레이시간이 변경되면, 표시영역을 업데이트한다.
+                lblJumpTime.Content = String.Format("{0} / {1}", time, mediaMain.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
+            }
+        }
+        private void mediaMain_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            
+
+            if (mediaMain.Source == null)
+                return;
+
+            if (time_press)
+            {
+                Point pos = e.GetPosition((IInputElement)sender);
+
+                double x = pos.X;
+                double l = mediaMain.NaturalDuration.TimeSpan.TotalSeconds;
+
+                double A = l * (x / mediaMain.ActualWidth);
+                
+
+                mediaMain.Position = TimeSpan.FromSeconds(A);
+
+                lblJumpTime.Visibility = Visibility.Hidden;
+
+                time_press = false;
+            }
+        }
+
+        private void mediaMain_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (time_press == true)
+            {
+                time_press = false;
+                lblJumpTime.Visibility = Visibility.Hidden;
             }
         }
     }

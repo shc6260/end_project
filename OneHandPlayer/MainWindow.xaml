@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" KeyDown="Main_keydown"
-        Name="WindowMain" WindowStyle="None" Closed="WindowMain_Closed" Closing="WindowMain_Closing" SizeChanged="WindowMain_SizeChanged">
+        Name="WindowMain" WindowStyle="None" Closed="WindowMain_Closed" Closing="WindowMain_Closing" SizeChanged="WindowMain_SizeChanged" StateChanged="WindowMain_StateChanged" LocationChanged="WindowMain_LocationChanged" >
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
@@ -54,7 +54,7 @@
                 </Button.Background>
             </Button>
 
-            <Button Grid.Column="13" BorderBrush="{x:Null}">
+            <Button Grid.Column="13" BorderBrush="{x:Null}" Name="miniBtn" Click="miniBtn_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Hyphen.png"/>
                 </Button.Background>
@@ -84,10 +84,9 @@
         <Grid Grid.Row="1" Background="Black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <MediaElement x:Name="mediaMain"  LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" ForceCursor="True" MouseWheel="mediaMain_MouseWheel" Grid.ColumnSpan="3"/>
+            <MediaElement x:Name="mediaMain"  LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" MouseMove="mediaMain_MouseMove" ForceCursor="True" MouseWheel="mediaMain_MouseWheel" MouseLeave="mediaMain_MouseLeave" Grid.ColumnSpan="2"/>
 
 
 
@@ -159,7 +158,7 @@
             <Slider Style="{StaticResource Horizontal_Slider}" VerticalAlignment="Center" Grid.Column="8" x:Name="sldrPlayTime" Thumb.DragStarted="sldrPlayTime_DragStarted" Thumb.DragCompleted="sldrPlayTime_DragCompleted" ValueChanged="sldrPlayTime_ValueChanged" FocusableChanged="sldrPlayTime_FocusableChanged"/>
             <Label Content="00:00" Grid.Column="9" VerticalAlignment="Center" Foreground="White" x:Name="lblEndTime"/>
 
-            <Button Width="30" Height="25" BorderThickness="0" Grid.Column="10"  x:Name="btnVol">
+            <Button Width="30" Height="25" BorderThickness="0" Grid.Column="10"  x:Name="btnVol" Click="btnVol_Click">
                 <!-- Click 이벤트 구현해야됨(볼륨버튼 클릭시 Mute이미지로 변경되면서 음소거 -->
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Vol.png"/>
@@ -185,12 +184,7 @@
                 <ImageBrush/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="time_area" HorizontalAlignment="Left" Height="86" Margin="0,291,0,0" VerticalAlignment="Top" Width="792" MouseDown="time_area_MouseDown" MouseUp="time_area_MouseUp" MouseMove="time_area_MouseMove" Mouse.MouseLeave="time_area_MouseLeave" Grid.Row="1" >
-            <Rectangle.Fill>
-                <ImageBrush/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Label x:Name="lblJumpTime" Content="                " HorizontalAlignment="Left" Height="32" Margin="585,10,0,0" VerticalAlignment="Top" Width="144" Grid.RowSpan="2" />
+        <Label x:Name="lblJumpTime" Content="                " HorizontalAlignment="Left" Margin="585,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Background="White" Opacity="0.5" Visibility="Hidden" />
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="138" Margin="42,0,0,0" VerticalAlignment="Top" Width="174" Background="#000032" x:Name="TestStack" Opacity="0.8" Grid.RowSpan="2" Visibility="Hidden">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
@@ -228,6 +222,9 @@
             </StackPanel>
         </Border>
 
+
+
     </Grid>
+
 
 </Window>

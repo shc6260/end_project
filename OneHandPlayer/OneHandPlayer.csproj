@@ -151,11 +151,12 @@
     <Resource Include="Images\Mute.png" />
     <Resource Include="Images\right.png" />
     <Resource Include="Images\Rotation.png" />
-    <Resource Include="Images\Vol.png" />
     <Resource Include="Images\wheels.png" />
     <Resource Include="Images\FullScreen.png" />
     <Resource Include="Images\RotationON.png" />
     <Resource Include="Images\Bookmark.png" />
+    <Resource Include="Images\Vol.png" />
+    <Resource Include="Images\VolX.png" />
     <Content Include="Wildlife.mp4.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
