@@ -539,6 +539,9 @@ namespace WpfApp2
             if (this.WindowState == WindowState.Normal)//최소화 해제시 발생 이벤트
             {
                 playListForm.WindowState = WindowState.Normal;
+                playListForm.Top = this.Top;
+                playListForm.Left = this.Left - playListForm.Width;
+
             }
         }
 
@@ -565,45 +568,8 @@ namespace WpfApp2
             }
         }
 
-        // 드래그 볼륨 조절 시작
-        bool volume_press = false;
-        double start_volume;
-
-        private void sound_area_MouseMove(object sender, MouseEventArgs e)//볼륨 조절
-        {
-            if (volume_press)
-            {
-                if (mediaMain.Source == null)
-                    return;
-                Point pos = e.GetPosition((IInputElement)sender);
-
-                double volume_set = ((pos.Y - start_volume) / sound_area.Height) / 15;
-
-
-                volume_bar.Value = (int)(volume_bar.Value - volume_set * 100);
-                mediaMain.Volume = volume_bar.Value / 100;
-
-            }
-        }
-
-        private void sound_area_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            volume_press = true;
-
-            start_volume = e.GetPosition((IInputElement)sender).Y;
-        }
-
-        private void sound_area_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            volume_press = false;
-        }
-
-        private void sound_area_MouseLeave(object sender, MouseEventArgs e)
-        {
-            volume_press = false;
-        }
-        // 볼륨조절 끝
-
+        bool volume_press = false; //볼륨 드레그 변수
+        double start_volume; //볼륨 조절 시작 위치
 
         bool time_press = false;//시간 드레그 변수
 
@@ -620,15 +586,20 @@ namespace WpfApp2
                     JumpTime = Convert.ToInt32(a);
                 }
             }
-
-            if (e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed && e.GetPosition((IInputElement)sender).Y > (mediaMain.ActualHeight - 80))
+            //마우스 클릭 시간, 볼륨 조절
+            if (e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed)
             {
-                time_press = true;
+                if (e.GetPosition((IInputElement)sender).Y > (mediaMain.ActualHeight - 80))//시간 조절
+                {
+                    time_press = true;
+                }
+                else if(e.GetPosition((IInputElement)sender).X > mediaMain.ActualWidth -100)//볼륨 조절
+                {
+                    volume_press = true;
+
+                    start_volume = e.GetPosition((IInputElement)sender).Y;
+                }
             }
-
-           
-
-
 
         }
 
@@ -683,6 +654,24 @@ namespace WpfApp2
                 // 플레이시간이 변경되면, 표시영역을 업데이트한다.
                 lblJumpTime.Content = String.Format("{0} / {1}", time, mediaMain.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
             }
+            else if (volume_press)//볼륨 영역이 클릭 됐을 경우
+            {
+                if (mediaMain.Source == null)
+                    return;
+                Point pos = e.GetPosition((IInputElement)sender);
+
+                double volume_set = ((pos.Y - start_volume) / mediaMain.ActualHeight - 80) / 15;
+
+
+                volume_bar.Value = (int)(volume_bar.Value - volume_set * 100);
+                mediaMain.Volume = volume_bar.Value / 100;
+
+
+                lblJumpTime.Visibility = Visibility.Visible;
+                lblJumpTime.Margin = new Thickness(pos.X + 20, pos.Y - 10, 0, 0);
+                lblJumpTime.Content = volume_bar.Value;
+
+            }
         }
         private void mediaMain_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -707,6 +696,11 @@ namespace WpfApp2
 
                 time_press = false;
             }
+            else if (volume_press)
+            {
+                lblJumpTime.Visibility = Visibility.Hidden;
+                volume_press = false;
+            }
         }
 
         private void mediaMain_MouseLeave(object sender, MouseEventArgs e)
@@ -714,6 +708,11 @@ namespace WpfApp2
             if (time_press == true)
             {
                 time_press = false;
+                lblJumpTime.Visibility = Visibility.Hidden;
+            }
+            else if (volume_press)
+            {
+                volume_press = false;
                 lblJumpTime.Visibility = Visibility.Hidden;
             }
         }

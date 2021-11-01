@@ -179,11 +179,6 @@
             </Button>
 
         </Grid>
-        <Rectangle x:Name="sound_area" HorizontalAlignment="Left" Height="281" Margin="678,5,0,0" VerticalAlignment="Top" Width="114" MouseMove="sound_area_MouseMove" MouseDown="sound_area_MouseDown" MouseUp="sound_area_MouseUp" MouseLeave="sound_area_MouseLeave" Grid.Row="1">
-            <Rectangle.Fill>
-                <ImageBrush/>
-            </Rectangle.Fill>
-        </Rectangle>
         <Label x:Name="lblJumpTime" Content="                " HorizontalAlignment="Left" Margin="585,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Background="White" Opacity="0.5" Visibility="Hidden" />
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="138" Margin="42,0,0,0" VerticalAlignment="Top" Width="174" Background="#000032" x:Name="TestStack" Opacity="0.8" Grid.RowSpan="2" Visibility="Hidden">
             <StackPanel Orientation="Vertical">
