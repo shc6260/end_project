@@ -71,6 +71,7 @@
     <Compile Include="fill_screen.xaml.cs">
       <DependentUpon>fill_screen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MovieData.cs" />
     <Compile Include="PlayListForm.xaml.cs">
       <DependentUpon>PlayListForm.xaml</DependentUpon>
     </Compile>

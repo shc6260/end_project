@@ -230,47 +230,7 @@ namespace WpfApp2
             TvBox.ItemsSource = videoData;
 
         }
-        public class MovieData
-        {
-            private string _Title;
-            public string Title
-            {
-                get { return this._Title; }
-                set { this._Title = value; }
-            }
 
-            private BitmapImage _ImageData;
-            public BitmapImage ImageData
-            {
-                get { return this._ImageData; }
-                set { this._ImageData = value; }
-            }
-
-            private String _Time;
-
-            public String Time
-            {
-
-                get { return this._Time; }
-                set { this._Time = value; }
-            }
-
-            private String _mediaSource;
-
-            public String mediaSource
-            {
-                get { return this._mediaSource; }
-                set { this._mediaSource = value; }
-            }
-
-            private bool _type;
-
-            public bool type
-            {
-                get { return this._type; }
-                set { this._type = value; }
-            }
-        }
         private BitmapImage LoadImage(string file, String filename , int time)//영상경로, 영상 이름, 영상 시간(초)
         {
             FileInfo fileInfo = new FileInfo(mainFolder + "/thumbnail/" + filename + ".jpeg");//스크린샷이 있으면 스크린샷 생성 안함
