@@ -69,7 +69,7 @@ namespace WpfApp2
 
             getList();//영상 리스트 만들기
 
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = false;//작업표시줄에 표시 안함
 
         }
 
@@ -140,26 +140,31 @@ namespace WpfApp2
 
                     vd.Time = TimeToString(time);
                     vd.ImageData = LoadImage(videoList[i][0] + "/" + videoList[i][1], videoList[i][1], time);
+
+                    //메모장에서 별점가져오는 부분 추가
+
+                    if (vd.star > 0)//별점 출력
+                    {
+                        vd.starText = "";
+                        for (int s = 1; s <= vd.star; s++)
+                        {
+                            vd.starText += "★";
+                        }
+                    }
+
                     videoData.Add(vd);
-                }
-                
-                
-                
+                }     
             }
             
-
             if(folder_parent_List.Count <= 0)//최상위 폴더면
-            {
-                
-                pd.mediaSource = mainFolder;
-                
+            {               
+                pd.mediaSource = mainFolder;      
             }
             else
             {
                 pd.mediaSource = folder_parent_List.Pop();
             }
-
-            
+           
             TvBox.ItemsSource = videoData;
 
         }
@@ -238,13 +243,13 @@ namespace WpfApp2
             {
                 return new BitmapImage(new Uri(mainFolder + "/thumbnail/" + filename + ".jpeg"));
             }
-
+            
 
             //MemoryStream stream = new MemoryStream();
             var ffMpeg = new NReco.VideoConverter.FFMpegConverter();
             ffMpeg.GetVideoThumbnail(file, mainFolder + "/thumbnail/" + filename + ".jpeg", time /3);//동영상 경로, 출력 경로, 시간(초)
             
-
+            
             return new BitmapImage(new Uri(mainFolder + "/thumbnail/" + filename + ".jpeg"));
             
         }
@@ -278,84 +283,86 @@ namespace WpfApp2
 
         private void TvBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(TvBox.SelectedItems.Count == 1)
+            if (e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed)
             {
-                DependencyObject dep = (DependencyObject)e.OriginalSource;
-
-                while ((dep != null) && !(dep is ListViewItem))
+                if (TvBox.SelectedItems.Count == 1)
                 {
-                    dep = VisualTreeHelper.GetParent(dep);
-                }
+                    DependencyObject dep = (DependencyObject)e.OriginalSource;
 
-                if (dep == null) return;
+                    while ((dep != null) && !(dep is ListViewItem))
+                    {
+                        dep = VisualTreeHelper.GetParent(dep);
+                    }
 
-                MovieData movieData = new MovieData();
-                movieData = (MovieData)TvBox.ItemContainerGenerator.ItemFromContainer(dep);
+                    if (dep == null) return;
 
-                if (movieData.type)//폴더면
-                {
-                    if (nowFolder.Equals(movieData.mediaSource))//현재폴더랑 같으면
-                    {
-                        MessageBox.Show("현재폴더입니다.");
-                        return;
-                    }
-                    
-                    if (movieData.Title == "상위 폴더")//상위폴더면
-                    {
-                        nowFolder = movieData.mediaSource;
-                        
-                    }
-                    else if(movieData.Title == "홈")//홈이면 
-                    {
-                        nowFolder = mainFolder;
-                        folder_parent_List.Clear();
-                    }
-                    else
-                    {
-                        folder_parent_List.Push(nowFolder);//스택에 추가 
-                        nowFolder = movieData.mediaSource;
-                        
-                    }
-                    pathLbl.Content = nowFolder;
-                    
-                    List<String[]> videoList = new List<string[]>();//영상목록 리스트
+                    MovieData movieData = new MovieData();
+                    movieData = (MovieData)TvBox.ItemContainerGenerator.ItemFromContainer(dep);
 
-                    DirectoryInfo di = new DirectoryInfo(nowFolder); // 해당 폴더 정보를 가져옵니다. 
-                    
-                    videoList.Clear();
-                    
-                    DirectoryInfo[] dirs = di.GetDirectories("*.*", SearchOption.TopDirectoryOnly);//폴더 목록 검색
-                    foreach (DirectoryInfo d in dirs)
+                    if (movieData.type)//폴더면
                     {
-                        if (d.Name == "thumbnail")
-                        {//썸네일 폴더 안나오게
-                            continue;
+                        if (nowFolder.Equals(movieData.mediaSource))//현재폴더랑 같으면
+                        {
+                            MessageBox.Show("현재폴더입니다.");
+                            return;
                         }
 
-                        String[] dir = new string[] { d.FullName, d.Name, d.Extension };
-                        videoList.Add(dir);
+                        if (movieData.Title == "상위 폴더")//상위폴더면
+                        {
+                            nowFolder = movieData.mediaSource;
+
+                        }
+                        else if (movieData.Title == "홈")//홈이면 
+                        {
+                            nowFolder = mainFolder;
+                            folder_parent_List.Clear();
+                        }
+                        else
+                        {
+                            folder_parent_List.Push(nowFolder);//스택에 추가 
+                            nowFolder = movieData.mediaSource;
+
+                        }
+                        pathLbl.Content = nowFolder;
+
+                        List<String[]> videoList = new List<string[]>();//영상목록 리스트
+
+                        DirectoryInfo di = new DirectoryInfo(nowFolder); // 해당 폴더 정보를 가져옵니다. 
+
+                        videoList.Clear();
+
+                        DirectoryInfo[] dirs = di.GetDirectories("*.*", SearchOption.TopDirectoryOnly);//폴더 목록 검색
+                        foreach (DirectoryInfo d in dirs)
+                        {
+                            if (d.Name == "thumbnail")
+                            {//썸네일 폴더 안나오게
+                                continue;
+                            }
+
+                            String[] dir = new string[] { d.FullName, d.Name, d.Extension };
+                            videoList.Add(dir);
+                        }
+
+                        foreach (FileInfo File in di.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
+                        {
+
+                            String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
+                            videoList.Add(video);
+                        }
+                        this.videoList = videoList;
+
+
+                        getList();
+
+
                     }
 
-                    foreach (FileInfo File in di.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
+                    else
                     {
-
-                        String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
-                        videoList.Add(video);
+                        MainWindow.Media_Play(movieData.mediaSource);
                     }
-                    this.videoList = videoList;                   
-                    
 
-                    getList();
-
-                    
                 }
-
-                else
-                {
-                    MainWindow.Media_Play(movieData.mediaSource);
-                }
-                
-
             }
         }
 
@@ -439,15 +446,8 @@ namespace WpfApp2
 
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void Search_btn_Click(object sender, RoutedEventArgs e)
         {
-            
-
-
              List<String[]> videoList = new List<string[]>();//받아온 영상목록
              DirectoryInfo di = new DirectoryInfo(nowFolder); // 해당 폴더 정보를 가져옵니다. 
              foreach (FileInfo File in di.GetFiles("*" + Search_Text.Text + "*", SearchOption.AllDirectories)) // 선택 폴더의 파일 목록을 스캔합니다. 
@@ -464,6 +464,189 @@ namespace WpfApp2
         private void pathLbl_MouseEnter(object sender, MouseEventArgs e)
         {
             
+        }
+
+        MovieData seleteMD = null;//우클릭한 영상 저장
+        private void TvBox_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)//리스트 우클릭 이벤트
+        {
+
+            DependencyObject dep = (DependencyObject)e.OriginalSource;
+
+            while ((dep != null) && !(dep is ListViewItem))
+            {
+                dep = VisualTreeHelper.GetParent(dep);
+            }
+
+            if (dep == null) return;
+
+            seleteMD = (MovieData)TvBox.ItemContainerGenerator.ItemFromContainer(dep);
+            
+
+
+
+            if (seleteMD.type)
+            {
+                seleteMD = null;
+                optionStatk.Visibility = Visibility.Hidden;
+                starStatk.Visibility = Visibility.Hidden;
+                return;
+            }
+
+            Point pos = e.GetPosition((IInputElement)sender);
+            optionStatk.Margin = new Thickness(pos.X, pos.Y, 0, 0);
+            optionStatk.Visibility = Visibility.Visible;
+
+        }
+        private void TvBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            optionStatk.Visibility = Visibility.Hidden;
+            starStatk.Visibility = Visibility.Hidden;
+            SortStack.Visibility = Visibility.Hidden;
+        }
+
+        bool sort_Switch = false;
+        private void SortBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!sort_Switch)
+            {
+                SortStack.Visibility = Visibility.Visible;
+                sort_Switch = true;
+            }
+            else
+            {
+                SortStack.Visibility = Visibility.Hidden;
+                sort_Switch = false;
+            }
+        }
+
+        bool starSortI = true;
+        private void StarSortBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (starSortI)//내림
+            {
+                StarSortBtn.Content = "별점↓";
+                starSortI = false;
+
+                videoData = videoData.OrderByDescending(x => x.type).ThenByDescending(x => x.star).ToList();
+                TvBox.ItemsSource = videoData;
+                TvBox.Items.Refresh();
+
+            }
+            else//오름
+            {
+                StarSortBtn.Content = "별점↑";
+                starSortI = true;
+
+                videoData = videoData.OrderByDescending(x => x.type).ThenBy(x => x.star).ToList();//오름차순 정렬
+                TvBox.ItemsSource = videoData;
+                TvBox.Items.Refresh();
+            }
+        }
+
+        bool NameSortI = true;
+        private void NameSortBtn_Click(object sender, RoutedEventArgs e)//이름 정렬
+        {
+            if (NameSortI)//내림차순 정렬
+            {
+                NameSortBtn.Content = "이름↓";
+                NameSortI = false;
+
+                videoData = videoData.OrderByDescending(x => x.type).ThenByDescending(x => x.Title).ToList();
+                TvBox.ItemsSource = videoData;
+                TvBox.Items.Refresh();
+
+            }
+            else//오름차순 정렬
+            {
+                NameSortBtn.Content = "이름↑";
+                NameSortI = true;
+
+                videoData = videoData.OrderByDescending(x => x.type).ThenBy(x => x.Title).ToList();//오름차순 정렬
+                TvBox.ItemsSource = videoData;
+                TvBox.Items.Refresh();
+            }
+        }
+
+        private void StarBtn_Click(object sender, RoutedEventArgs e)//별점 클릭 이벤트
+        {
+            starStatk.Margin = new Thickness(optionStatk.Margin.Left + 40, optionStatk.Margin.Top, 0, 0);
+            starStatk.Visibility = Visibility.Visible;
+        }
+
+        
+
+        private void starSetBtn_Click(object sender, RoutedEventArgs e)//별점 저장 버튼
+        {
+
+
+            if (star1.IsChecked == true)
+            {
+                seleteMD.star = 1;
+                seleteMD.starText = "★";
+            }
+            else if (star2.IsChecked == true)
+            {
+                seleteMD.star = 2;
+                seleteMD.starText = "★★";
+            }
+            else if (star3.IsChecked == true)
+            {
+                seleteMD.star = 3;
+                seleteMD.starText = "★★★";
+            }
+            else if (star4.IsChecked == true)
+            {
+                seleteMD.star = 4;
+                seleteMD.starText = "★★★★";
+            }
+            else if (star5.IsChecked == true)
+            {
+                seleteMD.star = 5;
+                seleteMD.starText = "★★★★★";
+            }
+            else
+            {
+                MessageBox.Show("별점을 선택해주세요");
+            }
+            optionStatk.Visibility = Visibility.Hidden;
+            starStatk.Visibility = Visibility.Hidden;
+
+            TvBox.ItemsSource = videoData;
+            TvBox.Items.Refresh();
+        }
+
+        private void vdDeleteBtn_Click(object sender, RoutedEventArgs e)//파일 삭제 이벤트
+        {
+            MessageBoxResult result = MessageBox.Show("삭제 하시겠습니까?", "파일 삭제", MessageBoxButton.YesNo);
+            if(result == MessageBoxResult.No)
+            {
+                optionStatk.Visibility = Visibility.Hidden;
+                starStatk.Visibility = Visibility.Hidden;
+
+                return;
+            }
+
+            if (System.IO.File.Exists(seleteMD.mediaSource))
+            {
+                try
+                {
+                    System.IO.File.Delete(seleteMD.mediaSource);
+                    videoData.Remove(seleteMD);
+                    TvBox.ItemsSource = videoData;
+                    TvBox.Items.Refresh();
+
+                    optionStatk.Visibility = Visibility.Hidden;
+                    starStatk.Visibility = Visibility.Hidden;
+                }
+                catch (System.IO.IOException ee)
+                {
+                    // handle exception
+                }
+            }
+
+
+
+
         }
     }
 

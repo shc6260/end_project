@@ -82,14 +82,7 @@ namespace WpfApp2
         private void GetFileListFromFolderPath(string FolderName)//파일 목록 리스트
         {
             DirectoryInfo di = new DirectoryInfo(FolderName); // 해당 폴더 정보를 가져옵니다. 
-            /*DataTable dt1 = new DataTable(); // 새로운 테이블 작성합니다.(FileInfo 에서 가져오기 원하는 속성을 열로 추가합니다.) 
-            dt1.Columns.Add("Folder", typeof(string)); // 파일의 폴더 
-            dt1.Columns.Add("FileName", typeof(string)); // 파일 이름(확장자 포함) 
-            dt1.Columns.Add("Extension", typeof(string)); // 확장자 
-            dt1.Columns.Add("CreationTime", typeof(DateTime)); // 생성 일자 
-            dt1.Columns.Add("LastWriteTime", typeof(DateTime)); // 마지막 수정 일자 
-            dt1.Columns.Add("LastAccessTime", typeof(DateTime)); // 마지막 접근 일자 
-            dt1.Columns.Add("Lenth", typeof(long)); //파일의 크기*/
+           
             videoList.Clear();
 
             DirectoryInfo[] dirs = di.GetDirectories("*.*", SearchOption.TopDirectoryOnly);//폴더 목록 검색
@@ -105,22 +98,10 @@ namespace WpfApp2
 
             foreach (FileInfo File in di.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
             {
-                //dt1.Rows.Add(File.DirectoryName, File.Name, File.Extension, File.CreationTime, File.LastWriteTime, File.LastAccessTime, File.Length); // 개별 파일 별로 정보를 추가합니다.
-
                 String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
                 videoList.Add(video);
             }
-            /*if (ch == true) // 하위 폴더 포함될 경우 
-            {
-                DirectoryInfo[] di_sub = di.GetDirectories(); // 하위 폴더 목록들의 정보 가져옵니다. 
-                foreach (DirectoryInfo di1 in di_sub) // 하위 폴더목록을 스캔합니다. 
-                {
-                    foreach (FileInfo File in di1.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
-                    {
-                        dt1.Rows.Add(File.DirectoryName, File.Name, File.Extension, File.CreationTime, File.LastWriteTime, File.LastAccessTime, File.Length); // 개별 파일 별로 정보를 추가합니다. 
-                    }
-                }
-            }*/
+           
 
         }
     }

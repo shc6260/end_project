@@ -11,36 +11,72 @@
     <Grid>
         <Grid Margin="0,0,0,24">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="4*" Name="test1"/>
+                <RowDefinition Name="test1"/>
             </Grid.RowDefinitions>
-            <Label Content="영상 목록" Grid.Row="0" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF1E1C3E" Foreground="#FFC9AAE8"/>
+            <Button HorizontalAlignment="Left" Width="26" Click="SortBtn_Click" x:Name="SortBtn" BorderBrush="Black" Grid.Row="1">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Sort.png"/>
+                </Button.Background>
+            </Button>
 
-            <TextBox Grid.Row="1" Name="Search_Text" Background="#FFE2E0FF" TextChanged="Search_Text_TextChanged" Margin="0,0,56,0" BorderBrush="Black"/>
+            <Label Content="영상 목록" Grid.Row="0" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF1E1C3E" Foreground="#FFC9AAE8" BorderBrush="Black"/>
+
+            <TextBox Grid.Row="1" x:Name="Search_Text" Background="#FFE2E0FF" TextChanged="Search_Text_TextChanged" Margin="26,0,56,0" BorderBrush="Black"/>
 
 
-            <ListView Grid.Row="2" x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" MouseDoubleClick="TvBox_MouseDoubleClick" Background="White" Margin="0" Padding="0" >
-                <ItemsControl.ItemsPanel>
+            <ListView Grid.Row="2" x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" MouseDoubleClick="TvBox_MouseDoubleClick" PreviewMouseRightButtonDown="TvBox_PreviewMouseRightButtonDown" PreviewMouseLeftButtonDown="TvBox_PreviewMouseLeftButtonDown" Background="White" Margin="0" Padding="0" >
+                <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="2" HorizontalAlignment="Stretch"/>
                     </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
+                </ListView.ItemsPanel>
                 <ListView.ItemTemplate >
                     <DataTemplate >
                         <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >
                             <Image Source="{Binding ImageData}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" Width="Auto" Height="70" />
                             <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto"/>
                             <TextBlock Text="{Binding Time}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" TextAlignment="Right"/>
+                            <TextBlock Text="{Binding starText}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <Button Content="정렬" HorizontalAlignment="Left" Height="24" Margin="9,8,0,0" VerticalAlignment="Top" Width="39" Click="Button_Click"/>
-            <Button Content="검색" HorizontalAlignment="Left" Height="20" Margin="244,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="56" Name="Search_btn" Click="Search_btn_Click"/>
+            <Button Content="검색" HorizontalAlignment="Left" Height="20" Margin="244,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="56" x:Name="Search_btn" Click="Search_btn_Click"/>
             <Label Content="asd" HorizontalAlignment="Center" Height="26" Margin="0,0,0,-25" Grid.Row="2" VerticalAlignment="Bottom" Width="300" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="pathLbl" FlowDirection="RightToLeft" MouseEnter="pathLbl_MouseEnter"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="46" Margin="22,1,0,0" VerticalAlignment="Top" Width="65" Background="#000032" x:Name="SortStack" Opacity="0.8" Visibility="Hidden" Grid.Row="1" Grid.RowSpan="2">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Button Content="이름↑" Padding="5,0,0,0" Foreground="White" FontSize="15" Background="#FF000032" AllowDrop="True" BorderBrush="Black" Width="63" x:Name="NameSortBtn" Click="NameSortBtn_Click"/>
 
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Button Content="별점↑" Padding="5,0,0,0" Foreground="White" FontSize="15" Background="#FF000032" BorderBrush="Black" Width="64" x:Name="StarSortBtn" Click="StarSortBtn_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="45" Margin="323,70,-71,0" VerticalAlignment="Top" Width="48" Background="#000032" x:Name="optionStatk" Visibility="Visible" Grid.Row="2">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Button Content="별점" Padding="5,0,0,0" Foreground="White" FontSize="15" Background="#7FBFBFBF" AllowDrop="True" BorderBrush="Black" Width="46" x:Name="StarBtn" Click="StarBtn_Click" />
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Button Content="삭제" Padding="5,0,0,0" Foreground="White" FontSize="15" BorderBrush="Black" Width="46" x:Name="vdDeleteBtn" Click="vdDeleteBtn_Click" Background="#7FBFBFBF"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="94" Margin="313,143,-90,0" VerticalAlignment="Top" Width="77" Background="#000032" x:Name="starStatk" Visibility="Visible" Grid.Row="2">
+                <StackPanel Orientation="Vertical" Margin="0,0,-31,-15">
+                    <RadioButton x:Name="star1" GroupName="starRadio" Tag="1"  Content="★" Foreground="#FFFFDC00" FontSize="10" Margin="0,0,32,0"/>
+                    <RadioButton x:Name="star2" GroupName="starRadio" Tag="2" Content="★★" Foreground="#FFFFDC00" FontSize="10" Margin="0,0,32,0"/>
+                    <RadioButton x:Name="star3" GroupName="starRadio" Tag="3" Content="★★★" Foreground="#FFFFDC00" FontSize="10" Margin="0,0,32,0"/>
+                    <RadioButton x:Name="star4" GroupName="starRadio" Tag="4"  Content="★★★★" Foreground="#FFFFDC00" FontSize="10" Margin="0,0,32,0"/>
+                    <RadioButton x:Name="star5" GroupName="starRadio" Tag="5" Content="★★★★★" Foreground="#FFFFDC00" FontSize="10" Margin="0,0,32,0"/>
+                    <Button Content="저장" Padding="5,0,0,0" Foreground="White" FontSize="10" BorderBrush="Black" x:Name="starSetBtn" Click="starSetBtn_Click" Background="#7FBFBFBF" Margin="2,0,32,0"/>
+                </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 </Window>

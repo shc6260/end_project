@@ -13,7 +13,8 @@
     <!--상하좌우 키다운시 이벤트-->
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="173*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -21,7 +22,7 @@
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
 
-        <Grid Background="#0F0F2D" MouseDown="Grid_MouseDown">
+        <Grid Background="#0F0F2D" MouseDown="Grid_MouseDown" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="17"/>
@@ -48,7 +49,7 @@
                 </Button.Background>
             </Button>
 
-            <Button Grid.Column="2" BorderBrush="{x:Null}" Width="25" Height="25">
+            <Button Grid.Column="2" BorderBrush="{x:Null}" Width="25" Height="25" Name="bookMarkBtn" Click="bookMarkBtn_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Bookmark.png"/>
                 </Button.Background>
@@ -81,7 +82,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="1" Background="Black">
+        <Grid Grid.Row="1" Background="Black" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition/>
@@ -94,7 +95,7 @@
 
 
 
-        <Grid Grid.Row="2" Background="#FF3B255B">
+        <Grid Grid.Row="2" Background="#FF3B255B" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="30"/>
@@ -179,8 +180,8 @@
             </Button>
 
         </Grid>
-        <Label x:Name="lblJumpTime" Content="                " HorizontalAlignment="Left" Margin="585,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Background="White" Opacity="0.5" Visibility="Hidden" />
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="138" Margin="42,0,0,0" VerticalAlignment="Top" Width="174" Background="#000032" x:Name="TestStack" Opacity="0.8" Grid.RowSpan="2" Visibility="Hidden">
+        <Label x:Name="lblJumpTime" Content="                " HorizontalAlignment="Left" Margin="485,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Background="White" Opacity="0.5" Visibility="Hidden" Grid.Column="1" />
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="138" Margin="42,0,0,0" VerticalAlignment="Top" Width="174" Background="#000032" x:Name="TestStack" Opacity="0.8" Grid.RowSpan="2" Visibility="Hidden" Grid.ColumnSpan="2">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Button Content="홈" Padding="5,0,0,0" Foreground="White" x:Name="homeBtn" Click="homeBtn_Click" BorderBrush="White" Background="#FF82B5F1" />
@@ -204,7 +205,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Label Content="테스트6" Padding="5,0,0,0" Foreground="White"/>
-                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                     <Label Content="테스트7" Padding="5,0,0,0" Foreground="White"/>

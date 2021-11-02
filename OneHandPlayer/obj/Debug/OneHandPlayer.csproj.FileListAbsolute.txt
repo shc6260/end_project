@@ -87,3 +87,7 @@ C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\
 C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.CopyComplete
 C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\WpfApp2.exe
 C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\WpfApp2.pdb
+C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\bin\Debug\JetBrains.Annotations.dll
+C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\bin\Debug\JetBrains.Annotations.xml
+C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\BookmarkForm.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\BookmarkForm.baml

@@ -47,5 +47,21 @@ namespace WpfApp2
             get { return this._type; }
             set { this._type = value; }
         }
+
+        private int _star = 5;
+
+        public int star
+        {
+            get { return this._star; }
+            set { this._star = value; }
+        }
+
+        private String _starText = "";
+
+        public String starText
+        {
+            get { return this._starText; }
+            set { this._starText = value; }
+        }
     }
 }

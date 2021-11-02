@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=2018.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>packages\JetBrains.Annotations.2018.3.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
@@ -68,6 +71,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BookmarkForm.xaml.cs">
+      <DependentUpon>BookmarkForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="fill_screen.xaml.cs">
       <DependentUpon>fill_screen.xaml</DependentUpon>
     </Compile>
@@ -81,6 +87,10 @@
     <Compile Include="TimeJumpSet.xaml.cs">
       <DependentUpon>TimeJumpSet.xaml</DependentUpon>
     </Compile>
+    <Page Include="BookmarkForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="fill_screen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +168,7 @@
     <Resource Include="Images\Bookmark.png" />
     <Resource Include="Images\Vol.png" />
     <Resource Include="Images\VolX.png" />
+    <Resource Include="Images\Sort.png" />
     <Content Include="Wildlife.mp4.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

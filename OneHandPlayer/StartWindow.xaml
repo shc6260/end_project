@@ -52,7 +52,7 @@
                 </Button.Background>
             </Button>
 
-            <Button Grid.Column="11" BorderBrush="{x:Null}">
+            <Button Grid.Column="10" BorderBrush="{x:Null}" RenderTransformOrigin="0.24,-0.64" Grid.ColumnSpan="2" Margin="91,-35,7,35">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Hyphen.png"/>
                 </Button.Background>
