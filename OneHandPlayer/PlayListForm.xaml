@@ -38,7 +38,7 @@
                             <Image Source="{Binding ImageData}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" Width="Auto" Height="70" />
                             <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto"/>
                             <TextBlock Text="{Binding Time}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" TextAlignment="Right"/>
-                            <TextBlock Text="{Binding starText}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto"/>
+                            <TextBlock Text="{Binding starText}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" Foreground="#FFCDB100" ForceCursor="True" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

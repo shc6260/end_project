@@ -48,7 +48,7 @@ namespace WpfApp2
             set { this._type = value; }
         }
 
-        private int _star = 5;
+        private int _star;
 
         public int star
         {

@@ -30,6 +30,8 @@ namespace WpfApp2
         Stack<String> folder_parent_List = new Stack<string>(); //상위폴더 스택
 
         String mainFolder = ""; // 메인 폴더 경로
+        Memo memo = null;
+        
         public String _mainFolder
         {
             get { return this.mainFolder; }
@@ -49,9 +51,11 @@ namespace WpfApp2
 
             this.mainFolder = mainFolder;//메인폴더 경로
             this.nowFolder = mainFolder;
+            this.memo = new Memo();
 
-            DirectoryInfo di = new DirectoryInfo(mainFolder + "/thumbnail");
-            if (di.Exists == true)//썸네일 폴더 생성
+
+            DirectoryInfo di = new DirectoryInfo("thumbnail");
+            /*if (di.Exists == true)//썸네일 폴더 생성
             {
                 try
                 {
@@ -61,15 +65,17 @@ namespace WpfApp2
                 {
 
                 }
-            }
+            }*/
 
 
             di.Create();
 
-
+            
             getList();//영상 리스트 만들기
 
             this.ShowInTaskbar = false;//작업표시줄에 표시 안함
+
+            
 
         }
 
@@ -141,7 +147,9 @@ namespace WpfApp2
                     vd.Time = TimeToString(time);
                     vd.ImageData = LoadImage(videoList[i][0] + "/" + videoList[i][1], videoList[i][1], time);
 
-                    //메모장에서 별점가져오는 부분 추가
+                    vd.star = memo.starPoint_Output(videoList[i][0] + "/" + videoList[i][1]);
+
+                    
 
                     if (vd.star > 0)//별점 출력
                     {
@@ -238,19 +246,19 @@ namespace WpfApp2
 
         private BitmapImage LoadImage(string file, String filename , int time)//영상경로, 영상 이름, 영상 시간(초)
         {
-            FileInfo fileInfo = new FileInfo(mainFolder + "/thumbnail/" + filename + ".jpeg");//스크린샷이 있으면 스크린샷 생성 안함
+            FileInfo fileInfo = new FileInfo( "thumbnail/" + filename + ".jpeg");//스크린샷이 있으면 스크린샷 생성 안함
             if (fileInfo.Exists)
             {
-                return new BitmapImage(new Uri(mainFolder + "/thumbnail/" + filename + ".jpeg"));
+                return new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "thumbnail/" + filename + ".jpeg"));
             }
             
 
             //MemoryStream stream = new MemoryStream();
             var ffMpeg = new NReco.VideoConverter.FFMpegConverter();
-            ffMpeg.GetVideoThumbnail(file, mainFolder + "/thumbnail/" + filename + ".jpeg", time /3);//동영상 경로, 출력 경로, 시간(초)
+            ffMpeg.GetVideoThumbnail(file,  "thumbnail/" + filename + ".jpeg", time /3);//동영상 경로, 출력 경로, 시간(초)
             
             
-            return new BitmapImage(new Uri(mainFolder + "/thumbnail/" + filename + ".jpeg"));
+            return new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "thumbnail/" + filename + ".jpeg"));
             
         }
 
@@ -610,6 +618,8 @@ namespace WpfApp2
             }
             optionStatk.Visibility = Visibility.Hidden;
             starStatk.Visibility = Visibility.Hidden;
+            memo.starPoint_Input(seleteMD.mediaSource,seleteMD.star.ToString());
+
 
             TvBox.ItemsSource = videoData;
             TvBox.Items.Refresh();

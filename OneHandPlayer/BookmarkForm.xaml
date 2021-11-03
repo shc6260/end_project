@@ -18,14 +18,7 @@
         <Label Content="북 마 크" Grid.Row="0" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF1E1C3E" Foreground="#FFC9AAE8"/>
         <!-- 이름 수정과 이벤트 설정 해야함 -->
         <ListView Grid.Row="1" x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Background="White" Margin="0" Padding="0" >
-            <ListView.ItemTemplate >
-                <DataTemplate >
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >
-                        <CheckBox></CheckBox>
-                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" TextAlignment="Right"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+           
         </ListView>
         <Grid Grid.Row="2" Background="#FF1E1C3E">
             <Grid.ColumnDefinitions>

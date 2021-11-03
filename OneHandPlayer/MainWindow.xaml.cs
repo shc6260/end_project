@@ -181,6 +181,7 @@ namespace WpfApp2
             {
                     Interval = TimeSpan.FromSeconds(1)
             };
+            timer.Stop();
             timer.Tick += TimerTickHandler;
             timer.Start();
 
@@ -296,23 +297,37 @@ namespace WpfApp2
             double volume = mediaMain.Volume;
             Uri u = mediaMain.Source;
 
+            this.Visibility = Visibility.Hidden;
+            playListForm.Visibility = Visibility.Hidden;
+            bookmarkForm.Visibility = Visibility.Hidden;
 
+    
             WpfApp2.fill_screen F_S = new WpfApp2.fill_screen(playtime, volume, u, JumpTime , p);
+            F_S._JimpTime = this.JumpTime;
+
+
+            F_S.ShowDialog();
+            playtime = F_S.mediaMain.Position.TotalSeconds;
+            volume = F_S.mediaMain.Volume;
+            this.JumpTime = F_S._JimpTime;
+            mediaMain.Position = TimeSpan.FromSeconds(playtime);
+            mediaMain.Volume = volume;
+
+            mediaMain.Play();
+            Thread.Sleep(1);
+            if (F_S.get_p() == 1)
+                mediaMain.Pause();
             
-            if (F_S.ShowDialog() == true)
-            {
-                playtime = F_S.mediaMain.Position.TotalSeconds;
-                volume = F_S.mediaMain.Volume;
-                mediaMain.Position = TimeSpan.FromSeconds(playtime);
-                mediaMain.Volume = volume;
-
-                mediaMain.Play();
-                Thread.Sleep(1);
-                if (F_S.get_p() == 1)
-                    mediaMain.Pause();
-
-                
+            
+            this.Visibility = Visibility.Visible;
+            if (playList_Index) {
+                playListForm.Visibility = Visibility.Visible;
             }
+            if (bookmark_Index) {
+                bookmarkForm.Visibility = Visibility.Visible;
+            }
+
+            
 
 
         }
@@ -667,6 +682,7 @@ namespace WpfApp2
         {
             this.WindowState = WindowState.Minimized;
             playListForm.WindowState = WindowState.Minimized;
+            bookmarkForm.WindowState = WindowState.Minimized;
         }
 
 
@@ -678,6 +694,21 @@ namespace WpfApp2
                 playListForm.WindowState = WindowState.Normal;
                 playListForm.Top = this.Top;
                 playListForm.Left = this.Left - playListForm.Width;
+
+                bookmarkForm.WindowState = WindowState.Normal;
+                if (playList_Index)//플레이 리스트가 켜져있으면
+                {
+                    bookmarkForm.Top = this.Top;
+                    bookmarkForm.Left = this.Left - playListForm.Width - bookmarkForm.Width;
+                }
+                else//플레이 리스트가 꺼져있으면
+                {
+                    bookmarkForm.Top = this.Top;
+                    bookmarkForm.Left = this.Left - bookmarkForm.Width;
+                }
+
+                
+
 
             }
         }
@@ -692,8 +723,16 @@ namespace WpfApp2
 
                 if (bookmark_Index)
                 {
-                    bookmarkForm.Top = this.Top;
-                    bookmarkForm.Left = this.Left - playListForm.Width - bookmarkForm.Width;
+                    if (playList_Index)
+                    {
+                        bookmarkForm.Top = this.Top;
+                        bookmarkForm.Left = this.Left - playListForm.Width - bookmarkForm.Width;
+                    }
+                    else
+                    {
+                        bookmarkForm.Top = this.Top;
+                        bookmarkForm.Left = this.Left- bookmarkForm.Width;
+                    }
                 }
             }
         }
@@ -798,7 +837,7 @@ namespace WpfApp2
                 String time = hours + ":" + minute + ":" + second;
 
                 lblJumpTime.Visibility = Visibility.Visible;
-                lblJumpTime.Margin = new Thickness(pos.X+20 , pos.Y-10 , 0, 0);
+                lblJumpTime.FontSize = 30;
 
                 // 플레이시간이 변경되면, 표시영역을 업데이트한다.
                 lblJumpTime.Content = String.Format("{0} / {1}", time, mediaMain.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
@@ -816,9 +855,8 @@ namespace WpfApp2
                 volume_bar.Value = (int)(volume_bar.Value - volume_set * 100);
                 mediaMain.Volume = volume_bar.Value / 100;
 
-
+                lblJumpTime.FontSize = 50;
                 lblJumpTime.Visibility = Visibility.Visible;
-                lblJumpTime.Margin = new Thickness(pos.X + 20, pos.Y - 10, 0, 0);
                 lblJumpTime.Content = volume_bar.Value;
 
             }
@@ -867,6 +905,18 @@ namespace WpfApp2
             }
         }
 
+
+        private void volume_bar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (volume_bar.Value == 0)
+            {
+                btnVol.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\VolX.png")));
+            }
+            else
+            {
+                btnVol.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Vol.png")));
+            }
+        }
 
     }
 }
