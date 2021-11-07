@@ -13,6 +13,7 @@ namespace WpfApp2
         private string memoRoute; //메모장 저장 경로
         StreamReader sr;//파일 읽기 객체
         StreamWriter sw;//파일 쓰기 객체
+        public bool overlap;
 
         public Memo()//클래스 생성시 메모장 루트 생성, 메모장이 없어도 클래스 생성시 자동 생성된다.
         {
@@ -53,12 +54,13 @@ namespace WpfApp2
             }
 
             sr.Close();
-
+            overlap = true;
             if (!find)
             {
                 sw = new StreamWriter(memoRoute, true);
                 sw.WriteLine(uritime);
                 sw.Close();
+                overlap = false;
             }
         }
 
@@ -97,9 +99,9 @@ namespace WpfApp2
         {
             sr = new StreamReader(memoRoute);
             string key;//메모장의 줄을 하나씩 읽어서 순차적으로 확인하는 용도
+            string uri = u.ToString();
             char sp = '?';//실행경로와 북마크 시간을 나누어주는 용도
             string[] bookTime = new string[10];//북마크시간 저장할 스트링배열
-            string uri = u.ToString();
             int count = 0;
 
             while (sr.EndOfStream == false) //다음 줄이 없을때까지 한줄씩 불러와 읽음
@@ -113,6 +115,7 @@ namespace WpfApp2
                 }
 
             }
+            sr.Close();
             return bookTime;
         }
 

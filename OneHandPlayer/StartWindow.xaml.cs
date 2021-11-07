@@ -23,13 +23,15 @@ namespace WpfApp2
     {
         PlayListForm playListForm = null;
         MainWindow mainWindow = null;
+        BookmarkForm bookmarkForm = null;
         List<String[]> videoList = new List<string[]>();
 
-        public StartWindow(PlayListForm playListForm, MainWindow mainWindow)
+        public StartWindow(PlayListForm playListForm, MainWindow mainWindow , BookmarkForm bookmarkForm)
         {
             InitializeComponent();
             this.playListForm = playListForm;
             this.mainWindow = mainWindow;
+            this.bookmarkForm = bookmarkForm;
 
             //화면 중앙으로
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
@@ -69,11 +71,15 @@ namespace WpfApp2
             {
                 GetFileListFromFolderPath(dialog.FileName);
 
-                playListForm = new PlayListForm(videoList, mainWindow, dialog.FileName);
+                playListForm = new PlayListForm(videoList, mainWindow, dialog.FileName, bookmarkForm);
                 playListForm.Top = mainWindow.Top;
                 playListForm.Left = mainWindow.Left - playListForm.Width;
                 mainWindow._playListForm = playListForm;
                 playListForm.Show();
+            }
+            else//폴더 선택 안됐을때 
+            {
+                return;
             }
 
             this.Close();

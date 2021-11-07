@@ -17,8 +17,12 @@
 
         <Label Content="북 마 크" Grid.Row="0" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Background="#FF1E1C3E" Foreground="#FFC9AAE8"/>
         <!-- 이름 수정과 이벤트 설정 해야함 -->
-        <ListView Grid.Row="1" x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Background="White" Margin="0" Padding="0" >
-           
+        <ListView Grid.Row="1" x:Name="bookMark_show" MouseDoubleClick="bookMark_show_MouseDoubleClick" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Background="White" Margin="0" Padding="0" HorizontalContentAlignment="Right" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="시간" Width="200" DisplayMemberBinding="{Binding time}"/>
+                </GridView>
+            </ListView.View>
         </ListView>
         <Grid Grid.Row="2" Background="#FF1E1C3E">
             <Grid.ColumnDefinitions>
@@ -26,8 +30,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="추가" Margin="137,3,9,3" Grid.ColumnSpan="2" Background="#7FFFFFFF" BorderBrush="#FF080808"/>
-            <Button Content="삭제" Grid.Column="1" Margin="0,3,2,3" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="29" Background="#7FFFFFFF" BorderBrush="#FF080808"/>
+            <Button x:Name="add_btn" Content="추가" Margin="137,3,9,3" Grid.ColumnSpan="2" Background="#7FFFFFFF" BorderBrush="#FF080808" Click="add_btn_Click"/>
+            <Button x:Name="delete_btn" Content="삭제" Grid.Column="1" Margin="0,3,2,3" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="29" Background="#7FFFFFFF" BorderBrush="#FF080808" Click="delete_btn_Click"/>
+            <Label Content="" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="132" Background="#4CFFFFFF" Name="bookmarkCountLbl"/>
         </Grid>
     </Grid>
 

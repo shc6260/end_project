@@ -45,6 +45,10 @@ namespace WpfApp2
         {
             set { playListForm = value; }
         }
+        public BookmarkForm _bookmarkForm
+        {
+            set { bookmarkForm = value;  }
+        }
 
         public MainWindow()
         {
@@ -65,26 +69,32 @@ namespace WpfApp2
 
             this.Hide();
 
+            //북마크 폼 초기화
 
-            StartWindow startWindow = new StartWindow(playListForm, this);
+            bookmarkForm = new BookmarkForm(this);
+            bookmarkForm.Show();
+            bookmarkForm.Visibility = Visibility.Hidden;
+            bookmarkForm.Height = this.Height;
+            bookmarkForm.Top = this.Top;
+
+            StartWindow startWindow = new StartWindow(playListForm, this , bookmarkForm);
             startWindow.ShowDialog();
 
 
             try//창이 닫혔으면 창을 띄우지 않음
             {
                 this.Show();
+                //창이 메인창과 같은위치에
+                playListForm.Owner = this;
+                bookmarkForm.Owner = this;
             }
             catch(System.InvalidOperationException)
             {
                 this.Close();
             }
-            //북마크 폼 초기화
 
-            bookmarkForm = new BookmarkForm();
-            bookmarkForm.Show();
-            bookmarkForm.Visibility = Visibility.Hidden;
-            bookmarkForm.Height = this.Height;
-            bookmarkForm.Top = this.Top;
+            
+
 
         }
 
@@ -209,7 +219,7 @@ namespace WpfApp2
                 btnStart.Visibility = Visibility.Visible;
             }
         
-        }
+        }//영상 종료시
 
         private void mediaMain_MediaOpened(object sender, RoutedEventArgs e)
         {
@@ -220,13 +230,13 @@ namespace WpfApp2
             // 미디어 파일이 열리면, 볼륨을 볼륨슬라이더가 위치한 자리에 맞춘다.
 
 
-        }
+        }//영상 플레이 시
 
         private void mediaMain_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
             // 미디어 파일 실행 오류시
             MessageBox.Show("동영상 재생 실패 : " + e.ErrorException.Message.ToString());
-        }
+        }//영상 실패
 
         
         //키보드 상하좌우키 누를시 볼륨,시간조정
@@ -332,11 +342,15 @@ namespace WpfApp2
 
         }
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)//상단바 클릭 이벤트
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed && fullI == false) //드래그 이벤트
             {
                 DragMove();
+            }
+            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)//더블클릭 전체화면 이벤트
+            {
+                fullScreen_Click(fullScreen, e);
             }
         }
 
@@ -346,10 +360,6 @@ namespace WpfApp2
             
         }//닫기 버튼 클릭
 
-        private void volume_bar_MouseMove(object sender, MouseEventArgs e)
-        {
-
-        }
 
         private void sldrPlayTime_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -415,9 +425,9 @@ namespace WpfApp2
                 playListForm.Hide();
                 playList_Index = false;
 
-                if (fullI)//전체화면 시 리스트 끄면 화면 키우기
+                if (fullI)//전체화면일때 리스트 끄면 화면 키우기
                 {
-                    if (bookmark_Index == false)
+                    if (bookmark_Index == false)//북마크가 켜져있으면
                     {
                         this.Height = System.Windows.SystemParameters.WorkArea.Height;
                         this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
@@ -564,8 +574,13 @@ namespace WpfApp2
                     }
                 }
 
-                bookmarkForm.Show();
-                bookmark_Index = true;
+                
+                if(mediaMain.Source != null) //영상이 틀어져있을때 북마크 탭 보여주기
+                {
+                    bookmarkForm.Show();
+                    bookmarkForm.BookMarkSet(mediaMain.Source);
+                    bookmark_Index = true;
+                }
 
             }
         }
@@ -575,6 +590,9 @@ namespace WpfApp2
             if (playListForm != null)
             {
                 playListForm.Close();
+            }
+            if (bookmarkForm != null)
+            {
                 bookmarkForm.Close();
             }
             /*
@@ -596,11 +614,17 @@ namespace WpfApp2
 
         private void WindowMain_SizeChanged(object sender, SizeChangedEventArgs e)//크기가 변경되었을때
         {
+
             if (playListForm != null)//창이 떠있으면 조정
             {
                 playListForm.Height = this.Height;
                 playListForm.Top = this.Top;
-                playListForm.Left = this.Left - playListForm.Width;
+                playListForm.Left = this.Left - playListForm.Width;      
+            }
+            if (bookmarkForm != null)
+            {
+                bookmarkForm.Height = this.Height;
+                bookmarkForm.Top = this.Top;
             }
         }
 
@@ -614,6 +638,7 @@ namespace WpfApp2
         {
             if (!fullI)//전체화면 상태가 아니면
             {
+                this.ResizeMode = ResizeMode.NoResize;
                 //현재값 저장
                 postH = this.Height;
                 postW = this.Width;
@@ -624,26 +649,56 @@ namespace WpfApp2
 
                 if (playList_Index)//리스트가 떠있으면
                 {
-                    this.Height = System.Windows.SystemParameters.WorkArea.Height;
-                    this.Width = System.Windows.SystemParameters.PrimaryScreenWidth - playListForm.Width;
-                    this.Left = playListForm.Width;
-                    this.Top = 0;
-                    playListForm.Height = System.Windows.SystemParameters.WorkArea.Height;
-                    playListForm.Top = this.Top;
-                    playListForm.Left = this.Left - playListForm.Width;
+                    if (bookmark_Index)//북마크가 켜져있으면
+                    {
+                        this.Height = System.Windows.SystemParameters.WorkArea.Height;
+                        this.Width = System.Windows.SystemParameters.PrimaryScreenWidth - bookmarkForm.Width - playListForm.Width;
+                        this.Left = playListForm.Width + bookmarkForm.Width;
+                        this.Top = 0;
+                        playListForm.Height = System.Windows.SystemParameters.WorkArea.Height;
+                        playListForm.Top = this.Top;
+                        playListForm.Left = this.Left - playListForm.Width;
+                        bookmarkForm.Height = System.Windows.SystemParameters.WorkArea.Height;
+                        bookmarkForm.Top = this.Top;
+                        bookmarkForm.Left = this.Left - bookmarkForm.Width - playListForm.Width;
 
+                    }
+                    else
+                    {//북마크가 꺼져있으면
+                        this.Height = System.Windows.SystemParameters.WorkArea.Height;
+                        this.Width = System.Windows.SystemParameters.PrimaryScreenWidth - playListForm.Width;
+                        this.Left = playListForm.Width;
+                        this.Top = 0;
+                        playListForm.Height = System.Windows.SystemParameters.WorkArea.Height;
+                        playListForm.Top = this.Top;
+                        playListForm.Left = this.Left - playListForm.Width;
+                    }
                 }
                 else//리스트가 꺼져있으면
                 {
-                    //전체화면 만들기
-                    this.Height = System.Windows.SystemParameters.WorkArea.Height;
-                    this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-                    this.Left = 0;
-                    this.Top = 0;
+                    if (bookmark_Index)//북마크가 켜져있으면
+                    {
+                        this.Height = System.Windows.SystemParameters.WorkArea.Height;
+                        this.Width = System.Windows.SystemParameters.PrimaryScreenWidth - bookmarkForm.Width;
+                        this.Left = bookmarkForm.Width;
+                        this.Top = 0;
+                        bookmarkForm.Height = System.Windows.SystemParameters.WorkArea.Height;
+                        bookmarkForm.Top = this.Top;
+                        bookmarkForm.Left = this.Left - bookmarkForm.Width;
+                    }
+                    else//북마크가 꺼져있으면
+                    {
+                        //전체화면 만들기
+                        this.Height = System.Windows.SystemParameters.WorkArea.Height;
+                        this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+                        this.Left = 0;
+                        this.Top = 0;
+                    }
                 }
             }
             else//전체화면 상태면
             {
+                this.ResizeMode = ResizeMode.CanResize;
                 fullI = false;
                 this.Width = postW;
                 this.Height = postH;
@@ -663,7 +718,7 @@ namespace WpfApp2
             this.Hide();
             
 
-            StartWindow startWindow = new StartWindow(playListForm, this);
+            StartWindow startWindow = new StartWindow(playListForm, this, bookmarkForm);
             startWindow.ShowDialog();
 
             

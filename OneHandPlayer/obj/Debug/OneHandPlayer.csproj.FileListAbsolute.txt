@@ -90,3 +90,78 @@ C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\bin\
 C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\BookmarkForm.g.cs
 C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\BookmarkForm.baml
 C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.AssemblyReference.cache
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\WpfApp2.exe.config
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\WpfApp2.exe
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\WpfApp2.pdb
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\JetBrains.Annotations.dll
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\NReco.VideoConverter.dll
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\NReco.VideoInfo.dll
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\JetBrains.Annotations.xml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\NReco.VideoConverter.xml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\bin\Debug\NReco.VideoInfo.xml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.AssemblyReference.cache
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\BookmarkForm.g.cs
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\fill_screen.g.cs
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\MainWindow.g.cs
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\PlayListForm.g.cs
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\StartWindow.g.cs
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\TimeJumpSet.g.cs
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\App.g.cs
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\WpfApp2_Content.g.cs
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\WpfApp2_MarkupCompile.cache
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\WpfApp2_MarkupCompile.lref
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\App.baml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\BookmarkForm.baml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\fill_screen.baml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\MainWindow.baml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\PlayListForm.baml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\StartWindow.baml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\TimeJumpSet.baml
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\WpfApp2.g.resources
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\WpfApp2.Properties.Resources.resources
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.GenerateResource.cache
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.CoreCompileInputs.cache
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.CopyComplete
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\WpfApp2.exe
+C:\Users\alzhx\Desktop\졸작\최종 작업\end_project-master\end_project-master\OneHandPlayer\obj\Debug\WpfApp2.pdb
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\WpfApp2.exe.config
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\WpfApp2.exe
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\WpfApp2.pdb
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\JetBrains.Annotations.dll
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\NReco.VideoConverter.dll
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\NReco.VideoInfo.dll
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\JetBrains.Annotations.xml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\NReco.VideoConverter.xml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\bin\Debug\NReco.VideoInfo.xml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.AssemblyReference.cache
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\BookmarkForm.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\fill_screen.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\MainWindow.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\PlayListForm.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\StartWindow.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\TimeJumpSet.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\App.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\WpfApp2_Content.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\WpfApp2_MarkupCompile.cache
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\WpfApp2_MarkupCompile.lref
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\App.baml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\BookmarkForm.baml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\fill_screen.baml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\MainWindow.baml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\PlayListForm.baml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\StartWindow.baml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\TimeJumpSet.baml
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\WpfApp2.g.resources
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\WpfApp2.Properties.Resources.resources
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.GenerateResource.cache
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.CoreCompileInputs.cache
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\WpfApp2.exe
+C:\Users\shc62\OneDrive\바탕 화면\OneHandPlayer (1)\OneHandPlayer\obj\Debug\WpfApp2.pdb

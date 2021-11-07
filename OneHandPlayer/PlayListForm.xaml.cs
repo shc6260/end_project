@@ -28,6 +28,7 @@ namespace WpfApp2
         List<String[]> videoList = new List<string[]>();//받아온 영상목록
         List<MovieData> videoData;
         Stack<String> folder_parent_List = new Stack<string>(); //상위폴더 스택
+        BookmarkForm BookmarkForm;
 
         String mainFolder = ""; // 메인 폴더 경로
         Memo memo = null;
@@ -39,12 +40,13 @@ namespace WpfApp2
         }
 
         String nowFolder = "";
-        public PlayListForm(List<String[]> videoList , MainWindow mainWindow, String mainFolder)
+        public PlayListForm(List<String[]> videoList , MainWindow mainWindow, String mainFolder, BookmarkForm BookmarkForm)
         {
             InitializeComponent();
 
             this.Height = mainWindow.Height;
 
+            this.BookmarkForm = BookmarkForm;
             this.MainWindow = mainWindow;// 값 전달을 위한 메인화면 가져오기
 
             this.videoList = videoList;//영상목록 받아오기
@@ -368,6 +370,7 @@ namespace WpfApp2
                     else
                     {
                         MainWindow.Media_Play(movieData.mediaSource);
+                        BookmarkForm.BookMarkSet(new Uri(movieData.mediaSource));
                     }
 
                 }
@@ -648,7 +651,7 @@ namespace WpfApp2
                     optionStatk.Visibility = Visibility.Hidden;
                     starStatk.Visibility = Visibility.Hidden;
                 }
-                catch (System.IO.IOException ee)
+                catch 
                 {
                     // handle exception
                 }
