@@ -36,7 +36,7 @@
                     <DataTemplate >
                         <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >
                             <Image Source="{Binding ImageData}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" Width="Auto" Height="70" />
-                            <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto"/>
+                            <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" TextWrapping="Wrap" MaxWidth="120"/>
                             <TextBlock Text="{Binding Time}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" TextAlignment="Right"/>
                             <TextBlock Text="{Binding starText}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" Foreground="#FFCDB100" ForceCursor="True" />
                         </StackPanel>
@@ -56,11 +56,14 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="45" Margin="323,70,-71,0" VerticalAlignment="Top" Width="48" Background="#000032" x:Name="optionStatk" Visibility="Visible" Grid.Row="2">
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="71" Margin="323,69.667,-71,0" VerticalAlignment="Top" Width="48" Background="#000032" x:Name="optionStatk" Visibility="Visible" Grid.Row="2">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Button Content="별점" Padding="5,0,0,0" Foreground="White" FontSize="15" Background="#7FBFBFBF" AllowDrop="True" BorderBrush="Black" Width="46" x:Name="StarBtn" Click="StarBtn_Click" />
 
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                        <Button Content="수정" Padding="5,0,0,0" Foreground="White" FontSize="15" BorderBrush="Black" Width="46" x:Name="vdEditBtn" Click="vdEditBtn_Click" Background="#7FBFBFBF"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                         <Button Content="삭제" Padding="5,0,0,0" Foreground="White" FontSize="15" BorderBrush="Black" Width="46" x:Name="vdDeleteBtn" Click="vdDeleteBtn_Click" Background="#7FBFBFBF"/>

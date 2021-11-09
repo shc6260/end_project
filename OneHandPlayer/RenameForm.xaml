@@ -1,0 +1,47 @@
+﻿<Window x:Class="WpfApp2.RenameForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="RenameForm" WindowStyle="None"
+        AllowsTransparency="False"
+        Background="#FF1E1C3E" Height="100" Width="200" ResizeMode="CanMinimize" Foreground="White" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#0F0F2D" Grid.Row="0" MouseDown="Grid_MouseDown" >
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Foreground="White" Grid.Column="3" BorderBrush="{x:Null}" Name="closeBtn" Click="closeBtn_Click" Margin="15,0,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/X.png"/>
+                </Button.Background>
+
+
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="47*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="67*"/>
+                <ColumnDefinition Width="67*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="renameTxt" HorizontalAlignment="Left" Height="23" Margin="5,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128" Grid.ColumnSpan="3"/>
+            <Button Grid.Column="2" x:Name="okBtn" Content="확인" HorizontalAlignment="Left" Margin="37.333,63,0,0" VerticalAlignment="Top" Width="44" Click="okBtn_Click" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="변경 이름 입력" VerticalAlignment="Top" Height="16" Width="112" Grid.ColumnSpan="3" Foreground="White"/>
+            <Button Grid.Column="3" x:Name="noBtn" Content="취소" HorizontalAlignment="Left" Margin="16.666,63,0,0" VerticalAlignment="Top" Width="44" Click="noBtn_Click"/>
+            <Label Content="Label" Name="extenLbl" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="4.667,35,0,0" VerticalAlignment="Top" Width="52" Background="#66FFF7F7" Padding="5,3,5,5"/>
+        </Grid>
+    </Grid>
+</Window>

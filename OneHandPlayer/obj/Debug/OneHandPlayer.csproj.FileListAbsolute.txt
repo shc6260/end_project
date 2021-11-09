@@ -203,3 +203,5 @@ C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\WpfApp2.
 C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.GenerateResource.cache
 C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.CoreCompileInputs.cache
 C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.CopyComplete
+C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\RenameForm.g.cs
+C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\RenameForm.baml

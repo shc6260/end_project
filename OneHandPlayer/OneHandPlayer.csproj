@@ -82,6 +82,9 @@
     <Compile Include="PlayListForm.xaml.cs">
       <DependentUpon>PlayListForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RenameForm.xaml.cs">
+      <DependentUpon>RenameForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PlayListForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RenameForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

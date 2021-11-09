@@ -75,12 +75,11 @@
         </Grid>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="40">
 
-            <StackPanel>
+            <StackPanel Margin="0,0,-80,0">
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,25">
                     <Image Width="50" Height="50" Source="Images/player.png" RenderOptions.BitmapScalingMode="Fant" />
-
-                    <TextBlock Text="One Hand Player" Foreground="White" FontSize="15" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock Text="One Hand Player" Foreground="White" FontSize="50" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Width="516"/>
                 </StackPanel>
                 <TextBlock Text="Your" Foreground="White" FontSize="30" FontWeight="Medium"/>
                 <TextBlock Text="Useful" Foreground="White" FontSize="30" FontWeight="Medium"/>

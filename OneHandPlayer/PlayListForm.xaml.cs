@@ -32,7 +32,7 @@ namespace WpfApp2
 
         String mainFolder = ""; // 메인 폴더 경로
         Memo memo = null;
-        
+
         public String _mainFolder
         {
             get { return this.mainFolder; }
@@ -40,11 +40,11 @@ namespace WpfApp2
         }
 
         String nowFolder = "";
-        public PlayListForm(List<String[]> videoList , MainWindow mainWindow, String mainFolder, BookmarkForm BookmarkForm)
+        public PlayListForm(List<String[]> videoList, MainWindow mainWindow, String mainFolder, BookmarkForm BookmarkForm)
         {
             InitializeComponent();
 
-            
+
 
             this.Height = mainWindow.Height;
 
@@ -74,12 +74,12 @@ namespace WpfApp2
 
             di.Create();
 
-            
+
             getList();//영상 리스트 만들기
 
             this.ShowInTaskbar = false;//작업표시줄에 표시 안함
 
-            
+
 
         }
 
@@ -101,7 +101,7 @@ namespace WpfApp2
 
             MovieData pd = new MovieData(); // 이전폴더로 가는 버튼 
             pd.ImageData = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Folder.png"));
-            pd.Title = "상위 폴더";       
+            pd.Title = "상위 폴더";
             pd.type = true;
             videoData.Add(pd);
 
@@ -112,37 +112,15 @@ namespace WpfApp2
                 {
                     vd.ImageData = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Folder.png"));
 
-                    String title = ""; // 제목 10글자마다 줄바꿈
-                    for (int j = 1; j <= videoList[i][1].Length; j++)
-                    {
-
-                        title += videoList[i][1][j - 1];
-                        if (j % 11 == 0)
-                        {
-                            title += "\r\n";
-                        }
-                    }
-                    vd.Title = title;
+                    vd.Title = videoList[i][1];
                     vd.mediaSource = videoList[i][0];
                     vd.type = true;
                     videoData.Add(vd);
                 }
 
-                else if(videoList[i][2].Equals(".mp4") || videoList[i][2].Equals(".m4p") || videoList[i][2].Equals(".avi") || videoList[i][2].Equals(".wmv"))
+                else if (videoList[i][2].Equals(".mp4") || videoList[i][2].Equals(".m4p") || videoList[i][2].Equals(".avi") || videoList[i][2].Equals(".wmv"))
                 {
-                    
-                    String title =""; // 제목 10글자마다 줄바꿈
-                    for (int j = 1 ; j <= videoList[i][1].Length ; j++){
-
-                        title += videoList[i][1][j-1];
-                        if(j % 11 == 0)
-                        {
-                            title += "\r\n";
-                        }
-                    }
-
-
-                    vd.Title = title;
+                    vd.Title = videoList[i][1];
                     vd.mediaSource = videoList[i][0] + "/" + videoList[i][1];
                     vd.type = false;
 
@@ -153,7 +131,7 @@ namespace WpfApp2
 
                     vd.star = memo.starPoint_Output(videoList[i][0] + "/" + videoList[i][1]);
 
-                    
+
 
                     if (vd.star > 0)//별점 출력
                     {
@@ -165,18 +143,18 @@ namespace WpfApp2
                     }
 
                     videoData.Add(vd);
-                }     
+                }
             }
-            
-            if(folder_parent_List.Count <= 0)//최상위 폴더면
-            {               
-                pd.mediaSource = mainFolder;      
+
+            if (folder_parent_List.Count <= 0)//최상위 폴더면
+            {
+                pd.mediaSource = mainFolder;
             }
             else
             {
                 pd.mediaSource = folder_parent_List.Pop();
             }
-           
+
             TvBox.ItemsSource = videoData;
 
         }
@@ -196,17 +174,8 @@ namespace WpfApp2
                 {
                     vd.ImageData = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Folder.png"));
 
-                    String title = ""; // 제목 10글자마다 줄바꿈
-                    for (int j = 1; j <= videoList[i][1].Length; j++)
-                    {
 
-                        title += videoList[i][1][j - 1];
-                        if (j % 11 == 0)
-                        {
-                            title += "\r\n";
-                        }
-                    }
-                    vd.Title = title;
+                    vd.Title = videoList[i][1];
                     vd.mediaSource = videoList[i][0];
                     vd.type = true;
                     videoData.Add(vd);
@@ -214,23 +183,10 @@ namespace WpfApp2
 
                 else if (videoList[i][2].Equals(".mp4") || videoList[i][2].Equals(".m4p") || videoList[i][2].Equals(".avi") || videoList[i][2].Equals(".wmv"))
                 {
-
-                    String title = ""; // 제목 10글자마다 줄바꿈
-                    for (int j = 1; j <= videoList[i][1].Length; j++)
-                    {
-
-                        title += videoList[i][1][j - 1];
-                        if (j % 11 == 0)
-                        {
-                            title += "\r\n";
-                        }
-                    }
-
-
-                    vd.Title = title;
+                    vd.Title = videoList[i][1];
                     vd.mediaSource = videoList[i][0] + "/" + videoList[i][1];
                     vd.type = false;
-                    
+
                     int time = get_VedioTime(videoList[i][0] + "/" + videoList[i][1]);
 
                     vd.Time = TimeToString(time);
@@ -241,29 +197,29 @@ namespace WpfApp2
 
             }
 
-           
+
 
 
             TvBox.ItemsSource = videoData;
 
         }
 
-        private BitmapImage LoadImage(string file, String filename , int time)//영상경로, 영상 이름, 영상 시간(초)
+        private BitmapImage LoadImage(string file, String filename, int time)//영상경로, 영상 이름, 영상 시간(초)
         {
-            FileInfo fileInfo = new FileInfo( "thumbnail/" + filename + ".jpeg");//스크린샷이 있으면 스크린샷 생성 안함
+            FileInfo fileInfo = new FileInfo("thumbnail/" + filename + ".jpeg");//스크린샷이 있으면 스크린샷 생성 안함
             if (fileInfo.Exists)
             {
                 return new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "thumbnail/" + filename + ".jpeg"));
             }
-            
+
 
             //MemoryStream stream = new MemoryStream();
             var ffMpeg = new NReco.VideoConverter.FFMpegConverter();
-            ffMpeg.GetVideoThumbnail(file,  "thumbnail/" + filename + ".jpeg", time /3);//동영상 경로, 출력 경로, 시간(초)
-            
-            
+            ffMpeg.GetVideoThumbnail(file, "thumbnail/" + filename + ".jpeg", time / 3);//동영상 경로, 출력 경로, 시간(초)
+
+
             return new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "thumbnail/" + filename + ".jpeg"));
-            
+
         }
 
         private int get_VedioTime(string file)//동영생 재생 시간 반환
@@ -288,10 +244,10 @@ namespace WpfApp2
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
-        
+
 
         private void TvBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -322,7 +278,7 @@ namespace WpfApp2
         //bool SearchI = false;
         private void Search_Text_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
 
             if (Search_Text.Text == "")//검색창이 비어있으면
             {
@@ -384,7 +340,7 @@ namespace WpfApp2
                 TvBox.ItemsSource = videoData;
                 SearchI = false;
             }*/
-            
+
         }
 
         private void test()
@@ -396,22 +352,22 @@ namespace WpfApp2
 
         private void Search_btn_Click(object sender, RoutedEventArgs e)
         {
-             List<String[]> videoList = new List<string[]>();//받아온 영상목록
-             DirectoryInfo di = new DirectoryInfo(nowFolder); // 해당 폴더 정보를 가져옵니다. 
-             foreach (FileInfo File in di.GetFiles("*" + Search_Text.Text + "*", SearchOption.AllDirectories)) // 선택 폴더의 파일 목록을 스캔합니다. 
-             {
-                 String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
-                 videoList.Add(video);
+            List<String[]> videoList = new List<string[]>();//받아온 영상목록
+            DirectoryInfo di = new DirectoryInfo(nowFolder); // 해당 폴더 정보를 가져옵니다. 
+            foreach (FileInfo File in di.GetFiles("*" + Search_Text.Text + "*", SearchOption.AllDirectories)) // 선택 폴더의 파일 목록을 스캔합니다. 
+            {
+                String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
+                videoList.Add(video);
 
-             }
+            }
 
-            getList(videoList);   
+            getList(videoList);
 
         }
 
         private void pathLbl_MouseEnter(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         MovieData seleteMD = null;//우클릭한 영상 저장
@@ -429,7 +385,7 @@ namespace WpfApp2
             if (dep == null) return;
 
             seleteMD = (MovieData)TvBox.ItemContainerGenerator.ItemFromContainer(dep);
-            
+
 
 
 
@@ -523,11 +479,11 @@ namespace WpfApp2
 
             if (starStatk.Margin.Left + starStatk.Width > this.Width)
             {
-                starStatk.Margin = new Thickness(starStatk.Margin.Left - (starStatk.Margin.Left + starStatk.Width - this.Width) , optionStatk.Margin.Top,0,0);
+                starStatk.Margin = new Thickness(starStatk.Margin.Left - (starStatk.Margin.Left + starStatk.Width - this.Width), optionStatk.Margin.Top, 0, 0);
             }
         }
 
-        
+
 
         private void starSetBtn_Click(object sender, RoutedEventArgs e)//별점 저장 버튼
         {
@@ -564,7 +520,7 @@ namespace WpfApp2
             }
             optionStatk.Visibility = Visibility.Hidden;
             starStatk.Visibility = Visibility.Hidden;
-            memo.starPoint_Input(seleteMD.mediaSource,seleteMD.star.ToString());
+            memo.starPoint_Input(seleteMD.mediaSource, seleteMD.star.ToString());
 
 
             TvBox.ItemsSource = videoData;
@@ -574,7 +530,7 @@ namespace WpfApp2
         private void vdDeleteBtn_Click(object sender, RoutedEventArgs e)//파일 삭제 이벤트
         {
             MessageBoxResult result = MessageBox.Show("삭제 하시겠습니까?", "파일 삭제", MessageBoxButton.YesNo);
-            if(result == MessageBoxResult.No)
+            if (result == MessageBoxResult.No)
             {
                 optionStatk.Visibility = Visibility.Hidden;
                 starStatk.Visibility = Visibility.Hidden;
@@ -594,7 +550,7 @@ namespace WpfApp2
                     optionStatk.Visibility = Visibility.Hidden;
                     starStatk.Visibility = Visibility.Hidden;
                 }
-                catch 
+                catch
                 {
                     // handle exception
                 }
@@ -691,7 +647,7 @@ namespace WpfApp2
                     if (dep == null) return;
 
                     ListSelectEvent(dep);
-                    
+
 
                 }
             }
@@ -704,6 +660,58 @@ namespace WpfApp2
 
             optionStatk.Visibility = Visibility.Hidden;
             starStatk.Visibility = Visibility.Hidden;
+        }
+
+        String _reName = "";
+        public String reName
+        {
+            get { return _reName; }
+            set { _reName = value; }
+        }
+
+        String _extension;
+
+        public String extension
+        {
+            get { return _extension; }
+            set { _extension = value;}
+        }
+
+        private void vdEditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            reName = System.IO.Path.GetFileName(seleteMD.mediaSource);
+            reName = reName.Substring(0, reName.Length - 4);
+            extension = System.IO.Path.GetExtension(seleteMD.mediaSource);
+
+            optionStatk.Visibility = Visibility.Hidden;
+            starStatk.Visibility = Visibility.Hidden;
+
+            RenameForm renameForm = new RenameForm(this);
+            renameForm.Top = this.Top;
+            renameForm.Left = this.Left;
+            renameForm.ShowDialog();
+
+            if (reName != "") {
+
+               
+
+                try
+                {
+                    File.Move(seleteMD.mediaSource, nowFolder + "/" + _reName + extension);
+                    seleteMD.Title = reName + extension;
+
+                    seleteMD.mediaSource = nowFolder + "/" + _reName + extension;
+
+                    TvBox.ItemsSource = videoData;
+                    TvBox.Items.Refresh();
+
+                    
+                }
+                catch
+                {
+
+                }
+            } 
         }
     }
 
