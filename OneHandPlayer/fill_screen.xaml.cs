@@ -346,11 +346,11 @@ namespace WpfApp2
             //마우스 클릭 시간, 볼륨 조절
             if (e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed)
             {
-                if (e.GetPosition((IInputElement)sender).Y > (mediaMain.ActualHeight - 80))//시간 조절
+                if (e.GetPosition((IInputElement)sender).Y > (mediaMain.ActualHeight - 100))//시간 조절
                 {
                     time_press = true;
                 }
-                else if (e.GetPosition((IInputElement)sender).X > mediaMain.ActualWidth - 100)//볼륨 조절
+                else if (e.GetPosition((IInputElement)sender).X > mediaMain.ActualWidth - 120)//볼륨 조절
                 {
                     volume_press = true;
 
@@ -404,10 +404,10 @@ namespace WpfApp2
 
                 Point pos = e.GetPosition((IInputElement)sender);
 
-                double volume_set = ((pos.Y - start_volume) / (mediaMain.ActualHeight - 80)) / 15;
+                double volume_set = (pos.Y - start_volume) / 20;
 
 
-                volume_bar.Value = (int)(volume_bar.Value - volume_set * 100);
+                volume_bar.Value = (int)(volume_bar.Value - volume_set);
                 mediaMain.Volume = volume_bar.Value / 100;
 
                 lblJumpTime.FontSize = 50;

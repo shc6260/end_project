@@ -716,6 +716,7 @@ namespace WpfApp2
             playListForm.Close();
             playListForm = null;
             this.Hide();
+            mediaMain.Close();
             
 
             StartWindow startWindow = new StartWindow(playListForm, this, bookmarkForm);
@@ -904,10 +905,10 @@ namespace WpfApp2
                 
                 Point pos = e.GetPosition((IInputElement)sender);
 
-                double volume_set = ((pos.Y - start_volume) / (mediaMain.ActualHeight - 80)) / 15;
+                double volume_set = (pos.Y - start_volume)/20 ;
 
 
-                volume_bar.Value = (int)(volume_bar.Value - volume_set * 100);
+                volume_bar.Value = (int)(volume_bar.Value - volume_set);
                 mediaMain.Volume = volume_bar.Value / 100;
 
                 lblJumpTime.FontSize = 50;
