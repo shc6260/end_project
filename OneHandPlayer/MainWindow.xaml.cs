@@ -255,14 +255,40 @@ namespace WpfApp2
             //상단 키다운
             if (e.Key == Key.Up)
             {
-                volume_bar.Value += 0.1;
-                mediaMain.Volume += 0.1;
+                if (mediaMain.Volume < 0)
+                {
+                    volume_bar.Value = 0;
+                    mediaMain.Volume = 0;
+                }
+                else if (mediaMain.Volume > 1)
+                {
+                    volume_bar.Value = 100;
+                    mediaMain.Volume = 1;
+                }
+                else
+                {
+                    volume_bar.Value += 5;
+                    mediaMain.Volume += 0.05;
+                }
             }
             //하단 키다운
             if (e.Key == Key.Down)
             {
-                volume_bar.Value -= 0.1;
-                mediaMain.Volume -= 0.1;
+                if (mediaMain.Volume < 0)
+                {
+                    volume_bar.Value = 0;
+                    mediaMain.Volume = 0;
+                }
+                else if (mediaMain.Volume > 1)
+                {
+                    volume_bar.Value = 100;
+                    mediaMain.Volume = 1;
+                }
+                else
+                {
+                    volume_bar.Value -= 5;
+                    mediaMain.Volume -= 0.05;
+                }
             }
             //스페이스바 - 일시정지 or 이어재생
             if(e.Key == Key.Space)
@@ -270,15 +296,13 @@ namespace WpfApp2
                 if (mediaMain.Source == null)
                     return;
 
-                if (p == 0)
+                if (btnPause.Visibility == Visibility.Visible)
                 {
-                    mediaMain.Pause();
-                    p = 1;
+                    btnPause_Click(btnPause, e);
                 }
-                else if (p == 1)
+                else
                 {
-                    mediaMain.Play();
-                    p = 0;
+                    btnStart_Click(btnStart, e);
                 }
             }
 
@@ -322,6 +346,7 @@ namespace WpfApp2
             this.JumpTime = F_S._JimpTime;
             mediaMain.Position = TimeSpan.FromSeconds(playtime);
             mediaMain.Volume = volume;
+            volume_bar.Value = volume * 100;
 
             mediaMain.Play();
             Thread.Sleep(1);
@@ -824,8 +849,12 @@ namespace WpfApp2
             if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
             {
                 WpfApp2.TimeJumpSet timeJumpSet = new WpfApp2.TimeJumpSet(JumpTime);
+                timeJumpSet.Top = this.Top;
+                timeJumpSet.Left = this.Left;
                 if (timeJumpSet.ShowDialog() == true)
                 {
+                    
+
                     string a = timeJumpSet.jumptime.Text;
                     JumpTime = Convert.ToInt32(a);
                 }
@@ -843,7 +872,27 @@ namespace WpfApp2
 
                     start_volume = e.GetPosition((IInputElement)sender).Y;
                 }
+
+                else if (e.ClickCount == 2)
+                {
+                    fill_btn_Click(fill_Btn,e);
+                }
+
+                else//일시정지, 전체화면
+                {
+                    if (btnPause.Visibility == Visibility.Visible)
+                    {
+                        btnPause_Click(btnPause, e);
+                    }
+                    else
+                    {
+                        btnStart_Click(btnStart,e);
+                    }
+                    
+                    
+                }
             }
+            
 
         }
 

@@ -94,10 +94,6 @@ namespace WpfApp2
             DirectoryInfo[] dirs = di.GetDirectories("*.*", SearchOption.TopDirectoryOnly);//폴더 목록 검색
             foreach (DirectoryInfo d in dirs)
             {
-                if (d.Name == "thumbnail")
-                {//썸네일 폴더 안나오게
-                    continue;
-                }
                 String[] dir = new string[] { d.FullName, d.Name, d.Extension };
                 videoList.Add(dir);
             }

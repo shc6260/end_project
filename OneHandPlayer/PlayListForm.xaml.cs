@@ -44,6 +44,8 @@ namespace WpfApp2
         {
             InitializeComponent();
 
+            
+
             this.Height = mainWindow.Height;
 
             this.BookmarkForm = BookmarkForm;
@@ -306,72 +308,7 @@ namespace WpfApp2
 
                     if (dep == null) return;
 
-                    MovieData movieData = new MovieData();
-                    movieData = (MovieData)TvBox.ItemContainerGenerator.ItemFromContainer(dep);
-
-                    if (movieData.type)//폴더면
-                    {
-                        if (nowFolder.Equals(movieData.mediaSource))//현재폴더랑 같으면
-                        {
-                            MessageBox.Show("현재폴더입니다.");
-                            return;
-                        }
-
-                        if (movieData.Title == "상위 폴더")//상위폴더면
-                        {
-                            nowFolder = movieData.mediaSource;
-
-                        }
-                        else if (movieData.Title == "홈")//홈이면 
-                        {
-                            nowFolder = mainFolder;
-                            folder_parent_List.Clear();
-                        }
-                        else
-                        {
-                            folder_parent_List.Push(nowFolder);//스택에 추가 
-                            nowFolder = movieData.mediaSource;
-
-                        }
-                        pathLbl.Content = nowFolder;
-
-                        List<String[]> videoList = new List<string[]>();//영상목록 리스트
-
-                        DirectoryInfo di = new DirectoryInfo(nowFolder); // 해당 폴더 정보를 가져옵니다. 
-
-                        videoList.Clear();
-
-                        DirectoryInfo[] dirs = di.GetDirectories("*.*", SearchOption.TopDirectoryOnly);//폴더 목록 검색
-                        foreach (DirectoryInfo d in dirs)
-                        {
-                            if (d.Name == "thumbnail")
-                            {//썸네일 폴더 안나오게
-                                continue;
-                            }
-
-                            String[] dir = new string[] { d.FullName, d.Name, d.Extension };
-                            videoList.Add(dir);
-                        }
-
-                        foreach (FileInfo File in di.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
-                        {
-
-                            String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
-                            videoList.Add(video);
-                        }
-                        this.videoList = videoList;
-
-
-                        getList();
-
-
-                    }
-
-                    else
-                    {
-                        MainWindow.Media_Play(movieData.mediaSource);
-                        BookmarkForm.BookMarkSet(new Uri(movieData.mediaSource));
-                    }
+                    ListSelectEvent(dep);
 
                 }
             }
@@ -480,7 +417,8 @@ namespace WpfApp2
         MovieData seleteMD = null;//우클릭한 영상 저장
         private void TvBox_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)//리스트 우클릭 이벤트
         {
-
+            optionStatk.Visibility = Visibility.Hidden;
+            starStatk.Visibility = Visibility.Hidden;
             DependencyObject dep = (DependencyObject)e.OriginalSource;
 
             while ((dep != null) && !(dep is ListViewItem))
@@ -582,6 +520,11 @@ namespace WpfApp2
         {
             starStatk.Margin = new Thickness(optionStatk.Margin.Left + 40, optionStatk.Margin.Top, 0, 0);
             starStatk.Visibility = Visibility.Visible;
+
+            if (starStatk.Margin.Left + starStatk.Width > this.Width)
+            {
+                starStatk.Margin = new Thickness(starStatk.Margin.Left - (starStatk.Margin.Left + starStatk.Width - this.Width) , optionStatk.Margin.Top,0,0);
+            }
         }
 
         
@@ -660,6 +603,107 @@ namespace WpfApp2
 
 
 
+        }
+
+        private void ListSelectEvent(DependencyObject dep)
+        {
+            MovieData movieData = new MovieData();
+            movieData = (MovieData)TvBox.ItemContainerGenerator.ItemFromContainer(dep);
+
+            if (movieData.type)//폴더면
+            {
+                if (nowFolder.Equals(movieData.mediaSource))//현재폴더랑 같으면
+                {
+                    MessageBox.Show("현재폴더입니다.");
+                    return;
+                }
+
+                if (movieData.Title == "상위 폴더")//상위폴더면
+                {
+                    nowFolder = movieData.mediaSource;
+
+                }
+                else if (movieData.Title == "홈")//홈이면 
+                {
+                    nowFolder = mainFolder;
+                    folder_parent_List.Clear();
+                }
+                else
+                {
+                    folder_parent_List.Push(nowFolder);//스택에 추가 
+                    nowFolder = movieData.mediaSource;
+
+                }
+                pathLbl.Content = nowFolder;
+
+                List<String[]> videoList = new List<string[]>();//영상목록 리스트
+
+                DirectoryInfo di = new DirectoryInfo(nowFolder); // 해당 폴더 정보를 가져옵니다. 
+
+                videoList.Clear();
+
+                DirectoryInfo[] dirs = di.GetDirectories("*.*", SearchOption.TopDirectoryOnly);//폴더 목록 검색
+                foreach (DirectoryInfo d in dirs)
+                {
+                    if (d.Name == "thumbnail")
+                    {//썸네일 폴더 안나오게
+                        continue;
+                    }
+
+                    String[] dir = new string[] { d.FullName, d.Name, d.Extension };
+                    videoList.Add(dir);
+                }
+
+                foreach (FileInfo File in di.GetFiles()) // 선택 폴더의 파일 목록을 스캔합니다. 
+                {
+
+                    String[] video = new string[] { File.DirectoryName, File.Name, File.Extension };
+                    videoList.Add(video);
+                }
+                this.videoList = videoList;
+
+
+                getList();
+
+
+            }
+
+            else
+            {
+                MainWindow.Media_Play(movieData.mediaSource);
+                BookmarkForm.BookMarkSet(new Uri(movieData.mediaSource));
+                MainWindow.Focus();
+            }
+        }
+        private void TvBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (TvBox.SelectedItems.Count == 1)
+                {
+                    DependencyObject dep = (DependencyObject)e.OriginalSource;
+
+                    while ((dep != null) && !(dep is ListViewItem))
+                    {
+                        dep = VisualTreeHelper.GetParent(dep);
+                    }
+
+                    if (dep == null) return;
+
+                    ListSelectEvent(dep);
+                    
+
+                }
+            }
+        }
+
+
+
+        private void TvBox_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+
+            optionStatk.Visibility = Visibility.Hidden;
+            starStatk.Visibility = Visibility.Hidden;
         }
     }
 

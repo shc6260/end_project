@@ -29,5 +29,10 @@ namespace WpfApp2
         {
             this.DialogResult = true;
         }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

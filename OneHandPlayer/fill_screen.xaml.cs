@@ -249,50 +249,25 @@ namespace WpfApp2
         DispatcherTimer timer2 = new DispatcherTimer();
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-                timer2.Stop();
-                BottomBar.Visibility = Visibility.Visible;
-                TopBar.Visibility = Visibility.Visible;
-                timer2.Interval = TimeSpan.FromMilliseconds(3000);
-                timer2.Tick += timer2_Tick;
-                timer2.Start();
+            timer2.Stop();
+            BottomBar.Visibility = Visibility.Visible;
+            TopBar.Visibility = Visibility.Visible;
+            this.Cursor = Cursors.Arrow;
+            timer2.Interval = TimeSpan.FromMilliseconds(3000);
+            timer2.Tick += timer2_Tick;
+            timer2.Start();
         }
         // 마우스 이동시 상하단바 타임 핸들러
         void timer2_Tick(object sender, EventArgs e)
         {
             BottomBar.Visibility = Visibility.Hidden;
             TopBar.Visibility = Visibility.Hidden;
+            this.Cursor = Cursors.None;
         }
 
 
 
-        //영상 재생관련 버튼
-        private void btnStart_Click(object sender, RoutedEventArgs e)
-        {
-            if (mediaMain.Source == null)
-                return;
 
-            mediaMain.Play();
-            p = 0;
-
-        }
-        private void btnStop_Click(object sender, RoutedEventArgs e)
-        {
-            if (mediaMain.Source == null)
-                return;
-            mediaMain.Stop();
-            p = 1;
-
-
-        }
-        private void btnPause_Click(object sender, RoutedEventArgs e)
-        {
-            if (mediaMain.Source == null)
-                return;
-
-            mediaMain.Pause();
-            p = 1;
-
-        }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
@@ -460,6 +435,67 @@ namespace WpfApp2
             }
         }
 
+        bool RI = false; //반복재생 인덱스
+        private void btnRotation_Click(object sender, RoutedEventArgs e)//반복재생 버튼
+        {
+
+            if (!RI)//꺼져있으면
+            {
+                RI = true;
+                btnRotation.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\RotationON.png")));
+
+            }
+            else
+            {
+                RI = false;
+                btnRotation.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Rotation.png")));
+            }
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            if (mediaMain.Source == null)
+                return;
+
+            mediaMain.Play();
+            p = 0;
+
+            btnPause.Visibility = Visibility.Visible;
+            btnStart.Visibility = Visibility.Hidden;
+        }
+
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {
+            if (mediaMain.Source == null)
+                return;
+            mediaMain.Stop();
+            p = 1;
+
+            btnPause.Visibility = Visibility.Hidden;
+            btnStart.Visibility = Visibility.Visible;
+        }
+
+        private void btnPause_Click(object sender, RoutedEventArgs e)
+        {
+            if (mediaMain.Source == null)
+                return;
+
+            mediaMain.Pause();
+            p = 1;
+
+            btnPause.Visibility = Visibility.Hidden;
+            btnStart.Visibility = Visibility.Visible;
+        }
+
+        private void btnleft_Click(object sender, RoutedEventArgs e)//시간 되감기
+        {
+            mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds - 10);
+        }
+
+        private void btnRight_Click(object sender, RoutedEventArgs e)//시간 건너뛰기
+        {
+            mediaMain.Position = TimeSpan.FromSeconds(mediaMain.Position.TotalSeconds + 10);
+        }
 
     }
 }

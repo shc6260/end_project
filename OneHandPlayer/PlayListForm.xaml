@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PlayListForm" Height="500" Width="300
         " Loaded="Window_Loaded" WindowStartupLocation="Manual" WindowStyle="None" AllowsTransparency="True"
-        Closed="Window_Closed">
+        Closed="Window_Closed" >
     <Grid>
         <Grid Margin="0,0,0,24">
             <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
             <TextBox Grid.Row="1" x:Name="Search_Text" Background="#FFE2E0FF" TextChanged="Search_Text_TextChanged" Margin="26,0,56,0" BorderBrush="Black"/>
 
 
-            <ListView Grid.Row="2" x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" MouseDoubleClick="TvBox_MouseDoubleClick" PreviewMouseRightButtonDown="TvBox_PreviewMouseRightButtonDown" PreviewMouseLeftButtonDown="TvBox_PreviewMouseLeftButtonDown" Background="White" Margin="0" Padding="0" >
+            <ListView Grid.Row="2" x:Name="TvBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" MouseDoubleClick="TvBox_MouseDoubleClick" PreviewMouseRightButtonDown="TvBox_PreviewMouseRightButtonDown" PreviewMouseLeftButtonDown="TvBox_PreviewMouseLeftButtonDown" KeyDown="TvBox_KeyDown"  PreviewMouseWheel="TvBox_MouseWheel" Background="White" Margin="0" Padding="0" >
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="2" HorizontalAlignment="Stretch"/>
