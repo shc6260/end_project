@@ -82,11 +82,31 @@
         </Grid>
 
         <Grid Grid.Row="1" Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="265*"/>
+                <RowDefinition Height="113*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <MediaElement x:Name="mediaMain"  LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" MouseMove="mediaMain_MouseMove" ForceCursor="True" MouseWheel="mediaMain_MouseWheel" MouseLeave="mediaMain_MouseLeave" Grid.ColumnSpan="2"/>
+            <MediaElement x:Name="mediaMain"  LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" MouseMove="mediaMain_MouseMove" ForceCursor="True" MouseWheel="mediaMain_MouseWheel" MouseLeave="mediaMain_MouseLeave" Grid.ColumnSpan="2" Margin="0,0,0.333,0" Grid.RowSpan="2"/>
+            <Grid Name="thumGrid" Grid.ColumnSpan="2" Margin="10,0,0,1" Grid.Row="1" HorizontalAlignment="Left" Width="773" Height="92" VerticalAlignment="Bottom" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="245*"/>
+                </Grid.ColumnDefinitions>
+                <Image Name="thumImage1" HorizontalAlignment="Right" Height="92" VerticalAlignment="Top" Width="160" Margin="0,0,592.333,0" MouseDown="thumImage1_MouseDown" MouseEnter="thumImage1_MouseEnter" MouseLeave="thumImage1_MouseLeave" Grid.ColumnSpan="2"/>
+                <Image Name="thumImage2" HorizontalAlignment="Right" Height="92" Margin="0,0,399.333,0" VerticalAlignment="Top" Width="160" MouseDown="thumImage1_MouseDown" MouseEnter="thumImage1_MouseEnter" MouseLeave="thumImage1_MouseLeave" Grid.Column="1"/>
+                <Image Name="thumImage3" HorizontalAlignment="Right" Height="92" Margin="0,0,206.333,0" VerticalAlignment="Top" Width="160" MouseDown="thumImage1_MouseDown" MouseEnter="thumImage1_MouseEnter" MouseLeave="thumImage1_MouseLeave" Grid.Column="1"/>
+                <Image Name="thumImage4" HorizontalAlignment="Right" Height="92" VerticalAlignment="Top" Width="160" Margin="0,0,10.333,0" MouseDown="thumImage1_MouseDown" MouseEnter="thumImage1_MouseEnter" MouseLeave="thumImage1_MouseLeave" Grid.Column="1"/>
+
+                <Button Content="∨" HorizontalAlignment="Right" Height="15" Margin="0,-14,720.333,91" VerticalAlignment="Bottom" Width="32" Name="thumOffBtn" Click="thumOffBtn_Click" Background="#7FDDDDDD" Grid.ColumnSpan="2"/>
+
+
+            </Grid>
+
+
 
 
 
@@ -111,7 +131,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button  Width="25" Height="20" BorderThickness="0" Grid.Column="2" x:Name="btnRotation" Click="btnRotation_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button  Width="25" Height="20" BorderThickness="0" Grid.Column="2" x:Name="btnRotation" Click="btnRotation_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Focusable="False">
                 <!-- click이벤트 이름은 수정해야됨(반복?재생) -->
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Rotation.png"/>
@@ -120,13 +140,13 @@
 
 
 
-            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="3" x:Name="btnStop" Click="btnStop_Click">
+            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="3" x:Name="btnStop" Click="btnStop_Click" Focusable="False">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/reset.png"/>
                 </Button.Background>
             </Button>
 
-            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="4" x:Name="btnleft" Click="btnleft_Click" >
+            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="4" x:Name="btnleft" Click="btnleft_Click" Focusable="False" >
                 <!-- click이벤트 이름은 수정해야됨(이전 영상으로 가는 버튼) -->
                 <Button.Background>
                     <ImageBrush ImageSource="Images/left.png"/>
@@ -140,36 +160,37 @@
                 </Button.Background>
             </Button>
 
-            <Button x:Name="btnRight" Width="30" Height="30" BorderThickness="0" Grid.Column="6" Click="btnRight_Click">
+            <Button x:Name="btnRight" Width="30" Height="30" BorderThickness="0" Grid.Column="6" Click="btnRight_Click" Focusable="False">
                 <!-- click이벤트 이름은 수정해야됨 -->
                 <Button.Background>
                     <ImageBrush ImageSource="Images/right.png"/>
                 </Button.Background>
             </Button>
 
-            <Label Content="00:00" Grid.Column="7" VerticalAlignment="Center" Foreground="White" x:Name="lblPlayTime"/>
-            <Slider Style="{StaticResource Horizontal_Slider}" VerticalAlignment="Center" Grid.Column="8" x:Name="sldrPlayTime" Thumb.DragStarted="sldrPlayTime_DragStarted" Thumb.DragCompleted="sldrPlayTime_DragCompleted" ValueChanged="sldrPlayTime_ValueChanged" FocusableChanged="sldrPlayTime_FocusableChanged"/>
-            <Label Content="00:00" Grid.Column="9" VerticalAlignment="Center" Foreground="White" x:Name="lblEndTime"/>
+            <Label Content="00:00:00" Grid.Column="7" VerticalAlignment="Center" Foreground="White" x:Name="lblPlayTime" FontSize="9"/>
+            <Slider Style="{StaticResource Horizontal_Slider}" VerticalAlignment="Center" Grid.Column="8" x:Name="sldrPlayTime" Thumb.DragStarted="sldrPlayTime_DragStarted" Thumb.DragCompleted="sldrPlayTime_DragCompleted" ValueChanged="sldrPlayTime_ValueChanged" FocusableChanged="sldrPlayTime_FocusableChanged" Focusable="False"/>
+            <Label Content="00:00:00" Grid.Column="9" VerticalAlignment="Center" Foreground="White" x:Name="lblEndTime" FontSize="9"/>
 
-            <Button Width="30" Height="25" BorderThickness="0" Grid.Column="10"  x:Name="btnVol" Click="btnVol_Click">
+            <Button Width="30" Height="25" BorderThickness="0" Grid.Column="10"  x:Name="btnVol" Click="btnVol_Click" Focusable="False">
                 <!-- Click 이벤트 구현해야됨(볼륨버튼 클릭시 Mute이미지로 변경되면서 음소거 -->
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Vol.png"/>
                 </Button.Background>
             </Button>
 
-            <Slider x:Name="volume_bar" Minimum="0" Maximum="100" IsSnapToTickEnabled="True" Style="{StaticResource CustomSliderStyle}" Grid.Column="11" Width="100" Thumb.DragCompleted="volume_bar_completed" Value="20" ValueChanged="volume_bar_ValueChanged" />
-            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="5" x:Name="btnPause" Click="btnPause_Click" Margin="5,5,5,0" VerticalAlignment="Top"  >
+            <Slider x:Name="volume_bar" Minimum="0" Maximum="100" IsSnapToTickEnabled="True" Style="{StaticResource CustomSliderStyle}" Grid.Column="11" Width="100" Thumb.DragCompleted="volume_bar_completed" Value="20" ValueChanged="volume_bar_ValueChanged" Focusable="False" />
+            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="5" x:Name="btnPause" Click="btnPause_Click" Margin="5,5,5,0" VerticalAlignment="Top" Focusable="False"  >
                 <!-- click이벤트 이름은 수정해야됨(stop이미지로 바뀌면서 멈추는 기능) -->
                 <Button.Background>
                     <ImageBrush ImageSource="Images/stop.png" />
                 </Button.Background>
             </Button>
-            <Button Name="fill_Btn"  Width="30" Height="30" BorderThickness="0"  Click="fill_btn_Click" Margin="15,4,12,6" Grid.Column="12">
+            <Button Name="fill_Btn"  Width="30" Height="30" BorderThickness="0"  Click="fill_btn_Click" Margin="15,4,12,6" Grid.Column="12" Focusable="False">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/FullScreen.png"/>
                 </Button.Background>
             </Button>
+            <Button Content="∧" HorizontalAlignment="Right" Margin="0,2,5.333,0" Width="32" Name="thumOnBtn" Height="17" VerticalAlignment="Top" Click="thumOnBtn_Click" Visibility="Hidden" Background="#7FDDDDDD"/>
 
         </Grid>
         <Label x:Name="lblJumpTime" Content="asdasd" Visibility="Hidden" Background="{x:Null}"  Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsManipulationEnabled="True" FontSize="70" Height="377" VerticalAlignment="Top" >
@@ -188,36 +209,36 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="138" Margin="42,0,0,0" VerticalAlignment="Top" Width="174" Background="#000032" x:Name="TestStack" Opacity="0.8" Grid.RowSpan="2" Visibility="Hidden">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Button Content="홈" Padding="5,0,0,0" Foreground="White" x:Name="homeBtn" Click="homeBtn_Click" BorderBrush="White" Background="#FF82B5F1" />
+                    <Button Content="홈" Padding="5,0,0,0" Foreground="White" x:Name="homeBtn" Click="homeBtn_Click" BorderBrush="White" Background="#FF82B5F1" Width="171" HorizontalContentAlignment="Left" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Label Content="테스트2" Padding="5,0,0,0" Foreground="White"/>
-                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    <Button Content="시간 이동 값 설정" Padding="5,0,0,0" Foreground="White" x:Name="timeSetBtn" Click="timeSetBtn_Click" BorderBrush="White" Background="#FF82B5F1" Width="171" HorizontalContentAlignment="Left" />
+
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Label Content="테스트3" Padding="5,0,0,0" Foreground="White"/>
-                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    <Label Content="마우스 볼륨 조절" Padding="5,0,0,0" Foreground="White"/>
+                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0" Name="mouseVol_CB"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Label Content="테스트4" Padding="5,0,0,0" Foreground="White"/>
-                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    <Label Content="마우스 시간 조절" Padding="5,0,0,0" Foreground="White"/>
+                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0" Name="mouseTime_CB"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Label Content="테스트5" Padding="5,0,0,0" Foreground="White"/>
-                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    <Label Content="마우스 클릭 일시정지" Padding="5,0,0,0" Foreground="White"/>
+                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0" Name="mousePause_CB"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Label Content="테스트6" Padding="5,0,0,0" Foreground="White"/>
-                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0" />
+                    <Label Content="마우스 클릭 전체화면" Padding="5,0,0,0" Foreground="White"/>
+                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0" Name="mouseFill_CB"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Label Content="테스트7" Padding="5,0,0,0" Foreground="White"/>
-                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    <Label Content="마우스 휠 기능" Padding="5,0,0,0" Foreground="White"/>
+                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0" Name="mouseWheel_CB"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                    <Label Content="테스트8" Padding="5,0,0,0" Foreground="White"/>
-                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0"/>
+                    <Label Content="건너뛰기 썸네일 기능" Padding="5,0,0,0" Foreground="White"/>
+                    <CheckBox BorderBrush="{x:Null}" IsChecked="True" VerticalAlignment="Center" Padding="0" Name="thumbnail_CB" Click="thumbnail_CB_Click"/>
                 </StackPanel>
             </StackPanel>
         </Border>

@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
+
 namespace WpfApp2
 {
     /// <summary>
@@ -23,7 +24,7 @@ namespace WpfApp2
     /// </summary>
     public partial class PlayListForm : Window
     {
-
+        
         MainWindow MainWindow;
         List<String[]> videoList = new List<string[]>();//받아온 영상목록
         List<MovieData> videoData;
@@ -74,6 +75,8 @@ namespace WpfApp2
 
             di.Create();
 
+            di = new DirectoryInfo("thumbnail/preview");
+            di.Create();
 
             getList();//영상 리스트 만들기
 
@@ -124,10 +127,10 @@ namespace WpfApp2
                     vd.mediaSource = videoList[i][0] + "/" + videoList[i][1];
                     vd.type = false;
 
-                    int time = get_VedioTime(videoList[i][0] + "/" + videoList[i][1]);
+                    int time = Image.get_VedioTime(videoList[i][0] + "/" + videoList[i][1]);
 
-                    vd.Time = TimeToString(time);
-                    vd.ImageData = LoadImage(videoList[i][0] + "/" + videoList[i][1], videoList[i][1], time);
+                    vd.Time = Image.TimeToString(time);
+                    vd.ImageData = Image.LoadImage(videoList[i][0] + "/" + videoList[i][1], videoList[i][1], time);
 
                     vd.star = memo.starPoint_Output(videoList[i][0] + "/" + videoList[i][1]);
 
@@ -187,10 +190,10 @@ namespace WpfApp2
                     vd.mediaSource = videoList[i][0] + "/" + videoList[i][1];
                     vd.type = false;
 
-                    int time = get_VedioTime(videoList[i][0] + "/" + videoList[i][1]);
+                    int time = Image.get_VedioTime(videoList[i][0] + "/" + videoList[i][1]);
 
-                    vd.Time = TimeToString(time);
-                    vd.ImageData = LoadImage(videoList[i][0] + "/" + videoList[i][1], videoList[i][1], time);
+                    vd.Time = Image.TimeToString(time);
+                    vd.ImageData = Image.LoadImage(videoList[i][0] + "/" + videoList[i][1], videoList[i][1], time);
                     videoData.Add(vd);
                 }
 
@@ -204,51 +207,16 @@ namespace WpfApp2
 
         }
 
-        private BitmapImage LoadImage(string file, String filename, int time)//영상경로, 영상 이름, 영상 시간(초)
-        {
-            FileInfo fileInfo = new FileInfo("thumbnail/" + filename + ".jpeg");//스크린샷이 있으면 스크린샷 생성 안함
-            if (fileInfo.Exists)
-            {
-                return new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "thumbnail/" + filename + ".jpeg"));
-            }
+        
 
-
-            //MemoryStream stream = new MemoryStream();
-            var ffMpeg = new NReco.VideoConverter.FFMpegConverter();
-            ffMpeg.GetVideoThumbnail(file, "thumbnail/" + filename + ".jpeg", time / 3);//동영상 경로, 출력 경로, 시간(초)
-
-
-            return new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "thumbnail/" + filename + ".jpeg"));
-
-        }
-
-        private int get_VedioTime(string file)//동영생 재생 시간 반환
-        {
-            FFProbe ffProbe = new FFProbe();
-            var videoInfo = ffProbe.GetMediaInfo(file);
-            int time = (int)Math.Floor(videoInfo.Duration.TotalSeconds);
-
-            return time;
-        }
-
-
-        private String TimeToString(int time)
-        {
-            int hour = time / 3600;
-            int minutes = time % 3600 / 60;
-            int secends = time % 3600 % 60;
-
-
-
-            return hour.ToString("00") + ":" + minutes.ToString("00") + ":" + secends.ToString("00");
-        }
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
 
 
-
+        public string runfile { get; set; }
         private void TvBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed)
@@ -265,7 +233,6 @@ namespace WpfApp2
                     if (dep == null) return;
 
                     ListSelectEvent(dep);
-
                 }
             }
         }
@@ -543,6 +510,7 @@ namespace WpfApp2
                 try
                 {
                     System.IO.File.Delete(seleteMD.mediaSource);
+                    memo.data_Delete(seleteMD.mediaSource);
                     videoData.Remove(seleteMD);
                     TvBox.ItemsSource = videoData;
                     TvBox.Items.Refresh();
@@ -561,6 +529,7 @@ namespace WpfApp2
 
         }
 
+        public string mediaSource { get; set; }
         private void ListSelectEvent(DependencyObject dep)
         {
             MovieData movieData = new MovieData();
@@ -627,8 +596,13 @@ namespace WpfApp2
             else
             {
                 MainWindow.Media_Play(movieData.mediaSource);
+                MainWindow.p = 0;
+                MainWindow.btnPause.Visibility = Visibility.Visible;
+                MainWindow.btnStart.Visibility = Visibility.Hidden;
                 BookmarkForm.BookMarkSet(new Uri(movieData.mediaSource));
                 MainWindow.Focus();
+                MainWindow.Thumbnail_Create(movieData.mediaSource);
+                mediaSource = movieData.mediaSource;
             }
         }
         private void TvBox_KeyDown(object sender, KeyEventArgs e)
@@ -676,12 +650,13 @@ namespace WpfApp2
             get { return _extension; }
             set { _extension = value;}
         }
-
         private void vdEditBtn_Click(object sender, RoutedEventArgs e)
         {
             reName = System.IO.Path.GetFileName(seleteMD.mediaSource);
             reName = reName.Substring(0, reName.Length - 4);
             extension = System.IO.Path.GetExtension(seleteMD.mediaSource);
+
+            string before_name = seleteMD.mediaSource; //바뀌기전 이름
 
             optionStatk.Visibility = Visibility.Hidden;
             starStatk.Visibility = Visibility.Hidden;
@@ -701,7 +676,7 @@ namespace WpfApp2
                     seleteMD.Title = reName + extension;
 
                     seleteMD.mediaSource = nowFolder + "/" + _reName + extension;
-
+                    memo.Name_Change(before_name, seleteMD.mediaSource);
                     TvBox.ItemsSource = videoData;
                     TvBox.Items.Refresh();
 

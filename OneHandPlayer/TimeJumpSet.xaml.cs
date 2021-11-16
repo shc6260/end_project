@@ -19,6 +19,7 @@ namespace WpfApp2
     /// </summary>
     public partial class TimeJumpSet : Window
     {
+        Memo memo = null;
         public TimeJumpSet(int a)
         {
             InitializeComponent();
@@ -28,6 +29,8 @@ namespace WpfApp2
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
+            memo = new Memo();
+            memo.JumpTimeSet(jumptime.Text);
         }
 
         private void closeBtn_Click(object sender, RoutedEventArgs e)

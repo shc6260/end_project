@@ -24,7 +24,19 @@
         </Grid.RowDefinitions>
 
         <MediaElement x:Name="mediaMain" Stretch="Uniform" HorizontalAlignment="Center" Height="659" VerticalAlignment="Center" Width="851" LoadedBehavior="Manual" UnloadedBehavior="Stop" MediaEnded="mediaMain_MediaEnded" MediaOpened="mediaMain_MediaOpened" MediaFailed="mediaMain_MediaFailed" MouseWheel="mediaMain_MouseWheel" MouseDown="mediaMain_MouseDown" MouseUp="mediaMain_MouseUp" MouseMove="mediaMain_MouseMove" MouseLeave="mediaMain_MouseLeave" Grid.RowSpan="3"/>
+        <Grid Name="thumGrid" Margin="10,66.667,0,9.667" Grid.Row="1" HorizontalAlignment="Left" Width="173">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Name="thumImage1" HorizontalAlignment="Right" Width="160" Margin="0,0,10.333,9.999" MouseDown="thumImage1_MouseDown" MouseEnter="thumImage1_MouseEnter" MouseLeave="thumImage1_MouseLeave" Height="92" VerticalAlignment="Bottom"/>
+            <Image Name="thumImage2" HorizontalAlignment="Right" Margin="0,0,10.333,147.999" Width="160" MouseDown="thumImage1_MouseDown" MouseEnter="thumImage1_MouseEnter" MouseLeave="thumImage1_MouseLeave" Height="92" VerticalAlignment="Bottom"/>
+            <Image Name="thumImage3" HorizontalAlignment="Right" Margin="0,0,10.333,286.999" Width="160" MouseDown="thumImage1_MouseDown" MouseEnter="thumImage1_MouseEnter" MouseLeave="thumImage1_MouseLeave" Height="92" VerticalAlignment="Bottom"/>
+            <Image Name="thumImage4" HorizontalAlignment="Right" Width="160" Margin="0,0,10.333,424.999" MouseDown="thumImage1_MouseDown" MouseEnter="thumImage1_MouseEnter" MouseLeave="thumImage1_MouseLeave" Height="92" VerticalAlignment="Bottom"/>
 
+            <Button Content="∨" HorizontalAlignment="Right" Margin="0,-20,122.333,521.999" Width="32" Name="thumOffBtn" Click="thumOffBtn_Click" Background="#7FDDDDDD" Height="15" VerticalAlignment="Bottom"/>
+
+
+        </Grid>
         <Grid x:Name="TopBar" Background="#0F0F2D" MouseMove="TopBar_MouseMove">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="20"/>
@@ -58,61 +70,78 @@
 
         <Grid x:Name="BottomBar" Grid.Row="2" Background="#FF3B255B" MouseMove="BottomBar_MouseMove" Height="40" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="229*"/>
-                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="45"/>
-                <ColumnDefinition Width="321*"/>
+                <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="45"/>
-                <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="00:00" VerticalAlignment="Center" Foreground="White" x:Name="lblPlayTime" Margin="229,7,0.666,7" Grid.ColumnSpan="3" />
-            <Slider Style="{StaticResource Horizontal_Slider}" VerticalAlignment="Center" Grid.Column="1" x:Name="sldrPlayTime" Thumb.DragStarted="sldrPlayTime_DragStarted" Thumb.DragCompleted="sldrPlayTime_DragCompleted" ValueChanged="sldrPlayTime_ValueChanged" Grid.ColumnSpan="3" Margin="44.667,9,0,9"/>
-            <Label Content="00:00" Grid.Column="3" VerticalAlignment="Center" Foreground="White" x:Name="lblEndTime" Margin="320.334,7,79,7" Grid.ColumnSpan="3"/>
-            <Slider x:Name="volume_bar" Minimum="0" Maximum="100" IsSnapToTickEnabled="True" Style="{StaticResource CustomSliderStyle}" Grid.Column="5" Width="100" Thumb.DragCompleted="volume_bar_completed" Focusable="False" Grid.ColumnSpan="2" Margin="1,10,29,10"/>
-            <Button Width="30" Height="30" BorderThickness="0" Grid.Column="6"  x:Name="btnSelectFile" Margin="11,5,9,5">
-                <Button.Background>
-                    <ImageBrush ImageSource="/images/Folder.png"/>
-                </Button.Background>
-            </Button>
-            <Button  Width="25" Height="20" BorderThickness="0" x:Name="btnRotation" Click="btnRotation_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="40,10,164.333,10">
+            <Button Content="∧" Margin="29,2,0,21" Name="thumOnBtn" Click="thumOnBtn_Click" Background="#7FDDDDDD" Visibility="Hidden" HorizontalAlignment="Left" Width="32"/>
+
+
+
+            <Button  Width="25" Height="20" BorderThickness="0" x:Name="btnRotation" Click="btnRotation_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Column="2">
                 <!-- click이벤트 이름은 수정해야됨(반복?재생) -->
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Rotation.png"/>
                 </Button.Background>
             </Button>
-            <Button Width="30" Height="30" BorderThickness="0" x:Name="btnStop" Click="btnStop_Click" Margin="71,5,128.333,5">
+            <Button Width="30" Height="30" BorderThickness="0" x:Name="btnStop" Click="btnStop_Click" Grid.Column="3">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/reset.png"/>
                 </Button.Background>
             </Button>
-            <Button Width="30" Height="30" BorderThickness="0" x:Name="btnleft" Click="btnleft_Click" Margin="111,5,88.333,5" >
-                <!-- click이벤트 이름은 수정해야됨(이전 영상으로 가는 버튼) -->
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/left.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="btnRight" Width="30" Height="30" BorderThickness="0" Click="btnRight_Click" Margin="192,5,7.333,5">
-                <!-- click이벤트 이름은 수정해야됨 -->
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/right.png"/>
-                </Button.Background>
-            </Button>
-            <Button Width="30" Height="30" BorderThickness="0" x:Name="btnPause" Click="btnPause_Click" Margin="153,5,46.333,0" VerticalAlignment="Top"  >
-                <!-- click이벤트 이름은 수정해야됨(stop이미지로 바뀌면서 멈추는 기능) -->
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/stop.png" />
-                </Button.Background>
-            </Button>
-
-            <Button Width="30" Height="30" BorderThickness="0" x:Name="btnStart" Click="btnStart_Click" Margin="152,5,47.333,0" VerticalAlignment="Top" Visibility="Hidden" >
+            <Button Width="30" Height="30" BorderThickness="0" x:Name="btnStart" Click="btnStart_Click" Grid.Column="5" Margin="5.333,6,4.667,4" Visibility="Hidden">
                 <!-- click이벤트 이름은 수정해야됨(stop이미지로 바뀌면서 멈추는 기능) -->
                 <Button.Background>
                     <ImageBrush ImageSource="Images/play.png"/>
                 </Button.Background>
             </Button>
+            <Button Width="30" Height="30" BorderThickness="0" x:Name="btnleft" Click="btnleft_Click" Grid.Column="4">
+                <!-- click이벤트 이름은 수정해야됨(이전 영상으로 가는 버튼) -->
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/left.png"/>
+                </Button.Background>
+            </Button>
+            <Button Width="30" Height="30" BorderThickness="0" x:Name="btnPause" Click="btnPause_Click" Grid.Column="5" >
+                <!-- click이벤트 이름은 수정해야됨(stop이미지로 바뀌면서 멈추는 기능) -->
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/stop.png" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="btnRight" Width="30" Height="30" BorderThickness="0" Click="btnRight_Click" Grid.Column="6">
+                <!-- click이벤트 이름은 수정해야됨 -->
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/right.png"/>
+                </Button.Background>
+            </Button>
+            <Button Name="small_Btn"  Width="30" Height="30" BorderThickness="0"  Click="small_Btn_Click" Margin="20,4,16.667,0" Grid.Column="12" Focusable="False" VerticalAlignment="Top">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/SmallScreen.png"/>
+                </Button.Background>
+            </Button>
+
+            <Label Content="00:00:00" VerticalAlignment="Center" Foreground="White" x:Name="lblPlayTime"  Grid.Column="7" FontSize="9"/>
+            <Slider Style="{StaticResource Horizontal_Slider}" VerticalAlignment="Center" x:Name="sldrPlayTime" Thumb.DragStarted="sldrPlayTime_DragStarted" Thumb.DragCompleted="sldrPlayTime_DragCompleted" ValueChanged="sldrPlayTime_ValueChanged" Grid.Column="8"/>
+            <Label Content="00:00:00" Grid.Column="9" VerticalAlignment="Center" Foreground="White" x:Name="lblEndTime"  FontSize="9"/>
+            <Button Width="30" Height="25" BorderThickness="0" Grid.Column="10"  x:Name="btnVol" Click="btnVol_Click">
+                <!-- Click 이벤트 구현해야됨(볼륨버튼 클릭시 Mute이미지로 변경되면서 음소거 -->
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/Vol.png"/>
+                </Button.Background>
+            </Button>
+
+            <Slider x:Name="volume_bar" Minimum="0" Maximum="100" IsSnapToTickEnabled="True" Style="{StaticResource CustomSliderStyle}" Grid.Column="11" Width="100" Thumb.DragCompleted="volume_bar_completed" Focusable="False"/>
+
         </Grid>
         <Label x:Name="lblJumpTime"  Visibility="Hidden"  Content="asdasd" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsManipulationEnabled="True" FontSize="70" Margin="0" Grid.Row="1" HorizontalAlignment="Center" Width="314" Height="239" VerticalAlignment="Center" Padding="5" >
             <Label.Effect>

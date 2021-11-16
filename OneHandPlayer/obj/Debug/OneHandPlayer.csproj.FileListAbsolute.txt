@@ -205,3 +205,5 @@ C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\OneHandP
 C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\OneHandPlayer.csproj.CopyComplete
 C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\RenameForm.g.cs
 C:\Users\alzhx\Desktop\졸업작품\end_project\OneHandPlayer\obj\Debug\RenameForm.baml
+C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\RenameForm.g.cs
+C:\Users\shc62\OneDrive\바탕 화면\end_project\end_project\OneHandPlayer\obj\Debug\RenameForm.baml

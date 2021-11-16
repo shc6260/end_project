@@ -21,7 +21,7 @@ namespace WpfApp2
     /// </summary>
     public partial class StartWindow : Window
     {
-        PlayListForm playListForm = null;
+        public PlayListForm playListForm { get; set; }
         MainWindow mainWindow = null;
         BookmarkForm bookmarkForm = null;
         List<String[]> videoList = new List<string[]>();

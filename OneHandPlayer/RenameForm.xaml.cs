@@ -20,7 +20,6 @@ namespace WpfApp2
     public partial class RenameForm : Window
     {
         PlayListForm playListForm;
-
         public RenameForm(PlayListForm playListForm)
         {
             InitializeComponent();

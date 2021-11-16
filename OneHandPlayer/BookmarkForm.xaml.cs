@@ -24,10 +24,11 @@ namespace WpfApp2
         List<BookMark> bookmarks = null;
         string[] times = new string[10];
         Uri uri = null;
+        double hour_time;
         double min_time;
         double sec_time;
         double total_time;
-        string[] set_times = new string[2]; 
+        string[] set_times = new string[3]; 
         public BookmarkForm(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -59,10 +60,10 @@ namespace WpfApp2
         private void add_btn_Click(object sender, RoutedEventArgs e)
         {
             memo = new Memo();
-            memo.bookMark_Inut(uri, MainWindow.mediaMain.Position.ToString(@"mm\:ss"));
+            memo.bookMark_Inut(uri, MainWindow.mediaMain.Position.ToString(@"hh\:mm\:ss"));
             if (memo.overlap == false)
             {
-                bookmarks.Add(new BookMark() { time = MainWindow.mediaMain.Position.ToString(@"mm\:ss") });
+                bookmarks.Add(new BookMark() { time = MainWindow.mediaMain.Position.ToString(@"hh\:mm\:ss") });
                 
             }
             bookmarkCountLbl.Content = bookmarks.Count() + " / 10";//북마크 갯수 표시 하단바
@@ -91,11 +92,13 @@ namespace WpfApp2
                 foreach (BookMark item in bookMark_show.SelectedItems)
                 {
                     set_times = item.time.Split(':');
-                    min_time = Convert.ToDouble(set_times[0]) * 60;
-                    sec_time = Convert.ToDouble(set_times[1]);
+                    hour_time = Convert.ToDouble(set_times[0]) * 3600;
+                    min_time = Convert.ToDouble(set_times[1]) * 60;
+                    sec_time = Convert.ToDouble(set_times[2]);
                     total_time = min_time + sec_time;
                     MainWindow.mediaMain.Position = TimeSpan.FromSeconds(total_time);
                 }
+                MainWindow.Focus();
             }
         }
         public class BookMark { public string time { get; set; } }

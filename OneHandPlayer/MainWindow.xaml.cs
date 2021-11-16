@@ -32,12 +32,15 @@ namespace WpfApp2
 
         //영상이 정지상태인지 재생상태인지 확인
         //0 상태일때는 재생, 1상태일때는 정지
-        int p = 0;
-
+        public int p = 0;
+        //썸네일 올렸는지 안올렸는지
+        //0상태일때는 올림, 1상태일때 내림
+        int ssum = 0;
         bool sldrDragStart = false;
 
         bool RI = false; //반복재생 인덱스
 
+        Memo memo = null;
 
         PlayListForm playListForm = null;//리스트 폼
         BookmarkForm bookmarkForm = null;
@@ -69,6 +72,7 @@ namespace WpfApp2
 
             this.Hide();
 
+
             //북마크 폼 초기화
 
             bookmarkForm = new BookmarkForm(this);
@@ -93,8 +97,9 @@ namespace WpfApp2
                 this.Close();
             }
 
-            
-
+            memo = new Memo();
+            JumpTime = Convert.ToInt32(memo.getjumpTime());
+            memo = null;
 
         }
 
@@ -138,8 +143,8 @@ namespace WpfApp2
                 return;
 
             // 플레이시간이 변경되면, 표시영역을 업데이트한다.
-            lblPlayTime.Content = String.Format("{0}", mediaMain.Position.ToString(@"mm\:ss"));
-            lblEndTime.Content = String.Format("{0}", mediaMain.NaturalDuration.TimeSpan.ToString(@"mm\:ss"));
+            lblPlayTime.Content = String.Format("{0}", mediaMain.Position.ToString(@"hh\:mm\:ss"));
+            lblEndTime.Content = String.Format("{0}", mediaMain.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -199,6 +204,7 @@ namespace WpfApp2
             // 선택한 파일을 실행
             mediaMain.Play();
             p = 0;
+            
         }
 
         private void mediaMain_MediaEnded(object sender, RoutedEventArgs e)
@@ -228,7 +234,6 @@ namespace WpfApp2
             sldrPlayTime.Maximum = mediaMain.NaturalDuration.TimeSpan.TotalSeconds;
 
             // 미디어 파일이 열리면, 볼륨을 볼륨슬라이더가 위치한 자리에 맞춘다.
-
 
         }//영상 플레이 시
 
@@ -315,9 +320,9 @@ namespace WpfApp2
             mediaMain.Volume = volume_bar.Value/100;
         }
 
-     
 
-      
+
+
 
 
         //전체화면 버튼 클릭시
@@ -335,8 +340,8 @@ namespace WpfApp2
             playListForm.Visibility = Visibility.Hidden;
             bookmarkForm.Visibility = Visibility.Hidden;
 
-    
-            WpfApp2.fill_screen F_S = new WpfApp2.fill_screen(playtime, volume, u, JumpTime , p);
+
+            WpfApp2.fill_screen F_S = new WpfApp2.fill_screen(playtime, volume, u, JumpTime, p, playListForm, ssum,this);
             F_S._JimpTime = this.JumpTime;
 
 
@@ -347,22 +352,39 @@ namespace WpfApp2
             mediaMain.Position = TimeSpan.FromSeconds(playtime);
             mediaMain.Volume = volume;
             volume_bar.Value = volume * 100;
-
             mediaMain.Play();
             Thread.Sleep(1);
+            if (F_S.get_p() == 0)
+            {
+                btnPause.Visibility = Visibility.Visible;
+                btnStart.Visibility = Visibility.Hidden;
+            }
             if (F_S.get_p() == 1)
+            {
                 mediaMain.Pause();
+                btnPause.Visibility = Visibility.Hidden;
+                btnStart.Visibility = Visibility.Visible;
+            }
+            if (F_S.get_ssum() == 0)
+            {
+                thumOnBtn.Visibility = Visibility.Hidden;
+                thumGrid.Visibility = Visibility.Visible;
+                thumOffBtn.Visibility = Visibility.Visible;
+            }
+            else if(F_S.get_ssum() == 1)
+            {
+                thumOnBtn.Visibility = Visibility.Visible;
+                thumGrid.Visibility = Visibility.Hidden;
+                thumOffBtn.Visibility = Visibility.Hidden;
+            }
             
-            
-            this.Visibility = Visibility.Visible;
             if (playList_Index) {
                 playListForm.Visibility = Visibility.Visible;
             }
             if (bookmark_Index) {
                 bookmarkForm.Visibility = Visibility.Visible;
             }
-
-            
+            this.Visibility = Visibility.Visible;
 
 
         }
@@ -848,6 +870,10 @@ namespace WpfApp2
             //마우스 휠 다운 이벤트(건너뛰기 시간 설정 새창 열기)
             if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
             {
+                if (mouseWheel_CB.IsChecked == false)
+                {
+                    return;
+                }
                 WpfApp2.TimeJumpSet timeJumpSet = new WpfApp2.TimeJumpSet(JumpTime);
                 timeJumpSet.Top = this.Top;
                 timeJumpSet.Left = this.Left;
@@ -864,22 +890,38 @@ namespace WpfApp2
             {
                 if (e.GetPosition((IInputElement)sender).Y > (mediaMain.ActualHeight - 80))//시간 조절
                 {
+                    if (mouseTime_CB.IsChecked == false)
+                    {
+                        return;
+                    }
                     time_press = true;
                 }
                 else if(e.GetPosition((IInputElement)sender).X > mediaMain.ActualWidth -100)//볼륨 조절
                 {
+                    if (mouseVol_CB.IsChecked == false)
+                    {
+                        return;
+                    }
                     volume_press = true;
 
                     start_volume = e.GetPosition((IInputElement)sender).Y;
                 }
 
-                else if (e.ClickCount == 2)
+                else if (e.ClickCount == 2)//전체화면
                 {
+                    if (mouseFill_CB.IsChecked == false)
+                    {
+                        return;
+                    }
                     fill_btn_Click(fill_Btn,e);
                 }
 
-                else//일시정지, 전체화면
+                else//일시정지
                 {
+                    if (mousePause_CB.IsChecked == false)
+                    {
+                        return;
+                    }
                     if (btnPause.Visibility == Visibility.Visible)
                     {
                         btnPause_Click(btnPause, e);
@@ -901,6 +943,10 @@ namespace WpfApp2
         //화면에서 마우스휠 이동시 시간조정
         private void mediaMain_MouseWheel(object sender, MouseWheelEventArgs e)
         {
+            if (mouseWheel_CB.IsChecked == false)
+            {
+                return;
+            }
             //마우스 휠 위로 올릴경우,초기설정 2초
             if (e.Delta > 0)
             {
@@ -1023,5 +1069,96 @@ namespace WpfApp2
             }
         }
 
+        private void thumOffBtn_Click(object sender, RoutedEventArgs e)
+        {
+            thumOnBtn.Visibility = Visibility.Visible;
+            thumGrid.Visibility = Visibility.Hidden;
+            thumOffBtn.Visibility = Visibility.Hidden;
+            ssum = 1;
+        }
+
+        private void thumOnBtn_Click(object sender, RoutedEventArgs e)
+        {
+            thumOnBtn.Visibility = Visibility.Hidden;
+            thumGrid.Visibility = Visibility.Visible;
+            thumOffBtn.Visibility = Visibility.Visible;
+            ssum = 0;
+        }
+
+         public void Thumbnail_Create(String Source)
+        {
+
+            int t = Image.get_VedioTime(Source)/5;
+
+            BitmapImage[] bi = new BitmapImage[4] ;
+            
+            for (int i = 1; i < 5; i++)
+            {
+                bi[i-1] = Image.LoadImage(Source,i, t*i);
+            }
+
+            thumImage1.Source = bi[0];
+            thumImage2.Source = bi[1];
+            thumImage3.Source = bi[2];
+            thumImage4.Source = bi[3];
+
+            thumImage1.Tag = t * 1;
+            thumImage2.Tag = t * 2;
+            thumImage3.Tag = t * 3;
+            thumImage4.Tag = t * 4;
+
+        }
+
+        private void thumImage1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.ChangedButton == MouseButton.Left && e.ButtonState == MouseButtonState.Pressed)
+            {
+                System.Windows.Controls.Image img = (System.Windows.Controls.Image)sender;
+
+                mediaMain.Position = TimeSpan.FromSeconds(Convert.ToDouble(img.Tag.ToString()));
+            }
+        }
+
+        private void thumImage1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            System.Windows.Controls.Image img = (System.Windows.Controls.Image)sender;
+            img.Opacity = 0.5;
+
+        }
+
+        private void thumImage1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            System.Windows.Controls.Image img = (System.Windows.Controls.Image)sender;
+            img.Opacity = 1;
+        }
+
+        private void timeSetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WpfApp2.TimeJumpSet timeJumpSet = new WpfApp2.TimeJumpSet(JumpTime);
+            timeJumpSet.Top = this.Top;
+            timeJumpSet.Left = this.Left;
+            if (timeJumpSet.ShowDialog() == true)
+            {
+
+
+                string a = timeJumpSet.jumptime.Text;
+                JumpTime = Convert.ToInt32(a);
+            }
+        }
+
+        private void thumbnail_CB_Click(object sender, RoutedEventArgs e)
+        {
+            if(thumbnail_CB.IsChecked == false)
+            {
+                thumGrid.Visibility = Visibility.Hidden;
+                thumOffBtn.Visibility = Visibility.Hidden;
+                thumOnBtn.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                thumOnBtn.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

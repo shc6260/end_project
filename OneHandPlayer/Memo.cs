@@ -10,16 +10,41 @@ namespace WpfApp2
 {
     class Memo
     {
-        private string memoRoute; //메모장 저장 경로
+        private string memoRoute = System.IO.Directory.GetCurrentDirectory() + @"\bookmark.txt"; //메모장 저장 경로
         StreamReader sr;//파일 읽기 객체
         StreamWriter sw;//파일 쓰기 객체
+        private string jumpTime = "2";
         public bool overlap;
 
         public Memo()//클래스 생성시 메모장 루트 생성, 메모장이 없어도 클래스 생성시 자동 생성된다.
         {
-            memoRoute = System.IO.Directory.GetCurrentDirectory() + @"\bookmark.txt";
+            if (!File.Exists(memoRoute))
+            {
+                using (File.Create(memoRoute)){ }
+                sw = new StreamWriter(memoRoute, true);
+                sw.WriteLine("jumptime*2");
+                sw.Close();
+            }
+            else
+            {
+                var lines = File.ReadAllLines(memoRoute);
+                string[] check = lines[0].Split('*');
+                jumpTime = check[1];
+            }
+            
         }
 
+        public string getjumpTime()
+        {
+            return jumpTime;
+        }
+        //점프 타임 수정
+        public void JumpTimeSet(string time)
+        {
+            var lines = File.ReadAllLines(memoRoute);
+            lines[0] = "jumptime*" + time;
+            File.WriteAllLines(memoRoute, lines);
+        }
 
         //메모장 안에 미디어파일경로와 북마크시간 넣는 함수
         public void bookMark_Inut(Uri u, string time)//매개변수로 현재 영상의 실행경로와 저장시간을 가져옴
@@ -89,8 +114,11 @@ namespace WpfApp2
             if (find)
             {
                 var lines = File.ReadAllLines(memoRoute);
-                lines[count] = null;
-                File.WriteAllLines(memoRoute, lines);
+                List<string> list = new List<string>();
+                list = lines.ToList();
+                list.RemoveAt(count);
+                var line = list.ToArray();
+                File.WriteAllLines(memoRoute, line);
             }
         }
 
@@ -176,5 +204,56 @@ namespace WpfApp2
             return Convert.ToInt32(starPoint[1]);
         }
 
+        //파일 이름 변경시 메모장 내용 변경
+        public void Name_Change(string uri1, string uri2)//1 바꾸기전 이름 , 2 바꾼후 이름
+        {
+            var lines = File.ReadAllLines(memoRoute);
+            int count = -1;//특정구문이 들어가있는 줄번호
+            string[] book = new string[2] { "0", "0" };
+            string[] star = new string[2] { "0", "0" };
+            Uri uri = new Uri(uri1);
+            string s_uri = uri.ToString();
+
+            foreach(var line in lines)
+            {
+                count = count + 1;
+                if (line.Contains(s_uri + "?")) //찾은값이 북마크일때
+                {
+                    book = line.Split('?');
+                    lines[count] = new Uri(uri2).ToString() + "?" + book[1];
+                    File.WriteAllLines(memoRoute, lines);
+                }
+                else if (line.Contains(uri1 + "|")) //찾은값이 별점일때
+                {
+                    star = line.Split('|');
+                    lines[count] = uri2 + "|" + star[1];
+                    File.WriteAllLines(memoRoute, lines);
+                }
+            }
+        }
+
+        //파일 삭제시 메모장 내용 변경
+        public void data_Delete(string uri1)//매개변수로 현재 영상의 실행경로와 저장시간을 가져옴
+        {
+            var lines = File.ReadAllLines(memoRoute);
+            Uri uri = new Uri(uri1);
+            string uri2 = uri.ToString();
+            int count = -1;//특정구문이 들어가있는 줄번호
+
+            foreach (var line in lines)
+            {
+                count = count + 1;
+                if (line.Contains(uri1)) //찾은값이 북마크일때
+                {
+                    lines[count] = null;
+                    File.WriteAllLines(memoRoute, lines);
+                }
+                else if (line.Contains(uri2)) //찾은값이 별점일때
+                {
+                    lines[count] = null;
+                    File.WriteAllLines(memoRoute, lines);
+                }
+            }
+        }
     }
 }

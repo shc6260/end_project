@@ -77,6 +77,7 @@
     <Compile Include="fill_screen.xaml.cs">
       <DependentUpon>fill_screen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs" />
     <Compile Include="Memo.cs" />
     <Compile Include="MovieData.cs" />
     <Compile Include="PlayListForm.xaml.cs">
@@ -177,6 +178,8 @@
     <Resource Include="Images\Vol.png" />
     <Resource Include="Images\VolX.png" />
     <Resource Include="Images\Sort.png" />
+    <Resource Include="Images\SmallScreen.png" />
+    <Resource Include="1.jpg" />
     <Content Include="Wildlife.mp4.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
