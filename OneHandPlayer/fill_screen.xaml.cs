@@ -530,19 +530,18 @@ namespace WpfApp2
             }
         }
 
-        bool RI = false; //반복재생 인덱스
         private void btnRotation_Click(object sender, RoutedEventArgs e)//반복재생 버튼
         {
 
-            if (!RI)//꺼져있으면
+            if (!mainWindow.RI)//꺼져있으면
             {
-                RI = true;
+                mainWindow.RI = true;
                 btnRotation.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\RotationON.png")));
 
             }
             else
             {
-                RI = false;
+                mainWindow.RI = false;
                 btnRotation.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\Rotation.png")));
             }
         }
