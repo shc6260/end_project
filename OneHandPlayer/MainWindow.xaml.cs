@@ -44,7 +44,12 @@ namespace WpfApp2
         int ssum = 0;
         bool sldrDragStart = false;
 
-        bool RI = false; //반복재생 인덱스
+        bool _RI = false; //반복재생 인덱스
+        public bool RI
+        {
+            get;
+            set;
+        }
 
         Memo memo = null;
 

@@ -5,3 +5,4 @@ mouse_click_pause>True
 mouse_click_fill>True
 mouse_wheel>True
 thumbnail>True
+C:\Users\YUHAN\Desktop\영상/2-5조 홍보영상.mp4|5

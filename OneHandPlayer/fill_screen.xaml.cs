@@ -88,6 +88,12 @@ namespace WpfApp2
                 thumOffBtn.Visibility = Visibility.Hidden;
             }
 
+            if (mainWindow.RI)//로테이션이 켜져있으면
+            {
+                btnRotation.Background = new ImageBrush(new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"..\..\Images\RotationON.png")));
+
+            }
+
         }
         public int get_p()
         {
@@ -145,10 +151,23 @@ namespace WpfApp2
 
         private void mediaMain_MediaEnded(object sender, RoutedEventArgs e)
         {
-            // 미디어 중지
-            mediaMain.Stop();
-        }
+            if (mainWindow.RI)//로테이션이 켜져있으면
+            {
+                //TimeSpan.FromSeconds(0);
+                mediaMain.Stop();
+                mediaMain.Play();
 
+            }
+            else
+            {
+                // 미디어 중지
+                mediaMain.Stop();
+                p = 1;
+                btnPause.Visibility = Visibility.Hidden;
+                btnStart.Visibility = Visibility.Visible;
+            }
+
+        }//영상 종료시
         private void mediaMain_MediaOpened(object sender, RoutedEventArgs e)
         {
             mediaMain.Position = TimeSpan.FromSeconds(playtime);
