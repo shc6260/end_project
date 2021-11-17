@@ -24,14 +24,15 @@
         <Grid Background="#0F0F2D" MouseDown="Grid_MouseDown">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="17"/>
-                <ColumnDefinition Width="17"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="25"/>
                 <ColumnDefinition Width="76*" />
                 <ColumnDefinition Width="76*" />
                 <ColumnDefinition Width="76*" />
                 <ColumnDefinition Width="76*" />
                 <ColumnDefinition Width="76*" />
-                <ColumnDefinition Width="26*" />
+
                 <ColumnDefinition Width="49*"/>
                 <ColumnDefinition Width="75*" />
                 <ColumnDefinition Width="75*" />
@@ -51,6 +52,12 @@
             <Button Grid.Column="2" BorderBrush="{x:Null}" Width="25" Height="25" Name="bookMarkBtn" Click="bookMarkBtn_Click" Focusable="False">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/Bookmark.png"/>
+                </Button.Background>
+            </Button>
+
+            <Button x:Name="help" Grid.Column="3" Width="17" Height="17" BorderBrush="{x:Null}" Click="help_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/help.png"/>
                 </Button.Background>
             </Button>
 

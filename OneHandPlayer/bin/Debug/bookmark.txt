@@ -1,34 +1,7 @@
-jumptime*10
-
-
-
-
-
-C:\Users\alzhx\Desktop\졸업작품\end_project\영상/테스트완료해따.mp4|3
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트완료해따.mp4?00:00:06
-
-
-
-
-C:\Users\alzhx\Desktop\졸업작품\end_project\영상/테스트1 - 복사본 (3).mp4|4
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트1 - 복사본 (3).mp4?00:00:04
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트1 - 복사본 (3).mp4?00:00:05
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트1 - 복사본 (3).mp4?00:00:06
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트완료해따.mp4?00:00:09
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트완료해따.mp4?00:00:13
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트완료해따.mp4?00:00:25
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트완료해따.mp4?00:00:27
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트완료해따.mp4?00:00:38
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트완료해따.mp4?00:00:28
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/테스트완료해따.mp4?00:00:33
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/논병아리/Wildlife.mp4.mp4?00:00:03
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/논병아리/Wildlife.mp4.mp4?00:00:04
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/논병아리/Wildlife.mp4.mp4?00:00:05
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/논병아리/Wildlife.mp4.mp4?00:00:06
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/논병아리/Wildlife.mp4.mp4?00:00:07
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/논병아리/Wildlife.mp4.mp4?00:00:08
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/으갴.mp4?00:00:00
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/으갴.mp4?00:00:02
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/으갴.mp4?00:00:04
-file:///C:/Users/alzhx/Desktop/졸업작품/end_project/영상/으갴.mp4?00:00:06
-C:\Users\alzhx\Desktop\졸업작품\end_project\영상/으갴.mp4|2
+jumptime*2
+mouse_volume>True
+mouse_time>True
+mouse_click_pause>True
+mouse_click_fill>True
+mouse_wheel>True
+thumbnail>True

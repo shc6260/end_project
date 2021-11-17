@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneHandPlayer", "OneHandPlayer.csproj", "{6367FF63-BB58-40D5-ADBD-B9C110EE4034}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OHPSet", "..\OHPSet\OHPSet.vdproj", "{8137E9F4-551C-4FBB-844F-4416B461F5E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{6367FF63-BB58-40D5-ADBD-B9C110EE4034}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6367FF63-BB58-40D5-ADBD-B9C110EE4034}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6367FF63-BB58-40D5-ADBD-B9C110EE4034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8137E9F4-551C-4FBB-844F-4416B461F5E0}.Debug|Any CPU.ActiveCfg = Debug
+		{8137E9F4-551C-4FBB-844F-4416B461F5E0}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

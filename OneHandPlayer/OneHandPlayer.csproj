@@ -83,6 +83,9 @@
     <Compile Include="PlayListForm.xaml.cs">
       <DependentUpon>PlayListForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="README.xaml.cs">
+      <DependentUpon>README.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RenameForm.xaml.cs">
       <DependentUpon>RenameForm.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PlayListForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="README.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +187,7 @@
     <Resource Include="Images\Sort.png" />
     <Resource Include="Images\SmallScreen.png" />
     <Resource Include="1.jpg" />
+    <Resource Include="Images\help.png" />
     <Content Include="Wildlife.mp4.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -27,8 +27,14 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
-        //시간 건너뛰기 초기값
-        int JumpTime = 2;
+        //시간 건너뛰기값 선언
+        int JumpTime;
+        bool mouse_volume;
+        bool mouse_time;
+        bool mouse_click_pause;
+        bool mouse_click_fill;
+        bool mouse_wheel;
+        bool thumbnail;
 
         //영상이 정지상태인지 재생상태인지 확인
         //0 상태일때는 재생, 1상태일때는 정지
@@ -53,7 +59,7 @@ namespace WpfApp2
             set { bookmarkForm = value;  }
         }
 
-        public MainWindow()
+        public MainWindow()//생성자
         {
             InitializeComponent();
 
@@ -97,8 +103,33 @@ namespace WpfApp2
                 this.Close();
             }
 
+            //초기 설정 가져오기
             memo = new Memo();
             JumpTime = Convert.ToInt32(memo.getjumpTime());
+
+            mouse_volume = Convert.ToBoolean(memo.get_mouse_volume());
+            if (!mouse_volume) { mouseVol_CB.IsChecked = false; }
+
+            mouse_time = Convert.ToBoolean(memo.get_mouse_time());
+            if (!mouse_time) { mouseTime_CB.IsChecked = false; }
+
+            mouse_click_pause = Convert.ToBoolean(memo.get_mouse_click_pause());
+            if (!mouse_click_pause) { mousePause_CB.IsChecked = false; }
+
+            mouse_click_fill = Convert.ToBoolean(memo.get_mouse_click_fill());
+            if (!mouse_click_fill) { mouseFill_CB.IsChecked = false; }
+
+            mouse_wheel = Convert.ToBoolean(memo.get_mouse_wheel());
+            if (!mouse_wheel) { mouseWheel_CB.IsChecked = false; }
+
+            thumbnail = Convert.ToBoolean(memo.get_thumbnail());
+            if (!thumbnail) 
+            {
+                thumbnail_CB.IsChecked = false;
+                thumGrid.Visibility = Visibility.Hidden;
+                thumOffBtn.Visibility = Visibility.Hidden;
+                thumOnBtn.Visibility = Visibility.Hidden;
+            }
             memo = null;
 
         }
@@ -400,11 +431,9 @@ namespace WpfApp2
                 fullScreen_Click(fullScreen, e);
             }
         }
-
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            
         }//닫기 버튼 클릭
 
 
@@ -642,6 +671,9 @@ namespace WpfApp2
             {
                 bookmarkForm.Close();
             }
+            memo = new Memo();
+            memo.settingSave(mouseVol_CB.IsChecked.ToString(), mouseTime_CB.IsChecked.ToString(), mousePause_CB.IsChecked.ToString(), mouseFill_CB.IsChecked.ToString(), mouseWheel_CB.IsChecked.ToString(), thumbnail_CB.IsChecked.ToString());
+            memo = null;
             /*
             DirectoryInfo di = new DirectoryInfo(playListForm._mainFolder + "/thumbnail");
             
@@ -1159,6 +1191,13 @@ namespace WpfApp2
             {
                 thumOnBtn.Visibility = Visibility.Visible;
             }
+        }
+
+        private void help_Click(object sender, RoutedEventArgs e)
+        {
+            WpfApp2.README RM = new WpfApp2.README();
+
+            RM.Show();
         }
     }
 }

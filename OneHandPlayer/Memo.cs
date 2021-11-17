@@ -14,6 +14,12 @@ namespace WpfApp2
         StreamReader sr;//파일 읽기 객체
         StreamWriter sw;//파일 쓰기 객체
         private string jumpTime = "2";
+        private string mouse_volume = "true";
+        private string mouse_time = "true";
+        private string mouse_click_pause = "true";
+        private string mouse_click_fill = "true";
+        private string mouse_wheel = "true";
+        private string thumbnail = "true";
         public bool overlap;
 
         public Memo()//클래스 생성시 메모장 루트 생성, 메모장이 없어도 클래스 생성시 자동 생성된다.
@@ -23,6 +29,12 @@ namespace WpfApp2
                 using (File.Create(memoRoute)){ }
                 sw = new StreamWriter(memoRoute, true);
                 sw.WriteLine("jumptime*2");
+                sw.WriteLine("mouse_volume>true");
+                sw.WriteLine("mouse_time>true");
+                sw.WriteLine("mouse_click_pause>true");
+                sw.WriteLine("mouse_click_fill>true");
+                sw.WriteLine("mouse_wheel>true");
+                sw.WriteLine("thumbnail>true");
                 sw.Close();
             }
             else
@@ -30,6 +42,18 @@ namespace WpfApp2
                 var lines = File.ReadAllLines(memoRoute);
                 string[] check = lines[0].Split('*');
                 jumpTime = check[1];
+                check = lines[1].Split('>');
+                mouse_volume = check[1];
+                check = lines[2].Split('>');
+                mouse_time = check[1];
+                check = lines[3].Split('>');
+                mouse_click_pause = check[1];
+                check = lines[4].Split('>');
+                mouse_click_fill = check[1];
+                check = lines[5].Split('>');
+                mouse_wheel = check[1];
+                check = lines[6].Split('>');
+                thumbnail = check[1];
             }
             
         }
@@ -38,11 +62,48 @@ namespace WpfApp2
         {
             return jumpTime;
         }
+        public string get_mouse_volume()
+        {
+            return mouse_volume;
+        }
+        public string get_mouse_time()
+        {
+            return mouse_time;
+        }
+        public string get_mouse_click_pause()
+        {
+            return mouse_click_pause;
+        }
+        public string get_mouse_click_fill()
+        {
+            return mouse_click_fill;
+        }
+        public string get_mouse_wheel()
+        {
+            return mouse_wheel;
+        }
+        public string get_thumbnail()
+        {
+            return thumbnail;
+        }
+        
         //점프 타임 수정
         public void JumpTimeSet(string time)
         {
             var lines = File.ReadAllLines(memoRoute);
             lines[0] = "jumptime*" + time;
+            File.WriteAllLines(memoRoute, lines);
+        }
+        //세팅 수정
+        public void settingSave(string mouse_volume, string mouse_time, string mouse_click_pause, string mouse_click_fill, string mouse_wheel, string thumbnail)
+        {
+            var lines = File.ReadAllLines(memoRoute);
+            lines[1] = "mouse_volume>" + mouse_volume;
+            lines[2] = "mouse_time>" + mouse_time;
+            lines[3] = "mouse_click_pause>" + mouse_click_pause;
+            lines[4] = "mouse_click_fill>" + mouse_click_fill;
+            lines[5] = "mouse_wheel>" + mouse_wheel;
+            lines[6] = "thumbnail>" + thumbnail;
             File.WriteAllLines(memoRoute, lines);
         }
 
