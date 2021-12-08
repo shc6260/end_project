@@ -35,9 +35,13 @@ OneHandPlayer폴더가 프로젝트 폴더
 
 ## 결과물 이미지
 시작화면
+![image](https://user-images.githubusercontent.com/90231631/145211082-c9601927-7514-459f-b855-475cf564a444.png)
 
 기본 재생 화면
+![image](https://user-images.githubusercontent.com/90231631/145211087-5afeb7b8-835c-4475-b3b6-1ef5f1a77960.png)
 
 전체화면
+![image](https://user-images.githubusercontent.com/90231631/145211092-6834c02c-ff2f-439e-956d-cbeb5edb6e89.png)
 
 북마크 창과 영상 리스트 창
+![image](https://user-images.githubusercontent.com/90231631/145211101-b8379043-31a6-40b3-9d2c-73973a6e8260.png)
