@@ -38,6 +38,7 @@ OneHandPlayer폴더가 프로젝트 폴더
 ![image](https://user-images.githubusercontent.com/90231631/145211562-5bbaf8da-8d3d-417c-af31-2c19fef9548f.png)</br>
 
 기본 재생 화면</br>
+![image](https://user-images.githubusercontent.com/90231631/145213916-7afc5bea-5672-464a-9276-f39ad32c8a27.png)
 
 
 전체화면</br>
