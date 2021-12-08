@@ -34,15 +34,14 @@ OneHandPlayer폴더가 프로젝트 폴더
  시간대별 썸네일 지원</br>
 
 ## 결과물 이미지
-시작화면</br>
+### 시작화면
 ![image](https://user-images.githubusercontent.com/90231631/145211562-5bbaf8da-8d3d-417c-af31-2c19fef9548f.png)</br>
 
-기본 재생 화면</br>
+### 기본 재생 화면(북마크, 리스트, 영상 화면 순서)
 ![image](https://user-images.githubusercontent.com/90231631/145213916-7afc5bea-5672-464a-9276-f39ad32c8a27.png)
 
 
-전체화면</br>
+### 전체화면
+![image](https://user-images.githubusercontent.com/90231631/145214207-21dcf1af-b5f5-4d77-96bf-e1061e9daa41.png)
 
-
-북마크 창과 영상 리스트 창</br>
 
